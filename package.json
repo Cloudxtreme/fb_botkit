@@ -1,20 +1,20 @@
 {
-  "name": "botkit",
+  "name": "facebook-eventbot",
   "version": "0.4.7",
   "description": "Building blocks for Building Bots",
   "main": "facebook_bot.js",
   "dependencies": {
-    "botbuilder": "^3.2.3"
+    "botkit" :"^0.5.1"
   },
   "scripts": {
     "start" : "node facebook_bot.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/howdyai/botkit.git"
+    "url": "https://github.com/neetucompiler/fb_botkit.git"
   },
   "bugs": {
-    "url": "https://github.com/howdyai/botkit/issues"
+    "url": "https://github.com/neetucompiler/fb_botkit/issues"
   },
   "homepage": "http://howdy.ai/botkit",
   "keywords": [
