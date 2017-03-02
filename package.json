@@ -1,6 +1,6 @@
 {
   "name": "facebook-eventbot",
-  "version": "0.4.7",
+  "version": "0.0.1",
   "description": "Building blocks for Building Bots",
   "main": "facebook_bot.js",
   "dependencies": {
@@ -16,7 +16,6 @@
   "bugs": {
     "url": "https://github.com/neetucompiler/fb_botkit/issues"
   },
-  "homepage": "http://howdy.ai/botkit",
   "keywords": [
     "bots",
     "chatbots",
