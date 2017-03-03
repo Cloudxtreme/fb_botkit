@@ -22,6 +22,7 @@ controller.setupWebserver(process.env.PORT || process.env.port || 5000), functio
 
 
 controller.api.thread_settings.greeting('Hello! I\'m a Botkit bot!');
+controller.api.thread_settings.get_started('sample_get_started_payload');
 
 controller.hears(['^hello', '^hi'], 'message_received,facebook_postback', function(bot, message) {
     bot.reply(message, 'Hello iam bot.');
