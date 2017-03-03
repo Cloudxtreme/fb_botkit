@@ -21,7 +21,7 @@ controller.setupWebserver(process.env.PORT || process.env.port || 3000, function
     });
 });
 
-controller.api.thread_settings.greeting('Hello! I\'m a Botkit bot!');
+controller.api.thread_settings.greeting('Hello! welcome to ABC Network Meet!');
 controller.api.thread_settings.get_started('sample_get_started_payload');
 controller.api.thread_settings.menu([
     {
@@ -70,6 +70,34 @@ controller.hears(['^hello', '^hi'], 'message_received,facebook_postback', functi
         }
     });
 });
+controller.hears(['^when', '^date'], 'message_received,facebook_postback', function(bot, message) {
+    controller.storage.users.get(message.user, function(err, user) {
+            bot.reply(message, 'Event is on 5 th of october 2016');
+    });
+});
+
+controller.hears(['^where'], 'message_received', function(bot, message) {
+bot.startConversation(message,function (error, conversation)  {
+  conversation.ask('the event is at madras cafe.Do you know this place', function (response, conversation)  {
+    if (response.text === 'no') {
+      conversation.say('Okay i can help you with that'); // not working
+      conversation.next();// this will move on the next conversation item in the queue. if there is none, it will end the conversation.
+    } else {
+      conversation.ask('i guess then you be able to attend the event right?', function(response, conversation) {
+          //do something with user input
+          if (response.text === 'yes') {
+            conversation.say('Okay then we will meet in event soon'); // not working
+            conversation.next();// this will move on the next conversation item in the queue. if there is none, it will end the conversation.
+          }else{
+            conversation.say('oh so sad u wont be attending event'); 
+            conversation.next();
+          }
+      });
+    }
+  }); 
+ });
+});
+
 
 controller.hears(['silent push reply'], 'message_received', function(bot, message) {
     reply_message = {
