@@ -83,7 +83,10 @@ bot.startConversation(message,function (error, conversation)  {
     if (response.text === 'no') {
       conversation.say('Okay i can help you with that'); // not working
       conversation.next();// this will move on the next conversation item in the queue. if there is none, it will end the conversation.
-    } 
+    } else if(response.text === 'yes') {
+        conversation.say('Okay then ur coming ryt?'); // not working
+        conversation.next();
+    }
   }); 
  });
 });
