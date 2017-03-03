@@ -12,6 +12,14 @@ var controller = Botkit.facebookbot({
     validate_requests: true, // Refuse any requests that don't come from FB on your receive webhook, must provide FB_APP_SECRET in environment variables
 });
 
+var Utterances = {
+    yes: new RegExp(/^(yes|yea|yup|yep|ya|sure|ok|y|yeah|yah|sounds good)/i),
+    no: new RegExp(/^(no|nah|nope|n|never|not a chance)/i),
+    quit: new RegExp(/^(quit|cancel|end|stop|nevermind|never mind)/i),
+    greetings: new RegExp(/^(hi|hello|greetings|hi there|yo|was up|whats up)/),
+    
+};
+
 var bot = controller.spawn({
 });
 
@@ -71,13 +79,13 @@ controller.hears(['^hello', '^hi'], 'message_received,facebook_postback', functi
     });
 });
 
-controller.hears(['^when', '^date'], 'message_received,facebook_postback', function(bot, message) {
+controller.hears(['/when/i','/date/i']||['^when', '^date'], 'message_received,facebook_postback', function(bot, message) {
     controller.storage.users.get(message.user, function(err, user) {
             bot.reply(message, 'Event is on 5 th of october 2016');
     });
 });
 
-controller.hears(['^where'], 'message_received', function(bot, message) {
+controller.hears(['/where/i','/location/i']||['^where','^location'], 'message_received', function(bot, message) {
 bot.startConversation(message,function (error, conversation)  {
   conversation.ask('the event is at madras cafe.Do you know this place', function (response, conversation)  {
     if (response.text === 'no') {
@@ -90,6 +98,10 @@ bot.startConversation(message,function (error, conversation)  {
   }); 
  });
 });
+
+controller.hears(['agenda'], 'message_received', function(bot, message) {
+    bot.reply(message,'The main agenda of the meeting is to have a interaction with the whole team and develop interaction among the teams and the unit.');
+})
 
 controller.hears(['silent push reply'], 'message_received', function(bot, message) {
     reply_message = {
