@@ -79,13 +79,13 @@ controller.hears(['^hello', '^hi'], 'message_received,facebook_postback', functi
     });
 });
 
-controller.hears(['/when/i','/date/i','^when', '^date'], 'message_received,facebook_postback', function(bot, message) {
+controller.hears(['when','date','^when', '^date'], 'message_received,facebook_postback', function(bot, message) {
     controller.storage.users.get(message.user, function(err, user) {
             bot.reply(message, 'Event is on 5 th of october 2016');
     });
 });
 
-controller.hears(['/where/i','/location/i','^where','^location'], 'message_received', function(bot, message) {
+controller.hears(['where','location','located','^where','^location'], 'message_received', function(bot, message) {
 bot.startConversation(message,function (error, conversation)  {
   conversation.ask('the event is at madras cafe.Do you know this place', function (response, conversation)  {
     if (response.text === 'no') {
@@ -226,7 +226,7 @@ controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your na
 
 
 controller.on('message_received', function(bot, message) {
-    bot.reply(message, 'Try: `what is my name` or `structured` or `call me captain`');
+    bot.reply(message, 'Hi, how can i help you?');
     return false;
 });
 
