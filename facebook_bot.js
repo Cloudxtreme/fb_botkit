@@ -30,7 +30,7 @@ controller.setupWebserver(process.env.PORT || process.env.port || 3000, function
 });
 
 controller.api.thread_settings.greeting('Hello! welcome to ABC Network Meet!');
-controller.api.thread_settings.get_started('sample_get_started_payload');
+//controller.api.thread_settings.get_started('sample_get_started_payload');
 controller.api.thread_settings.menu([
     {
         "type":"postback",
