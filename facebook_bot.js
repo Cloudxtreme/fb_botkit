@@ -83,18 +83,7 @@ bot.startConversation(message,function (error, conversation)  {
     if (response.text === 'no') {
       conversation.say('Okay i can help you with that'); // not working
       conversation.next();// this will move on the next conversation item in the queue. if there is none, it will end the conversation.
-    } else {
-      conversation.ask('i guess then you be able to attend the event right?', function(response, conversation) {
-          //do something with user input
-          if (response.text === 'yes') {
-            conversation.say('Okay then we will meet in event soon'); // not working
-            conversation.next();// this will move on the next conversation item in the queue. if there is none, it will end the conversation.
-          }else{
-            conversation.say('oh so sad u wont be attending event'); 
-            conversation.next();
-          }
-      });
-    }
+    } 
   }); 
  });
 });
