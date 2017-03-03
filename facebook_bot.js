@@ -79,13 +79,13 @@ controller.hears(['^hello', '^hi'], 'message_received,facebook_postback', functi
     });
 });
 
-controller.hears(['/when/i','/date/i']||['^when', '^date'], 'message_received,facebook_postback', function(bot, message) {
+controller.hears(['/when/i','/date/i','^when', '^date'], 'message_received,facebook_postback', function(bot, message) {
     controller.storage.users.get(message.user, function(err, user) {
             bot.reply(message, 'Event is on 5 th of october 2016');
     });
 });
 
-controller.hears(['/where/i','/location/i']||['^where','^location'], 'message_received', function(bot, message) {
+controller.hears(['/where/i','/location/i','^where','^location'], 'message_received', function(bot, message) {
 bot.startConversation(message,function (error, conversation)  {
   conversation.ask('the event is at madras cafe.Do you know this place', function (response, conversation)  {
     if (response.text === 'no') {
@@ -102,92 +102,6 @@ bot.startConversation(message,function (error, conversation)  {
 controller.hears(['agenda'], 'message_received', function(bot, message) {
     bot.reply(message,'The main agenda of the meeting is to have a interaction with the whole team and develop interaction among the teams and the unit.');
 })
-
-controller.hears(['silent push reply'], 'message_received', function(bot, message) {
-    reply_message = {
-        text: "This message will have a push notification on a mobile phone, but no sound notification",
-        notification_type: "SILENT_PUSH"
-    }
-    bot.reply(message, reply_message)
-})
-
-controller.hears(['no push'], 'message_received', function(bot, message) {
-    reply_message = {
-        text: "This message will not have any push notification on a mobile phone",
-        notification_type: "NO_PUSH"
-    }
-    bot.reply(message, reply_message)
-})
-
-controller.hears(['structured'], 'message_received', function(bot, message) {
-
-    bot.startConversation(message, function(err, convo) {
-        convo.ask({
-            attachment: {
-                'type': 'template',
-                'payload': {
-                    'template_type': 'generic',
-                    'elements': [
-                        {
-                            'title': 'Classic White T-Shirt',
-                            'image_url': 'http://petersapparel.parseapp.com/img/item100-thumb.png',
-                            'subtitle': 'Soft white cotton t-shirt is back in style',
-                            'buttons': [
-                                {
-                                    'type': 'web_url',
-                                    'url': 'https://petersapparel.parseapp.com/view_item?item_id=100',
-                                    'title': 'View Item'
-                                },
-                                {
-                                    'type': 'web_url',
-                                    'url': 'https://petersapparel.parseapp.com/buy_item?item_id=100',
-                                    'title': 'Buy Item'
-                                },
-                                {
-                                    'type': 'postback',
-                                    'title': 'Bookmark Item',
-                                    'payload': 'White T-Shirt'
-                                }
-                            ]
-                        },
-                        {
-                            'title': 'Classic Grey T-Shirt',
-                            'image_url': 'http://petersapparel.parseapp.com/img/item101-thumb.png',
-                            'subtitle': 'Soft gray cotton t-shirt is back in style',
-                            'buttons': [
-                                {
-                                    'type': 'web_url',
-                                    'url': 'https://petersapparel.parseapp.com/view_item?item_id=101',
-                                    'title': 'View Item'
-                                },
-                                {
-                                    'type': 'web_url',
-                                    'url': 'https://petersapparel.parseapp.com/buy_item?item_id=101',
-                                    'title': 'Buy Item'
-                                },
-                                {
-                                    'type': 'postback',
-                                    'title': 'Bookmark Item',
-                                    'payload': 'Grey T-Shirt'
-                                }
-                            ]
-                        }
-                    ]
-                }
-            }
-        }, function(response, convo) {
-            // whoa, I got the postback payload as a response to my convo.ask!
-            convo.next();
-        });
-    });
-});
-
-controller.on('facebook_postback', function(bot, message) {
-    // console.log(bot, message);
-   bot.reply(message, 'Great Choice!!!! (' + message.payload + ')');
-
-});
-
 
 controller.hears(['call me (.*)', 'my name is (.*)'], 'message_received', function(bot, message) {
     var name = message.match[1];
