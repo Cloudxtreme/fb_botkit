@@ -30,24 +30,24 @@ controller.setupWebserver(process.env.PORT || process.env.port || 3000, function
 });
 
 controller.api.thread_settings.greeting('Hello! welcome to ABC Network Meet!');
-//controller.api.thread_settings.get_started('sample_get_started_payload');
-controller.api.thread_settings.menu([
-    {
-        "type":"postback",
-        "title":"Hello",
-        "payload":"hello"
-    },
-    {
-        "type":"postback",
-        "title":"Help",
-        "payload":"help"
-    },
-    {
-      "type":"web_url",
-      "title":"Botkit Docs",
-      "url":"https://github.com/howdyai/botkit/blob/master/readme-facebook.md"
-    },
-]);
+controller.api.thread_settings.get_started();
+// controller.api.thread_settings.menu([
+//     {
+//         "type":"postback",
+//         "title":"Hello",
+//         "payload":"hello"
+//     },
+//     {
+//         "type":"postback",
+//         "title":"Help",
+//         "payload":"help"
+//     },
+//     {
+//       "type":"web_url",
+//       "title":"Botkit Docs",
+//       "url":"https://github.com/howdyai/botkit/blob/master/readme-facebook.md"
+//     },
+// ]);
 
 controller.hears(['quick'], 'message_received', function(bot, message) {
 
@@ -66,6 +66,13 @@ controller.hears(['quick'], 'message_received', function(bot, message) {
             }
         ]
     });
+
+});
+
+// this is triggered when a user clicks the send-to-messenger plugin
+controller.on('facebook_optin', function(bot, message) {
+
+    bot.reply(message, 'Welcome To My Chatbot Thanks Alot!');
 
 });
 
