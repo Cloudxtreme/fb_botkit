@@ -101,6 +101,8 @@ bot.startConversation(message,function (error, conversation)  {
     } else if(response.text === 'yes') {
         conversation.say('Okay then ur coming ryt?'); // not working
         conversation.next();
+    }else{
+       conversation.next(); 
     }
   }); 
  });
