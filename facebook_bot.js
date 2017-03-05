@@ -155,8 +155,7 @@ controller.hears(['what is my name', 'who am i'], 'message_received', function(b
 
 controller.hears(['where','location','located','^where','^location'], 'message_received', function(bot, message) {
 		bot.startConversation(message, function(err, convo) {
-                if (!err) {                
-                    convo.ask('the event is at madras cafe Do you know this place', function(response, convo) {
+                if (!err) {               
                         convo.ask('the event is at madras cafe Do you know this place`' + response.text + '`?', [
                             {
                                 pattern: 'yes',
@@ -182,9 +181,6 @@ controller.hears(['where','location','located','^where','^location'], 'message_r
                             }
                         ]);
 
-                        convo.next();
-
-                    }); // store the results in a field called nickname
                 }
             });
         
