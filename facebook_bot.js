@@ -152,27 +152,48 @@ controller.hears(['what is my name', 'who am i'], 'message_received', function(b
         }
     });
 });
+controller.hears(['where','location','located','^where','^location'], 'message_received', function(bot, message) {
+		bot.startConversation(message, function(err, convo) {
+                if (!err) {                
+                    convo.ask('the event is at madras cafe', function(response, convo) {
+                        convo.ask('Do you know this place`' + response.text + '`?', [
+                            {
+                                pattern: 'yes',
+                                callback: function(response, convo) {
+                                    // since no further messages are queued after this,
+                                    // the conversation will end naturally with status == 'completed'
+                                    convo.next();
+                                }
+                            },
+                            {
+                                pattern: 'no',
+                                callback: function(response, convo) {
+                                    // stop the conversation. this will cause it to end with status == 'stopped'
+                                    convo.stop();
+                                }
+                            },
+                            {
+                                default: true,
+                                callback: function(response, convo) {
+                                    convo.repeat();
+                                    convo.next();
+                                }
+                            }
+                        ]);
+
+                        convo.next();
+
+                    }); // store the results in a field called nickname
+                }
+            });
+        
+    });
+
 
 controller.hears(['when','date','^when', '^date'], 'message_received,facebook_postback', function(bot, message) {
     controller.storage.users.get(message.user, function(err, user) {
             bot.reply(message, 'Event is on 5 th of october 2016');
     });
-});
-
-controller.hears(['where','location','located','^where','^location'], 'message_received', function(bot, message) {
-bot.startConversation(message,function (error, conversation)  {
-  conversation.ask('the event is at madras cafe.Do you know this place', function (response, conversation)  {
-    if (response.text === 'no') {
-      conversation.say('Okay i can help you with that'); // not working
-      conversation.next();// this will move on the next conversation item in the queue. if there is none, it will end the conversation.
-    } else if(response.text === 'yes') {
-        conversation.say('Okay then ur coming ryt?'); // not working
-        conversation.next();
-    }else{
-       conversation.next(); 
-    }
-  }); 
- });
 });
 
 controller.hears(['agenda'], 'message_received', function(bot, message) {
