@@ -154,11 +154,9 @@ controller.hears(['what is my name', 'who am i'], 'message_received', function(b
 });
 
 controller.hears(['where','location','located','^where','^location'], 'message_received', function(bot, message) {
-		bot.startConversation(message, function(err, convo) {
-                if (!err) {                
-                    convo.ask('the event is at madras cafe Do you know this place', function(response, convo) {
-                        convo.ask('the event is at madras cafe Do you know this place`' + response.text + '`?', [
-                            {
+	bot.startConversation(message, function(err, convo) {
+		convo.ask('The event is at madras cafe Do you know this place ?', [
+			{
                                 pattern: 'yes',
                                 callback: function(response, convo) {
                                     // since no further messages are queued after this,
@@ -180,15 +178,9 @@ controller.hears(['where','location','located','^where','^location'], 'message_r
                                     convo.next();
                                 }
                             }
-                        ]);
-
-                        convo.next();
-
-                    }); // store the results in a field called nickname
-                }
-            });
-        
-    });
+         	]);
+     	});
+ });
 
 
 controller.hears(['when','date','^when', '^date'], 'message_received,facebook_postback', function(bot, message) {
