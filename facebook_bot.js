@@ -1,4 +1,3 @@
-
 var Botkit = require('./lib/Botkit.js');
 var os = require('os');
 var localtunnel = require('localtunnel');
@@ -17,14 +16,13 @@ var Utterances = {
     no: new RegExp(/^(no|nah|nope|n|never|not a chance)/i),
     quit: new RegExp(/^(quit|cancel|end|stop|nevermind|never mind)/i),
     greetings: new RegExp(/^(hi|hello|greetings|hi there|yo|was up|whats up)/),
-    
+
 };
 
-var bot = controller.spawn({
-});
+var bot = controller.spawn({});
 
-controller.setupWebserver(process.env.PORT || process.env.port || 3000, function(err, webserver) {
-    controller.createWebhookEndpoints(webserver, bot, function() {
+controller.setupWebserver(process.env.PORT || process.env.port || 3000, function (err, webserver) {
+    controller.createWebhookEndpoints(webserver, bot, function () {
         console.log('ONLINE!');
     });
 });
@@ -49,23 +47,21 @@ controller.api.thread_settings.get_started();
 //     },
 // ]);
 
-controller.hears(['map'], 'message_received', function(bot, message) {
+controller.hears(['map'], 'message_received', function (bot, message) {
 
-    bot.startConversation(message, function(err, convo) {
+    bot.startConversation(message, function (err, convo) {
         convo.ask({
             attachment: {
                 'type': 'template',
                 'payload': {
                     'template_type': 'generic',
-                    'elements': [
-                        {
-                            'title': 'Classic White T-Shirt',
-                            'image_url': 'http://petersapparel.parseapp.com/img/item100-thumb.png',
-                        }
-                    ]
+                    'elements': [{
+                        'title': 'Classic White T-Shirt',
+                        'image_url': 'http://petersapparel.parseapp.com/img/item100-thumb.png',
+                    }]
                 }
             }
-        }, function(response, convo) {
+        }, function (response, convo) {
             // whoa, I got the postback payload as a response to my convo.ask!
             convo.next();
         });
@@ -75,14 +71,14 @@ controller.hears(['map'], 'message_received', function(bot, message) {
 
 
 // this is triggered when a user clicks the send-to-messenger plugin
-controller.on('facebook_optin', function(bot, message) {
+controller.on('facebook_optin', function (bot, message) {
 
     bot.reply(message, 'Welcome To My Chatbot Thanks Alot!');
 
 });
 
-controller.hears(['^hello', '^hi'], 'message_received,facebook_postback', function(bot, message) {
-    controller.storage.users.get(message.user, function(err, user) {
+controller.hears(['^hello', '^hi'], 'message_received,facebook_postback', function (bot, message) {
+    controller.storage.users.get(message.user, function (err, user) {
         if (user && user.name) {
             bot.reply(message, 'Hello ' + user.name + '!!');
         } else {
@@ -91,20 +87,19 @@ controller.hears(['^hello', '^hi'], 'message_received,facebook_postback', functi
     });
 });
 
-controller.hears(['what is my name', 'who am i'], 'message_received', function(bot, message) {
-    controller.storage.users.get(message.user, function(err, user) {
+controller.hears(['what is my name', 'who am i'], 'message_received', function (bot, message) {
+    controller.storage.users.get(message.user, function (err, user) {
         if (user && user.name) {
             bot.reply(message, 'Your name is ' + user.name);
         } else {
-            bot.startConversation(message, function(err, convo) {
+            bot.startConversation(message, function (err, convo) {
                 if (!err) {
                     convo.say('I do not know your name yet!');
-                    convo.ask('What should I call you?', function(response, convo) {
-                        convo.ask('You want me to call you `' + response.text + '`?', [
-                            {
+                    convo.ask('What should I call you?', function (response, convo) {
+                        convo.ask('You want me to call you `' + response.text + '`?', [{
                                 pattern: bot.utterances.no,
-                                callback: function(response, convo) {
-					convo.say('I am in what say yes!');
+                                callback: function (response, convo) {
+                                    convo.say('I am in what say yes!');
                                     // since no further messages are queued after this,
                                     // the conversation will end naturally with status == 'completed'
                                     convo.next();
@@ -112,16 +107,16 @@ controller.hears(['what is my name', 'who am i'], 'message_received', function(b
                             },
                             {
                                 pattern: bot.utterances.yes,
-                                callback: function(response, convo) {
-                    			convo.say('I am in what say!');
-				
+                                callback: function (response, convo) {
+                                    convo.say('I am in what say!');
+
                                     // stop the conversation. this will cause it to end with status == 'stopped'
                                     convo.stop();
                                 }
                             },
                             {
                                 default: true,
-                                callback: function(response, convo) {
+                                callback: function (response, convo) {
                                     convo.repeat();
                                     convo.next();
                                 }
@@ -130,20 +125,22 @@ controller.hears(['what is my name', 'who am i'], 'message_received', function(b
 
                         convo.next();
 
-                    }, {'key': 'nickname'}); // store the results in a field called nickname
+                    }, {
+                        'key': 'nickname'
+                    }); // store the results in a field called nickname
 
-                    convo.on('end', function(convo) {
+                    convo.on('end', function (convo) {
                         if (convo.status == 'completed') {
                             bot.reply(message, 'OK! I will update my dossier...');
 
-                            controller.storage.users.get(message.user, function(err, user) {
+                            controller.storage.users.get(message.user, function (err, user) {
                                 if (!user) {
                                     user = {
                                         id: message.user,
                                     };
                                 }
                                 user.name = convo.extractResponse('nickname');
-                                controller.storage.users.save(user, function(err, id) {
+                                controller.storage.users.save(user, function (err, id) {
                                     bot.reply(message, 'Got it. I will call you ' + user.name + ' from now on.');
                                 });
                             });
@@ -161,145 +158,157 @@ controller.hears(['what is my name', 'who am i'], 'message_received', function(b
     });
 });
 
-controller.hears(['where','location','located','^where','^location'], 'message_received', function(bot, message) {
-	bot.startConversation(message, function(err, convo) {
-		convo.ask('The event is at madras cafe Do you know this place ?', [
-			{
+controller.hears(['where', 'location', 'located', '^where', '^location'], 'message_received', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+        convo.ask('The event is at madras cafe Do you know this place ?', [{
+                pattern: bot.utterances.yes,
+                callback: function (response, convo) {
+                    convo.say('then we can meet up in the event then.See you soon!');
+                    // since no further messages are queued after this,
+                    // the conversation will end naturally with status == 'completed'
+                    convo.next();
+                }
+            },
+            {
+                pattern: 'no',
+                callback: function (response, convo) {
+                    bot.startConversation(message, function (err, convo) {
+                        convo.say('So i can help you with that!');
+                        convo.say({
+                            "attachment": {
+                                "type": "template",
+                                "payload": {
+                                    "template_type": "generic",
+                                    "elements": {
+                                        "element": {
+                                            "title": "Your current location",
+                                            "image_url": "https://maps.googleapis.com/maps/api/staticmap?center=gateway+hotel+chennai&zoom=17&scale=false&size=600x300&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7Cgateway+hotel+chennai"
+                                        }
+                                    }
+                                }
+                            }
+                        }, function (response, convo) {
+                            // whoa, I got the postback payload as a response to my convo.ask!
+                            convo.next();
+                        });
+                        convo.ask('do you want to know directions', [{
                                 pattern: bot.utterances.yes,
-                                callback: function(response, convo) {
-				     convo.say('then we can meet up in the event then.See you soon!');
-                                    // since no further messages are queued after this,
-                                    // the conversation will end naturally with status == 'completed'
+                                default: true,
+                                callback: function (response, convo) {
+                                    convo.say('We have redirected you');
+                                    opn('http://sindresorhus.com');
                                     convo.next();
                                 }
                             },
                             {
-                                pattern: 'no',
-                                callback: function(response, convo) {
-                                    bot.startConversation(message, function(err, convo) {
-					    convo.say('So i can help you with that!');
-						convo.ask({
-						    "attachment": {
-							    "type": "template",
-							    "payload": {
-								"template_type": "generic",
-								"elements": {
-								    "element": {
-									"title": "Your current location",
-									"image_url": "https://maps.googleapis.com/maps/api/staticmap?center=gateway+hotel+chennai&zoom=17&scale=false&size=600x300&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7Cgateway+hotel+chennai"
-								    }
-								}
-							    }
-							}
-						}, function(response, convo) {
-						    // whoa, I got the postback payload as a response to my convo.ask!
-						    convo.next();
-						});
-					    });
-                                }
-                            },
-                            {
-                                default: true,
-                                callback: function(response, convo) {
-                                    convo.repeat();
+                                pattern: bot.utterances.no,
+                                callback: function (response, convo) {
+                                    convo.say('Okay!Bubye');
                                     convo.next();
                                 }
                             }
-         	]);
-		
-     	});
- });
+                        ]);
+                    });
+                }
+            },
+            {
+                default: true,
+                callback: function (response, convo) {
+                    convo.repeat();
+                    convo.next();
+                }
+            }
+        ]);
 
-
-controller.hears(['when','date','^when', '^date'], 'message_received,facebook_postback', function(bot, message) {
-    controller.storage.users.get(message.user, function(err, user) {
-            bot.reply(message, 'Event is on 5 th of october 2016');
     });
 });
 
-controller.hears(['agenda'], 'message_received', function(bot, message) {
-    bot.reply(message,'The main agenda of the meeting is to have a interaction with the whole team and develop interaction among the teams and the unit.');
+
+controller.hears(['when', 'date', '^when', '^date'], 'message_received,facebook_postback', function (bot, message) {
+    controller.storage.users.get(message.user, function (err, user) {
+        bot.reply(message, 'Event is on 5 th of october 2016');
+    });
+});
+
+controller.hears(['agenda'], 'message_received', function (bot, message) {
+    bot.reply(message, 'The main agenda of the meeting is to have a interaction with the whole team and develop interaction among the teams and the unit.');
 })
 
-controller.hears(['call me (.*)', 'my name is (.*)'], 'message_received', function(bot, message) {
+controller.hears(['call me (.*)', 'my name is (.*)'], 'message_received', function (bot, message) {
     var name = message.match[1];
-    controller.storage.users.get(message.user, function(err, user) {
+    controller.storage.users.get(message.user, function (err, user) {
         if (!user) {
             user = {
                 id: message.user,
             };
         }
         user.name = name;
-        controller.storage.users.save(user, function(err, id) {
+        controller.storage.users.save(user, function (err, id) {
             bot.reply(message, 'Got it. I will call you ' + user.name + ' from now on.');
         });
     });
 });
 
 
-controller.hears(['shutdown'], 'message_received', function(bot, message) {
+controller.hears(['shutdown'], 'message_received', function (bot, message) {
 
-    bot.startConversation(message, function(err, convo) {
+    bot.startConversation(message, function (err, convo) {
 
-        convo.ask('Are you sure you want me to shutdown?', [
-            {
+        convo.ask('Are you sure you want me to shutdown?', [{
                 pattern: bot.utterances.yes,
-                callback: function(response, convo) {
+                callback: function (response, convo) {
                     convo.say('Bye!');
                     convo.next();
-                    setTimeout(function() {
+                    setTimeout(function () {
                         process.exit();
                     }, 3000);
                 }
             },
-        {
-            pattern: bot.utterances.no,
-            default: true,
-            callback: function(response, convo) {
-                convo.say('*Phew!*');
-                convo.next();
+            {
+                pattern: bot.utterances.no,
+                default: true,
+                callback: function (response, convo) {
+                    convo.say('*Phew!*');
+                    convo.next();
+                }
             }
-        }
         ]);
     });
 });
 
 
-controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your name'], 'message_received',
-    function(bot, message) {
+controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your name'], 'message_received', function (bot, message) {
 
-        var hostname = os.hostname();
-        var uptime = formatUptime(process.uptime());
+    var hostname = os.hostname();
+    var uptime = formatUptime(process.uptime());
 
-        bot.reply(message,
-            ':|] I am a bot. I have been running for ' + uptime + ' on ' + hostname + '.');
-    });
+    bot.reply(message, ':|] I am a bot. I have been running for ' + uptime + ' on ' + hostname + '.');
+});
 
 
 
-controller.on('message_received', function(bot, message) {
-	bot.startConversation(message, function(err, convo) {
+controller.on('message_received', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
 
-		convo.ask('Do you need any further information?', [
-		    {
-		    pattern: bot.utterances.yes,
-		    default: true,
-		    callback: function(response, convo) {
-			convo.say('You can proceed with your queries');
-			convo.next();
-			}
-		    },
-		{
-		pattern: bot.utterances.no,
-                callback: function(response, convo) {
+        convo.ask('Do you need any further information?', [{
+                pattern: bot.utterances.yes,
+                default: true,
+                callback: function (response, convo) {
+                    convo.say('You can proceed with your queries');
+                    convo.next();
+                }
+            },
+            {
+                pattern: bot.utterances.no,
+                callback: function (response, convo) {
                     convo.say('Okay!Bubye');
                     convo.next();
-                    setTimeout(function() {
+                    setTimeout(function () {
                         process.exit();
                     }, 3000);
-		    }
-		}
-		]);
+                }
+            }
+        ]);
     });
 });
 

@@ -4,10 +4,11 @@
   "description": "Building blocks for Building Bots",
   "main": "facebook_bot.js",
   "dependencies": {
-    "botkit" :"^0.5.1"
+    "botkit": "^0.5.1",
+    "opn": "^4.0.2"
   },
   "scripts": {
-    "start" : "node facebook_bot.js"
+    "start": "node facebook_bot.js"
   },
   "repository": {
     "type": "git",
