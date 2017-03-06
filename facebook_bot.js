@@ -102,15 +102,16 @@ controller.hears(['what is my name', 'who am i'], 'message_received', function(b
                     convo.ask('What should I call you?', function(response, convo) {
                         convo.ask('You want me to call you `' + response.text + '`?', [
                             {
-                                pattern: bot.utterances.yes,
+                                pattern: bot.utterances.no,
                                 callback: function(response, convo) {
+					convo.say('I am in what say yes!');
                                     // since no further messages are queued after this,
                                     // the conversation will end naturally with status == 'completed'
                                     convo.next();
                                 }
                             },
                             {
-                                pattern: 'no',
+                                pattern: bot.utterances.yes,
                                 callback: function(response, convo) {
                     			convo.say('I am in what say!');
 				
