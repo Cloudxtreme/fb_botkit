@@ -182,23 +182,36 @@ controller.hears(['where', 'location', 'located', '^where', '^location'], 'messa
                             }
                         }
                     });
-                    convo.ask('do you want to know directions', [{
-                            pattern: bot.utterances.yes,
-                            default: true,
-                            callback: function (response, convo) {
-                                convo.say('We have redirected you');
-                                convo.say('http://www.sindresorhus.com');
-                                opn('http://www.sindresorhus.com');
-                                convo.next();
+                    // convo.ask('do you want to know directions', [{
+                    //     pattern: bot.utterances.yes,
+                    //     default: true,
+                    //     callback: function (response, convo) {
+                    //         convo.say('We have redirected you');
+                    //         convo.say('http://www.sindresorhus.com');
+                    //         opn('http://www.sindresorhus.com');
+                    //         convo.next();
+                    //     }
+                    // }, {
+                    //     pattern: bot.utterances.no,
+                    //     callback: function (response, convo) {
+                    //         convo.say('Okay!Bubye');
+                    //         convo.next();
+                    //     }
+                    // }]);
+                    bot.reply(message, {
+                        text: 'Hey! This message has some quick replies attached.',
+                        quick_replies: [{
+                                "content_type": "text",
+                                "title": "Yes",
+                                "payload": "yes",
+                            },
+                            {
+                                "content_type": "text",
+                                "title": "No",
+                                "payload": "no",
                             }
-                        }, {
-                            pattern: bot.utterances.no,
-                            callback: function (response, convo) {
-                                convo.say('Okay!Bubye');
-                                convo.next();
-                            }
-                        }
-                    ]);
+                        ]
+                    })
                 }
             },
             {
