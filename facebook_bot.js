@@ -49,18 +49,14 @@ controller.api.thread_settings.get_started();
 //     },
 // ]);
 
-controller.hears(['quick'], 'message_received', function(bot, message) {
 
-    bot.reply("message": {
-   	 "attachment": {
-      			"type": "image",
-     			 "payload": {
-      				"url": "https://s-media-cache-ak0.pinimg.com/736x/09/2f/cb/092fcb6dc2460b9f7aad08c3b07f81b4.jpg",
-       				 "is_reusable": true
-      			}
-    	}
-  });
 
+controller.hear('image', (payload, chat) => {
+    // Send an attachment
+    chat.say({
+        attachment: 'image',
+        url: 'https://s-media-cache-ak0.pinimg.com/736x/09/2f/cb/092fcb6dc2460b9f7aad08c3b07f81b4.jpg'
+    });
 });
 
 // this is triggered when a user clicks the send-to-messenger plugin
