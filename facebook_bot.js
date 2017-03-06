@@ -203,7 +203,7 @@ controller.hears(['where', 'location', 'located', '^where', '^location'], 'messa
                         quick_replies: [{
                                 "content_type": "text",
                                 "title": "Yes",
-                                "payload": "yes",
+                                "payload": "http://www.bing.com",
                             },
                             {
                                 "content_type": "text",
