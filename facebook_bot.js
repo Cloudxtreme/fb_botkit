@@ -51,12 +51,19 @@ controller.api.thread_settings.get_started();
 
 
 
-controller.hears('image', function(payload, chat){
+controller.hears('image', function(bot, message){
     // Send an attachment
-    chat.say({
+    bot.say({
         attachment: 'image',
         url: 'https://s-media-cache-ak0.pinimg.com/736x/09/2f/cb/092fcb6dc2460b9f7aad08c3b07f81b4.jpg'
     });
+});
+
+controller.hears(['^img'], 'message_received,facebook_postback', function(bot, message) {
+            bot.reply(message,{
+        			attachment: 'image',
+        			url: 'https://s-media-cache-ak0.pinimg.com/736x/09/2f/cb/092fcb6dc2460b9f7aad08c3b07f81b4.jpg'
+   			 } );
 });
 
 // this is triggered when a user clicks the send-to-messenger plugin
