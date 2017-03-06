@@ -51,7 +51,7 @@ controller.api.thread_settings.get_started();
 
 
 
-controller.hear('image', (payload, chat) => {
+controller.hears('image', (payload, chat) => {
     // Send an attachment
     chat.say({
         attachment: 'image',
