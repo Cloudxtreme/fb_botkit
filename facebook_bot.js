@@ -97,7 +97,7 @@ controller.hears(['what is my name', 'who am i'], 'message_received', function(b
                     convo.ask('What should I call you?', function(response, convo) {
                         convo.ask('You want me to call you `' + response.text + '`?', [
                             {
-                                pattern: 'yes',
+                                pattern: bot.utterances.yes,
                                 callback: function(response, convo) {
                                     // since no further messages are queued after this,
                                     // the conversation will end naturally with status == 'completed'
@@ -105,7 +105,7 @@ controller.hears(['what is my name', 'who am i'], 'message_received', function(b
                                 }
                             },
                             {
-                                pattern: 'no',
+                                pattern: bot.utterances.no,
                                 callback: function(response, convo) {
                                     // stop the conversation. this will cause it to end with status == 'stopped'
                                     convo.stop();
@@ -157,7 +157,7 @@ controller.hears(['where','location','located','^where','^location'], 'message_r
 	bot.startConversation(message, function(err, convo) {
 		convo.ask('The event is at madras cafe Do you know this place ?', [
 			{
-                                pattern: 'yes',
+                                pattern: bot.utterances.yes,
                                 callback: function(response, convo) {
 				     convo.say('then we can meet up in the event then.See you soon!');
                                     // since no further messages are queued after this,
@@ -166,7 +166,7 @@ controller.hears(['where','location','located','^where','^location'], 'message_r
                                 }
                             },
                             {
-                                pattern: 'no',
+                                pattern: bot.utterances.no,
                                 callback: function(response, convo) {
 				     convo.say('So i can help you with that!');
                                     // stop the conversation. this will cause it to end with status == 'stopped'
