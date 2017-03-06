@@ -186,7 +186,7 @@ controller.hears(['where','location','located','^where','^location'], 'message_r
 								"elements": {
 								    "element": {
 									"title": "Your current location",
-									"image_url": "https://maps.googleapis.com/maps/api/staticmap?center=Albany,+NY&zoom=13&scale=false&size=600x300&maptype=roadmap&format=png&visual_refresh=true"
+									"image_url": "https://maps.googleapis.com/maps/api/staticmap?center=gateway+hotel+chennai&zoom=17&scale=false&size=600x300&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7Cgateway+hotel+chennai"
 								    }
 								}
 							    }
