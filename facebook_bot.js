@@ -178,7 +178,7 @@ controller.hears(['where','location','located','^where','^location'], 'message_r
                                 callback: function(response, convo) {
 				    convo.say('So i can help you with that!');
                                     // stop the conversation. this will cause it to end with status == 'stopped'
-                                    convo.stop();
+                                    convo.next();
                                 }
                             },
                             {
@@ -189,6 +189,7 @@ controller.hears(['where','location','located','^where','^location'], 'message_r
                                 }
                             }
          	]);
+		
      	});
  });
 
