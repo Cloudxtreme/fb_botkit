@@ -1,6 +1,7 @@
 var Botkit = require('./lib/Botkit.js');
 var os = require('os');
 var localtunnel = require('localtunnel');
+var opn = require('opn');
 
 var controller = Botkit.facebookbot({
     debug: true,
