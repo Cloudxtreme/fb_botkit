@@ -176,8 +176,8 @@ controller.hears(['where','location','located','^where','^location'], 'message_r
                             {
                                 pattern: 'no',
                                 callback: function(response, convo) {
-				    convo.say('So i can help you with that!');
                                     bot.startConversation(message, function(err, convo) {
+					    convo.say('So i can help you with that!');
 						convo.ask({
 						    "attachment": {
 							    "type": "template",
