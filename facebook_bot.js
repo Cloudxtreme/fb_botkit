@@ -318,7 +318,34 @@ controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your na
 
 
 controller.on('message_received', function(bot, message) {
-    bot.reply(message, 'Hi, how can i help you?');
+	bot.startConversation(message, function(err, convo) {
+		convo.ask('Do u want any further information?', [
+			{
+                                pattern: 'yes',
+                                callback: function(response, convo) {
+				     convo.say('you can proceed with your queries!');
+                                    // since no further messages are queued after this,
+                                    // the conversation will end naturally with status == 'completed'
+                                    convo.next();
+                                }
+                            },
+                            {
+                                pattern: 'no',
+                                callback: function(response, convo) {
+				     convo.say('okay! thank you.');
+                                    // stop the conversation. this will cause it to end with status == 'stopped'
+                                    convo.stop();
+                                }
+                            },
+                            {
+                                default: true,
+                                callback: function(response, convo) {
+                                    convo.repeat();
+                                    convo.next();
+                                }
+                            }
+         	]);
+     	});
     return false;
 });
 
