@@ -51,8 +51,7 @@ controller.api.thread_settings.get_started();
 
 controller.hears(['map'], 'message_received', function(bot, message) {
 
-    bot.startConversation(message, function(err, convo) {
-        convo.ask({
+        bot.reply(message,{
             attachment: {
                 'type': 'template',
                 'payload': {
@@ -65,12 +64,8 @@ controller.hears(['map'], 'message_received', function(bot, message) {
                     ]
                 }
             }
-        }, function(response, convo) {
-            // whoa, I got the postback payload as a response to my convo.ask!
-            convo.next();
         });
     });
-});
 
 
 // this is triggered when a user clicks the send-to-messenger plugin
