@@ -60,11 +60,10 @@ controller.hears('image', function(bot, message){
 });
 
 controller.hears(['^img'], 'message_received,facebook_postback', function(bot, message) {
-	    bot.reply(message,'hello iam in image');
-//             bot.reply(message,{
-//         			attachment: 'image',
-//         			url: 'https://s-media-cache-ak0.pinimg.com/736x/09/2f/cb/092fcb6dc2460b9f7aad08c3b07f81b4.jpg'
-//    			 } );
+            bot.reply(message,{
+        			attachment: 'image',
+        			url: 'https://s-media-cache-ak0.pinimg.com/736x/09/2f/cb/092fcb6dc2460b9f7aad08c3b07f81b4.jpg'
+   			 } );
 });
 
 // this is triggered when a user clicks the send-to-messenger plugin
