@@ -51,7 +51,8 @@ controller.api.thread_settings.get_started();
 
 controller.hears(['map'], 'message_received', function(bot, message) {
 
-        bot.reply(message,{
+    bot.startConversation(message, function(err, convo) {
+        convo.ask({
             attachment: {
                 'type': 'template',
                 'payload': {
@@ -64,8 +65,13 @@ controller.hears(['map'], 'message_received', function(bot, message) {
                     ]
                 }
             }
+        }, function(response, convo) {
+            // whoa, I got the postback payload as a response to my convo.ask!
+            convo.next();
         });
     });
+});
+
 
 
 // this is triggered when a user clicks the send-to-messenger plugin
@@ -168,6 +174,25 @@ controller.hears(['where','location','located','^where','^location'], 'message_r
                                 pattern: bot.utterances.no,
                                 callback: function(response, convo) {
 				     convo.say('So i can help you with that!');
+					bot.startConversation(message, function(err, convo) {
+						convo.ask({
+						    attachment: {
+							'type': 'template',
+							'payload': {
+							    'template_type': 'generic',
+							    'elements': [
+								{
+								    'title': 'Classic White T-Shirt',
+								    'image_url': 'http://petersapparel.parseapp.com/img/item100-thumb.png',
+								}
+							    ]
+							}
+						    }
+						}, function(response, convo) {
+						    // whoa, I got the postback payload as a response to my convo.ask!
+						    convo.next();
+						});
+					    });
                                     // stop the conversation. this will cause it to end with status == 'stopped'
                                     convo.stop();
                                 }
