@@ -112,6 +112,8 @@ controller.hears(['what is my name', 'who am i'], 'message_received', function(b
                             {
                                 pattern: bot.utterances.no,
                                 callback: function(response, convo) {
+                    			convo.say('I am in what say!');
+				
                                     // stop the conversation. this will cause it to end with status == 'stopped'
                                     convo.stop();
                                 }
