@@ -51,21 +51,15 @@ controller.api.thread_settings.get_started();
 
 controller.hears(['quick'], 'message_received', function(bot, message) {
 
-    bot.reply(message, {
-        text: 'Hey! This message has some quick replies attached.',
-        quick_replies: [
-            {
-                "content_type": "text",
-                "title": "Yes",
-                "payload": "yes",
-            },
-            {
-                "content_type": "text",
-                "title": "No",
-                "payload": "no",
-            }
-        ]
-    });
+    bot.reply("message": {
+   	 "attachment": {
+      			"type": "image",
+     			 "payload": {
+      				"url": "https://petersapparel.parseapp.com/img/shirt.png",
+       				 "is_reusable": true
+      			}
+    	}
+  });
 
 });
 
