@@ -179,18 +179,19 @@ controller.hears(['where','location','located','^where','^location'], 'message_r
 				    convo.say('So i can help you with that!');
                                     bot.startConversation(message, function(err, convo) {
 						convo.ask({
-						    attachment: {
-							'type': 'template',
-							'payload': {
-							    'template_type': 'generic',
-							    'elements': [
-								{
-								    'title': 'Classic White T-Shirt',
-								    'image_url': 'http://petersapparel.parseapp.com/img/item100-thumb.png',
+						    "attachment": {
+							    "type": "template",
+							    "payload": {
+								"template_type": "generic",
+								"elements": {
+								    "element": {
+									"title": "Your current location",
+									"image_url": "https:\/\/maps.googleapis.com\/maps\/api\/staticmap?size=764x400&center="+lat+","+long+"&zoom=25&markers="+lat+","+long,
+									"item_url": "http:\/\/maps.apple.com\/maps?q="+lat+","+long+"&z=16"
+								    }
 								}
-							    ]
+							    }
 							}
-						    }
 						}, function(response, convo) {
 						    // whoa, I got the postback payload as a response to my convo.ask!
 						    convo.next();
