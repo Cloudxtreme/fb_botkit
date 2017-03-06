@@ -55,7 +55,7 @@ controller.hears(['quick'], 'message_received', function(bot, message) {
    	 "attachment": {
       			"type": "image",
      			 "payload": {
-      				"url": "https://petersapparel.parseapp.com/img/shirt.png",
+      				"url": "https://s-media-cache-ak0.pinimg.com/736x/09/2f/cb/092fcb6dc2460b9f7aad08c3b07f81b4.jpg",
        				 "is_reusable": true
       			}
     	}
