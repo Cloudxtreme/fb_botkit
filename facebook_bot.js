@@ -145,9 +145,6 @@ controller.hears(['what is my name', 'who am i'], 'message_received', function (
                                     bot.reply(message, 'Got it. I will call you ' + user.name + ' from now on.');
                                 });
                             });
-
-
-
                         } else {
                             // this happens if the conversation ended prematurely for some reason
                             bot.reply(message, 'OK, nevermind!');
@@ -165,51 +162,43 @@ controller.hears(['where', 'location', 'located', '^where', '^location'], 'messa
                 pattern: bot.utterances.yes,
                 callback: function (response, convo) {
                     convo.say('then we can meet up in the event then.See you soon!');
-                    // since no further messages are queued after this,
-                    // the conversation will end naturally with status == 'completed'
                     convo.next();
                 }
-            },
-            {
-                pattern: 'no',
+            }, {
+                pattern: bot.utterances.no,
                 callback: function (response, convo) {
-                    bot.startConversation(message, function (err, convo) {
-                        convo.say('So i can help you with that!');
-                        convo.say({
-                            "attachment": {
-                                "type": "template",
-                                "payload": {
-                                    "template_type": "generic",
-                                    "elements": {
-                                        "element": {
-                                            "title": "Your current location",
-                                            "image_url": "https://maps.googleapis.com/maps/api/staticmap?center=gateway+hotel+chennai&zoom=17&scale=false&size=600x300&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7Cgateway+hotel+chennai"
-                                        }
+                    convo.say('So i can help you with that!');
+                    convo.say({
+                        "attachment": {
+                            "type": "template",
+                            "payload": {
+                                "template_type": "generic",
+                                "elements": {
+                                    "element": {
+                                        "title": "Your current location",
+                                        "image_url": "https://maps.googleapis.com/maps/api/staticmap?center=gateway+hotel+chennai&zoom=17&scale=false&size=600x300&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7Cgateway+hotel+chennai"
                                     }
                                 }
                             }
-                        }, function (response, convo) {
-                            // whoa, I got the postback payload as a response to my convo.ask!
-                            convo.next();
-                        });
-                        convo.ask('do you want to know directions', [{
-                                pattern: bot.utterances.yes,
-                                default: true,
-                                callback: function (response, convo) {
-                                    convo.say('We have redirected you');
-                                    opn('http://sindresorhus.com');
-                                    convo.next();
-                                }
-                            },
-                            {
-                                pattern: bot.utterances.no,
-                                callback: function (response, convo) {
-                                    convo.say('Okay!Bubye');
-                                    convo.next();
-                                }
-                            }
-                        ]);
+                        }
                     });
+                    convo.ask('do you want to know directions', [{
+                            pattern: bot.utterances.yes,
+                            default: true,
+                            callback: function (response, convo) {
+                                convo.say('We have redirected you');
+                                convo.say('http://www.sindresorhus.com');
+                                opn('http://www.sindresorhus.com');
+                                convo.next();
+                            }
+                        }, {
+                            pattern: bot.utterances.no,
+                            callback: function (response, convo) {
+                                convo.say('Okay!Bubye');
+                                convo.next();
+                            }
+                        }
+                    ]);
                 }
             },
             {
