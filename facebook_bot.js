@@ -173,12 +173,21 @@ controller.hears(['where', 'location', 'located', '^where', '^location'], 'messa
                             "type": "template",
                             "payload": {
                                 "template_type": "generic",
-                                "elements": {
-                                    "element": {
-                                        "title": "Your current location",
-                                        "image_url": "https://maps.googleapis.com/maps/api/staticmap?center=gateway+hotel+chennai&zoom=17&scale=false&size=600x300&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7Cgateway+hotel+chennai"
-                                    }
-                                }
+                                "elements": [{
+                                    "title": "Your current location",
+                                    "image_url": "https://maps.googleapis.com/maps/api/staticmap?center=gateway+hotel+chennai&zoom=17&scale=false&size=600x300&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7Cgateway+hotel+chennai",
+                                    "buttons": [{
+                                            'type': 'web_url',
+                                            'url': 'https://petersapparel.parseapp.com/view_item?item_id=100',
+                                            'title': 'View directions'
+                                        },
+                                        {
+                                            'type': 'web_url',
+                                            'url': 'https://petersapparel.parseapp.com/buy_item?item_id=100',
+                                            'title': 'View Map'
+                                        }
+                                    ]
+                                }]
                             }
                         }
                     });
@@ -203,12 +212,12 @@ controller.hears(['where', 'location', 'located', '^where', '^location'], 'messa
                         quick_replies: [{
                                 "content_type": "text",
                                 "title": "Yes",
-                                "payload": "http://www.bing.com",
+                                "payload": "http://www.bing.com"
                             },
                             {
                                 "content_type": "text",
                                 "title": "No",
-                                "payload": "no",
+                                "payload": "no"
                             }
                         ]
                     })
