@@ -49,22 +49,29 @@ controller.api.thread_settings.get_started();
 //     },
 // ]);
 
+controller.hears(['map'], 'message_received', function(bot, message) {
 
-
-controller.hears('image', function(bot, message){
-    // Send an attachment
-    bot.say({
-        attachment: 'image',
-        url: 'https://s-media-cache-ak0.pinimg.com/736x/09/2f/cb/092fcb6dc2460b9f7aad08c3b07f81b4.jpg'
+    bot.startConversation(message, function(err, convo) {
+        convo.ask({
+            attachment: {
+                'type': 'template',
+                'payload': {
+                    'template_type': 'generic',
+                    'elements': [
+                        {
+                            'title': 'Classic White T-Shirt',
+                            'image_url': 'http://petersapparel.parseapp.com/img/item100-thumb.png',
+                        }
+                    ]
+                }
+            }
+        }, function(response, convo) {
+            // whoa, I got the postback payload as a response to my convo.ask!
+            convo.next();
+        });
     });
 });
 
-controller.hears(['^img'], 'message_received,facebook_postback', function(bot, message) {
-            bot.reply(message,{
-        			attachment: 'image',
-        			url: 'https://s-media-cache-ak0.pinimg.com/736x/09/2f/cb/092fcb6dc2460b9f7aad08c3b07f81b4.jpg'
-   			 } );
-});
 
 // this is triggered when a user clicks the send-to-messenger plugin
 controller.on('facebook_optin', function(bot, message) {
