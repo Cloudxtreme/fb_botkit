@@ -177,8 +177,25 @@ controller.hears(['where','location','located','^where','^location'], 'message_r
                                 pattern: 'no',
                                 callback: function(response, convo) {
 				    convo.say('So i can help you with that!');
-                                    // stop the conversation. this will cause it to end with status == 'stopped'
-                                    convo.next();
+                                    bot.startConversation(message, function(err, convo) {
+						convo.ask({
+						    attachment: {
+							'type': 'template',
+							'payload': {
+							    'template_type': 'generic',
+							    'elements': [
+								{
+								    'title': 'Classic White T-Shirt',
+								    'image_url': 'http://petersapparel.parseapp.com/img/item100-thumb.png',
+								}
+							    ]
+							}
+						    }
+						}, function(response, convo) {
+						    // whoa, I got the postback payload as a response to my convo.ask!
+						    convo.next();
+						});
+					    });
                                 }
                             },
                             {
