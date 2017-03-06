@@ -14,7 +14,6 @@ var controller = Botkit.facebookbot({
 
 var Utterances = {
     yes: new RegExp(/^(yes|yea|yup|yep|ya|sure|ok|y|yeah|yah|sounds good)/i),
-    k :new RegExp(/(okay)/i), 	
     no: new RegExp(/^(no|nah|nope|n|never|not a chance)/i),
     quit: new RegExp(/^(quit|cancel|end|stop|nevermind|never mind)/i),
     greetings: new RegExp(/^(hi|hello|greetings|hi there|yo|was up|whats up)/),
@@ -158,7 +157,7 @@ controller.hears(['where','location','located','^where','^location'], 'message_r
 	bot.startConversation(message, function(err, convo) {
 		convo.ask('The event is at madras cafe Do you know this place ?', [
 			{
-                                pattern: bot.utterances.k,
+                                pattern: bot.utterances.yes,
                                 callback: function(response, convo) {
 				     convo.say('then we can meet up in the event then.See you soon!');
                                     // since no further messages are queued after this,
