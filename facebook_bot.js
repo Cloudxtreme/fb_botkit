@@ -178,12 +178,12 @@ controller.hears(['where', 'location', 'located', '^where', '^location'], 'messa
                                     "image_url": "https://maps.googleapis.com/maps/api/staticmap?center=gateway+hotel+chennai&zoom=17&scale=false&size=600x300&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7Cgateway+hotel+chennai",
                                     "buttons": [{
                                             'type': 'web_url',
-                                            'url': 'https://petersapparel.parseapp.com/view_item?item_id=100',
+                                            'url': 'https://www.google.co.in/maps/dir//The+Gateway+Hotel,+309+Rajiv+Gandhi+Salai+(OMR),+Elcot+Sez,+Sholinganallur,+Chennai,+Tamil+Nadu+600119/@12.9056392,80.2256728,17z/data=!4m15!1m6!3m5!1s0x3a525b9ecc7572e7:0xe53a02455570c2df!2sThe+Gateway+Hotel!8m2!3d12.9056392!4d80.2278615!4m7!1m0!1m5!1m1!1s0x3a525b9ecc7572e7:0xe53a02455570c2df!2m2!1d80.2278615!2d12.9056392',
                                             'title': 'View directions'
                                         },
                                         {
                                             'type': 'web_url',
-                                            'url': 'https://petersapparel.parseapp.com/buy_item?item_id=100',
+                                            'url': 'https://www.google.co.in/maps/dir//The+Gateway+Hotel,+309+Rajiv+Gandhi+Salai+(OMR),+Elcot+Sez,+Sholinganallur,+Chennai,+Tamil+Nadu+600119/@12.9056392,80.2256728,17z/data=!4m15!1m6!3m5!1s0x3a525b9ecc7572e7:0xe53a02455570c2df!2sThe+Gat+Hotel!8m2!3d12.9056392!4d80.2278615!4m7!1m0!1m5!1m1!1s0x3a525b9ecc7572e7:0xe53a02455570c2df!2m2!1d80.2278615!2d12.9056392',
                                             'title': 'View Map'
                                         }
                                     ]
@@ -207,20 +207,20 @@ controller.hears(['where', 'location', 'located', '^where', '^location'], 'messa
                     //         convo.next();
                     //     }
                     // }]);
-                    bot.reply(message, {
-                        text: 'Hey! This message has some quick replies attached.',
-                        quick_replies: [{
-                                "content_type": "text",
-                                "title": "Yes",
-                                "payload": "http://www.bing.com"
-                            },
-                            {
-                                "content_type": "text",
-                                "title": "No",
-                                "payload": "no"
-                            }
-                        ]
-                    })
+                    // bot.reply(message, {
+                    //     text: 'Hey! This message has some quick replies attached.',
+                    //     quick_replies: [{
+                    //             "content_type": "text",
+                    //             "title": "Yes",
+                    //             "payload": "http://www.bing.com"
+                    //         },
+                    //         {
+                    //             "content_type": "text",
+                    //             "title": "No",
+                    //             "payload": "no"
+                    //         }
+                    //     ]
+                    // })
                 }
             },
             {
