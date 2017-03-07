@@ -221,6 +221,7 @@ controller.hears(['where', 'location', 'located', '^where', '^location'], 'messa
                     //         }
                     //     ]
                     // })
+                    convo.next();
                 }
             },
             {
