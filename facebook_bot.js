@@ -29,46 +29,7 @@ controller.setupWebserver(process.env.PORT || process.env.port || 3000, function
 });
 
 controller.api.thread_settings.greeting('Hello! welcome to ABC Network Meet!');
-controller.api.thread_settings.get_started();
-// controller.api.thread_settings.menu([
-//     {
-//         "type":"postback",
-//         "title":"Hello",
-//         "payload":"hello"
-//     },
-//     {
-//         "type":"postback",
-//         "title":"Help",
-//         "payload":"help"
-//     },
-//     {
-//       "type":"web_url",
-//       "title":"Botkit Docs",
-//       "url":"https://github.com/howdyai/botkit/blob/master/readme-facebook.md"
-//     },
-// ]);
-
-controller.hears(['map'], 'message_received', function (bot, message) {
-
-    bot.startConversation(message, function (err, convo) {
-        convo.ask({
-            attachment: {
-                'type': 'template',
-                'payload': {
-                    'template_type': 'generic',
-                    'elements': [{
-                        'title': 'Classic White T-Shirt',
-                        'image_url': 'http://petersapparel.parseapp.com/img/item100-thumb.png',
-                    }]
-                }
-            }
-        }, function (response, convo) {
-            // whoa, I got the postback payload as a response to my convo.ask!
-            convo.next();
-        });
-    });
-});
-
+//controller.api.thread_settings.get_started();
 
 
 // this is triggered when a user clicks the send-to-messenger plugin
@@ -259,33 +220,6 @@ controller.hears(['call me (.*)', 'my name is (.*)'], 'message_received', functi
         controller.storage.users.save(user, function (err, id) {
             bot.reply(message, 'Got it. I will call you ' + user.name + ' from now on.');
         });
-    });
-});
-
-
-controller.hears(['shutdown'], 'message_received', function (bot, message) {
-
-    bot.startConversation(message, function (err, convo) {
-
-        convo.ask('Are you sure you want me to shutdown?', [{
-                pattern: bot.utterances.yes,
-                callback: function (response, convo) {
-                    convo.say('Bye!');
-                    convo.next();
-                    setTimeout(function () {
-                        process.exit();
-                    }, 3000);
-                }
-            },
-            {
-                pattern: bot.utterances.no,
-                default: true,
-                callback: function (response, convo) {
-                    convo.say('*Phew!*');
-                    convo.next();
-                }
-            }
-        ]);
     });
 });
 
