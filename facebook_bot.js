@@ -28,7 +28,7 @@ controller.setupWebserver(process.env.PORT || process.env.port || 3000, function
     });
 });
 
-controller.api.thread_settings.greeting('Hello! welcome to ABC Network Meet!');
+controller.api.thread_settings.greeting('Hello! welcome to our farewell Meet!');
 //controller.api.thread_settings.get_started();
 
 
@@ -42,9 +42,9 @@ controller.on('facebook_optin', function (bot, message) {
 controller.hears(['^hello', '^hi'], 'message_received,facebook_postback', function (bot, message) {
     controller.storage.users.get(message.user, function (err, user) {
         if (user && user.name) {
-            bot.reply(message, 'Hello ' + user.name + '!!');
+            bot.reply(message, 'Hello! I can help you with upcoming farewell meet details ' + user.name + '!!');
         } else {
-            bot.reply(message, 'Hello.');
+            bot.reply(message, 'Hello! I can help you with upcoming farewell meet details');
         }
     });
 });
@@ -119,15 +119,17 @@ controller.hears(['what is my name', 'who am i'], 'message_received', function (
 
 controller.hears(['where', 'location', 'located', '^where', '^location'], 'message_received', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
-        convo.ask('The event is at madras cafe Do you know this place ?', [{
+        convo.ask('The farewell is at madras cafe inside gateway hotel. Do you know this place ?', [{
                 pattern: bot.utterances.yes,
                 callback: function (response, convo) {
-                    convo.say('then we can meet up in the event then.See you soon!');
+                    convo.say('Oh grt!!');
+                    convo.say('Then we can meet up in the event then.See you soon!');
                     convo.next();
                 }
             }, {
                 pattern: bot.utterances.no,
                 callback: function (response, convo) {
+                    convo.say('ohhhk no prblm');
                     convo.say('So i can help you with that!');
                     convo.say({
                         "attachment": {
@@ -200,12 +202,12 @@ controller.hears(['where', 'location', 'located', '^where', '^location'], 'messa
 
 controller.hears(['when', 'date', '^when', '^date'], 'message_received,facebook_postback', function (bot, message) {
     controller.storage.users.get(message.user, function (err, user) {
-        bot.reply(message, 'Event is on 5 th of october 2016');
+        bot.reply(message, 'Farewell is on 5 th of october 2016');
     });
 });
 
 controller.hears(['agenda'], 'message_received', function (bot, message) {
-    bot.reply(message, 'The main agenda of the meeting is to have a interaction with the whole team and develop interaction among the teams and the unit.');
+    bot.reply(message, 'The main agenda of the meet is to have a interaction with the our senior team members and develop interaction among the teams and the people who are leaving our company.');
 })
 
 controller.hears(['call me (.*)', 'my name is (.*)'], 'message_received', function (bot, message) {
