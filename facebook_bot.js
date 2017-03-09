@@ -28,7 +28,7 @@ controller.setupWebserver(process.env.PORT || process.env.port || 3000, function
     });
 });
 
-controller.api.thread_settings.greeting('Hello! welcome to our farewell Meet!');
+controller.api.thread_settings.greeting('Hello! welcome to our First Conference Meet!');
 //controller.api.thread_settings.get_started();
 
 
@@ -42,9 +42,9 @@ controller.on('facebook_optin', function (bot, message) {
 controller.hears(['^hello', '^hi'], 'message_received,facebook_postback', function (bot, message) {
     controller.storage.users.get(message.user, function (err, user) {
         if (user && user.name) {
-            bot.reply(message, 'Hello! I can help you with upcoming farewell meet details ' + user.name + '!!');
+            bot.reply(message, 'Hello! I can help you with upcoming Conference meet details ' + user.name + '!!');
         } else {
-            bot.reply(message, 'Hello! I can help you with upcoming farewell meet details');
+            bot.reply(message, 'Hello! I can help you with upcoming Conference meet details');
         }
     });
 });
@@ -93,7 +93,7 @@ controller.hears(['what is my name', 'who am i'], 'message_received', function (
 
                     convo.on('end', function (convo) {
                         if (convo.status == 'completed') {
-                            bot.reply(message, 'OK! I will update my dossier...');
+                            bot.reply(message, 'OK! I will remember your name ...');
 
                             controller.storage.users.get(message.user, function (err, user) {
                                 if (!user) {
@@ -167,12 +167,12 @@ controller.hears(['where', 'location', 'located', '^where', '^location'], 'messa
 
 controller.hears(['when', 'date', '^when', '^date'], 'message_received,facebook_postback', function (bot, message) {
     controller.storage.users.get(message.user, function (err, user) {
-        bot.reply(message, 'Farewell is on 5 th of october 2016');
+        bot.reply(message, 'Conference is scheduled on 5 th of october 2016');
     });
 });
 
 controller.hears(['agenda'], 'message_received', function (bot, message) {
-    bot.reply(message, 'The main agenda of the meet is to have a interaction with the our senior team members and develop interaction among the teams and the people who are leaving our company.');
+    bot.reply(message, 'The main agenda of this conference meet is to have a interaction with the our senior team members and develop knowledge on the upcoming analytics and reporting technologies.');
 })
 
 controller.hears(['call me (.*)', 'my name is (.*)'], 'message_received', function (bot, message) {
