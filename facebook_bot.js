@@ -44,18 +44,18 @@ controller.hears(['^hello', '^hi'], 'message_received,facebook_postback', functi
         if (user && user.name) {
             bot.reply(message, 'Hello! I can help you with upcoming Conference meet details ' + user.name + '!!');
         } else {
-            bot.reply(message, 'Hello! I can help you with upcoming Conference meet details');
              bot.startConversation(message, function (err, convo) {
+		convo.say('Hello! I can help you with upcoming Conference meet details');
                convo.ask('you can proceed with your queries!!', [{
                 pattern: bot.utterances.yes,
                 default: true,
                  callback: function (response, convo) {
                     convo.next();
                  }
-			    }	
-              ]);
-			});
 		}	
+              ]);
+	   });
+	}	
 	});
 });
 controller.hears(['what is my name', 'who am i'], 'message_received', function (bot, message) {
