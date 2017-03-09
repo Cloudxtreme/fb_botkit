@@ -119,7 +119,7 @@ controller.hears(['what is my name', 'who am i'], 'message_received', function (
 
 controller.hears(['where', 'location', 'located', '^where', '^location'], 'message_received', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
-        convo.ask('The farewell is at madras cafe inside gateway hotel. Do you know this place ?', [{
+        convo.ask('The conference is at madras cafe inside gateway hotel. Do you know this place ?', [{
                 pattern: bot.utterances.yes,
                 callback: function (response, convo) {
                     convo.say('Oh grt!!');
