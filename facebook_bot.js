@@ -143,47 +143,12 @@ controller.hears(['where', 'location', 'located', '^where', '^location'], 'messa
                                             'type': 'web_url',
                                             'url': 'https://www.google.co.in/maps/dir//The+Gateway+Hotel,+309+Rajiv+Gandhi+Salai+(OMR),+Elcot+Sez,+Sholinganallur,+Chennai,+Tamil+Nadu+600119/@12.9056392,80.2256728,17z/data=!4m15!1m6!3m5!1s0x3a525b9ecc7572e7:0xe53a02455570c2df!2sThe+Gateway+Hotel!8m2!3d12.9056392!4d80.2278615!4m7!1m0!1m5!1m1!1s0x3a525b9ecc7572e7:0xe53a02455570c2df!2m2!1d80.2278615!2d12.9056392',
                                             'title': 'View directions'
-                                        },
-                                        {
-                                            'type': 'web_url',
-                                            'url': 'https://www.google.co.in/maps/dir//The+Gateway+Hotel,+309+Rajiv+Gandhi+Salai+(OMR),+Elcot+Sez,+Sholinganallur,+Chennai,+Tamil+Nadu+600119/@12.9056392,80.2256728,17z/data=!4m15!1m6!3m5!1s0x3a525b9ecc7572e7:0xe53a02455570c2df!2sThe+Gat+Hotel!8m2!3d12.9056392!4d80.2278615!4m7!1m0!1m5!1m1!1s0x3a525b9ecc7572e7:0xe53a02455570c2df!2m2!1d80.2278615!2d12.9056392',
-                                            'title': 'View Map'
                                         }
                                     ]
                                 }]
                             }
                         }
                     });
-                    // convo.ask('do you want to know directions', [{
-                    //     pattern: bot.utterances.yes,
-                    //     default: true,
-                    //     callback: function (response, convo) {
-                    //         convo.say('We have redirected you');
-                    //         convo.say('http://www.sindresorhus.com');
-                    //         opn('http://www.sindresorhus.com');
-                    //         convo.next();
-                    //     }
-                    // }, {
-                    //     pattern: bot.utterances.no,
-                    //     callback: function (response, convo) {
-                    //         convo.say('Okay!Bubye');
-                    //         convo.next();
-                    //     }
-                    // }]);
-                    // bot.reply(message, {
-                    //     text: 'Hey! This message has some quick replies attached.',
-                    //     quick_replies: [{
-                    //             "content_type": "text",
-                    //             "title": "Yes",
-                    //             "payload": "http://www.bing.com"
-                    //         },
-                    //         {
-                    //             "content_type": "text",
-                    //             "title": "No",
-                    //             "payload": "no"
-                    //         }
-                    //     ]
-                    // })
                     convo.next();
                 }
             },
