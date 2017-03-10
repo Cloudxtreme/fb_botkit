@@ -171,7 +171,7 @@ controller.hears(['when', 'date', '^when', '^date'], 'message_received,facebook_
     });
 });
 
-controller.hears(['agenda'], 'message_received', function (bot, message) {
+controller.hears(['agenda','about','related'], 'message_received', function (bot, message) {
     bot.reply(message, 'The main agenda of this conference meet is to have a interaction with the our senior team members and develop knowledge on the upcoming analytics and reporting technologies.');
 })
 
