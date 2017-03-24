@@ -164,7 +164,7 @@ controller.hears(['Conference details'], 'message_received,facebook_postback', f
                             ]                
                         }, {
                             "title": "Hotels nearby guide",
-                            "image_url": "https://peterssendreceiveapp.ngrok.io/img/collection.png",
+                            "image_url": "http://www.cardabeachhotel.gr/wp-content/uploads/kos-carda-beach-hotel-1680x1050.jpg",
                             "buttons": [
                                 {   
                                     'title': 'Near By Hotels ',
