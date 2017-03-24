@@ -149,66 +149,46 @@ controller.hears(['Conference details'], 'message_received,facebook_postback', f
 
     bot.startConversation(message, function(err, convo) {
         convo.ask({
-        "attachment": {
-        "type": "template",
-        "payload": {
-            "template_type": "list",
-            "elements": [
-                {
-                    "title": "Conference details",
-                    "image_url": "http://www.safety4sea.com/wp-content/uploads/2015/11/Conference.jpg",
-                    "buttons": [
+             attachment: {
+                'type': 'template',
+                'payload': {
+                    'template_type': 'generic',
+                    'elements': [
                         {
-                            'title': 'Conference Details ',
-                            'type': 'postback',
-                            'payload': 'conference'                        
+                            'title': 'Agenda of the Conference',
+                            'image_url': 'http://www.ellenhartson.com/wp-content/uploads/2011/04/agenda.gif',
+                            'buttons': [
+                                {
+                                    'type': 'postback',
+                                    'title': 'Agenda',
+                                    'payload': 'Agenda'
+                                }
+                            ]
+                        },{
+                            "title": "Schedule And Duration of the Meet",
+                            "image_url": "http://www.gifs.net/Animation11/Words/Other_Words/schedule.gif",
+                            "buttons": [
+                                {
+                                    'title': 'Schedule duration ',
+                                    'type': 'postback',
+                                    'payload': 'schedule_duration'                       
+                                }
+                            ]                
+                        }, {
+                            "title": "Hotels nearby guide",
+                            "image_url": "https://peterssendreceiveapp.ngrok.io/img/collection.png",
+                            "buttons": [
+                                {   
+                                    'title': 'Near By Hotels ',
+                                    'type': 'postback',
+                                    'payload': 'Near By Hotels'                       
+                                }
+                            ]                
                         }
                     ]
-                },
-                {
-                    "title": "Agenda of the Conference",
-                    "image_url": "http://www.ellenhartson.com/wp-content/uploads/2011/04/agenda.gif",
-                    "buttons": [
-                        {
-                            'title': 'Agenda ',
-                            'type': 'postback',
-                            'payload': 'agenda'                        
-                        }
-                    ]
-                },
-                {
-                    "title": "Schedule And Duration of the Meet",
-                    "image_url": "http://www.gifs.net/Animation11/Words/Other_Words/schedule.gif",
-                    "buttons": [
-                        {
-                            'title': 'Schedule duration ',
-                            'type': 'postback',
-                            'payload': 'schedule_duration'                       
-                        }
-                    ]                
-                },
-                {
-                    "title": "Hotels nearby guide",
-                    "image_url": "https://peterssendreceiveapp.ngrok.io/img/collection.png",
-                    "buttons": [
-                        {   
-                            'title': 'Near By Hotels ',
-                            'type': 'postback',
-                            'payload': 'Near By Hotels'                       
-                        }
-                    ]                
                 }
-            ],
-             "buttons": [
-                {
-                    "title": "view more ",
-                    "type": "postback",
-                    "payload": "payload"                        
-                }
-            ]  
-        }
-    }
-        }, function(response, convo) {
+            }    
+   }, function(response, convo) {
             // whoa, I got the postback payload as a response to my convo.ask!
             convo.next();
         });
