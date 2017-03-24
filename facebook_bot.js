@@ -347,7 +347,7 @@ controller.hears(['what is my name', 'who am i'], 'message_received', function (
     })
 })
 
-controller.hears(['Near By Hotels'], 'message_received', function (bot, message) {
+controller.hears(['Near By Hotels'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
         convo.ask('The conference is at madras cafe inside gateway hotel. Do you know this place ?', [{
                 pattern: bot.utterances.yes,
@@ -422,13 +422,13 @@ controller.hears(['Near By Hotels'], 'message_received', function (bot, message)
     })
 })
 
-controller.hears(['Schedule duration'], 'message_received', function (bot, message) {
+controller.hears(['Schedule duration'], 'message_received,facebook_postback', function (bot, message) {
     controller.storage.users.get(message.user, function (err, user) {
         bot.reply(message, 'Conference is scheduled on 5 th of october 2016');
     });
 });
 
-controller.hears(['Agenda','about','related'], 'message_received', function (bot, message) {
+controller.hears(['Agenda','about','related'], 'message_received,facebook_postback', function (bot, message) {
     bot.reply(message, 'The main agenda of this conference meet is to have a interaction with the our senior team members and develop knowledge on the upcoming analytics and reporting technologies.');
 })
 
