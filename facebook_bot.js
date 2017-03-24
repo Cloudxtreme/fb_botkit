@@ -173,10 +173,6 @@ controller.hears(['Conference details'], 'message_received,facebook_postback', f
                                     'type': 'postback',
                                     'title': 'Find in near by store',
                                     'payload': 'Near By Hotels'
-                                },{
-                                    'type': 'postback',
-                                    'title': 'Find in near by store',
-                                    'payload': 'Accomodation & Food'
                                 }
                             ]
                         }
