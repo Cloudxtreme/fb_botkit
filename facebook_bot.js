@@ -147,7 +147,7 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received', function(bot
     });
 })
 
-controller.hears(['Conference details'], 'message_received','facebook_postback', function(bot, message) {
+controller.hears(['Conference details'], 'message_received', function(bot, message) {
 
     bot.startConversation(message, function(err, convo) {
         convo.ask({
