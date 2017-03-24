@@ -18,7 +18,7 @@ controller.setupWebserver(process.env.PORT || process.env.port || 3000, function
     });
 });
 
-controller.api.thread_settings.greeting('Hello! welcome to ABC Network Meet!');
+controller.api.thread_settings.greeting('Hello! welcome to our First Conference Meet!');
 // controller.api.thread_settings.get_started();
 // controller.api.thread_settings.menu([
 //     {
@@ -83,12 +83,12 @@ controller.on('facebook_optin', function (bot, message) {
 controller.hears(['^hello', '^hi'], 'message_received,facebook_postback', function (bot, message) {
     controller.storage.users.get(message.user, function (err, user) {
         if (user && user.name) {
-            bot.reply(message, 'Hello ' + user.name + '!!');
+            bot.reply(message, 'Hello! I can help you with upcoming Conference meet details ' + user.name + '!!');
         } else {
-            bot.reply(message, 'Hello.');
-        }
-    })
-})
+            bot.reply(message, 'Hello! I can help you with upcoming Conference meet details !!');
+		}	
+	});
+});
 
 controller.hears(['what is my name', 'who am i'], 'message_received', function (bot, message) {
     controller.storage.users.get(message.user, function (err, user) {
@@ -130,7 +130,7 @@ controller.hears(['what is my name', 'who am i'], 'message_received', function (
 
                     convo.on('end', function (convo) {
                         if (convo.status == 'completed') {
-                            bot.reply(message, 'OK! I will update my dossier...')
+                            bot.reply(message, 'OK! I will remember your name ...');
 
                             controller.storage.users.get(message.user, function (err, user) {
                                 if (!user) {
@@ -156,15 +156,17 @@ controller.hears(['what is my name', 'who am i'], 'message_received', function (
 
 controller.hears(['where', 'location', 'located', '^where', '^location'], 'message_received', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
-        convo.ask('The event is at madras cafe Do you know this place ?', [{
+        convo.ask('The conference is at madras cafe inside gateway hotel. Do you know this place ?', [{
                 pattern: bot.utterances.yes,
                 callback: function (response, convo) {
-                    convo.say('then we can meet up in the event then.See you soon!');
+                    convo.say('Oh grt!!');
+                    convo.say('Then we can meet up in the event then.See you soon!');
                     convo.next();
                 }
             }, {
                 pattern: bot.utterances.no,
                 callback: function (response, convo) {
+                    convo.say('ohhhk no prblm');
                     convo.say('So i can help you with that!');
                     convo.say({
                         "attachment": {
@@ -178,16 +180,12 @@ controller.hears(['where', 'location', 'located', '^where', '^location'], 'messa
                                             'type': 'web_url',
                                             'url': 'https://www.google.co.in/maps/dir//The+Gateway+Hotel,+309+Rajiv+Gandhi+Salai+(OMR),+Elcot+Sez,+Sholinganallur,+Chennai,+Tamil+Nadu+600119/@12.9056392,80.2256728,17z/data=!4m15!1m6!3m5!1s0x3a525b9ecc7572e7:0xe53a02455570c2df!2sThe+Gateway+Hotel!8m2!3d12.9056392!4d80.2278615!4m7!1m0!1m5!1m1!1s0x3a525b9ecc7572e7:0xe53a02455570c2df!2m2!1d80.2278615!2d12.9056392',
                                             'title': 'View directions'
-                                        },
-                                        {
-                                            'type': 'web_url',
-                                            'url': 'https://www.google.co.in/maps/dir//The+Gateway+Hotel,+309+Rajiv+Gandhi+Salai+(OMR),+Elcot+Sez,+Sholinganallur,+Chennai,+Tamil+Nadu+600119/@12.9056392,80.2256728,17z/data=!4m15!1m6!3m5!1s0x3a525b9ecc7572e7:0xe53a02455570c2df!2sThe+Gat+Hotel!8m2!3d12.9056392!4d80.2278615!4m7!1m0!1m5!1m1!1s0x3a525b9ecc7572e7:0xe53a02455570c2df!2m2!1d80.2278615!2d12.9056392',
-                                            'title': 'View Map'
                                         }
                                     ]
                                 }]
                             }
                         }
+
                     })
                     // convo.ask('do you want to know directions', [{
                     //     pattern: bot.utterances.yes,
@@ -233,12 +231,12 @@ controller.hears(['where', 'location', 'located', '^where', '^location'], 'messa
 
 controller.hears(['when', 'date', '^when', '^date'], 'message_received', function (bot, message) {
     controller.storage.users.get(message.user, function (err, user) {
-        bot.reply(message, 'Event is on 5 th of october 2016');
-    })
-})
+        bot.reply(message, 'Conference is scheduled on 5 th of october 2016');
+    });
+});
 
-controller.hears(['agenda'], 'message_received', function (bot, message) {
-    bot.reply(message, 'The main agenda of the meeting is to have a interaction with the whole team and develop interaction among the teams and the unit.');
+controller.hears(['agenda','about','related'], 'message_received', function (bot, message) {
+    bot.reply(message, 'The main agenda of this conference meet is to have a interaction with the our senior team members and develop knowledge on the upcoming analytics and reporting technologies.');
 })
 
 controller.hears(['call me (.*)', 'my name is (.*)'], 'message_received', function (bot, message) {
@@ -281,7 +279,6 @@ controller.hears(['shutdown'], 'message_received', function (bot, message) {
         ]);
     });
 });
-
 
 controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your name'], 'message_received', function (bot, message) {
 
