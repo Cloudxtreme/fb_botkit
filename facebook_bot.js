@@ -91,7 +91,7 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received', function(bot
                     'elements': [
                         {
                             'title': 'Conference Details',
-                            'image_url': 'http://globalassets.starbucks.com/assets/a8de3ec0005a4d21b9282c0527160100.jpg',
+                            'image_url': 'http://www.safety4sea.com/wp-content/uploads/2015/11/Conference.jpg',
                             'subtitle': 'Cultivated in Karnataka in harmony with nature, the lush and layered coffee captivates from first sip.',
                             'buttons': [
                                 {
@@ -113,7 +113,7 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received', function(bot
                         },
                         {
                             'title': 'Location/Venue',
-                            'image_url': 'http://globalassets.starbucks.com/assets/7a6c6ffc62ee4e17a992cee3898918ba.png',
+                            'image_url': 'http://www.aids2016.org/portals/0/Image/Thumb/pic_venue_outdoor.jpg?ver=2015-11-04-120531-493',
                             'subtitle': 'And big – awash with a full-bodied juiciness that makes it instantly recognizable to its many, many fans. These qualities are all true of our Kenya coffee. ',
                             'buttons': [
                                 {
@@ -134,8 +134,8 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received', function(bot
                             ]
                         },
                         {
-                            'title': 'About Location',
-                            'image_url': 'http://globalassets.starbucks.com/assets/ba003714b7494e948af043d5f0664669.png',
+                            'title': 'About myself',
+                            'image_url': 'https://www.bing.com/images/search?view=detailV2&ccid=ueGFWdtD&id=B725607D63A1EA2411ED95B5246ADBC10680933A&q=about+myself+images&simid=608024700290728898&selectedIndex=176&ajaxhist=0',
                             'subtitle': 'This coffee gets its distinctive sweetness from the way it is roasted: dark, and darker still. Somewhere beyond the caramel notes of our Espresso Roast but short of the smokiness that identifies our French Roast – that is the sweet spot held by Italian Roast.',
                             'buttons': [
                                 {
