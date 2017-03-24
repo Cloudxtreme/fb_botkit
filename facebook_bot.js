@@ -155,6 +155,17 @@ controller.hears(['Conference details'], 'message_received,facebook_postback', f
             "template_type": "list",
             "elements": [
                 {
+                    "title": "Conference details",
+                    "image_url": "http://www.safety4sea.com/wp-content/uploads/2015/11/Conference.jpg",
+                    "buttons": [
+                        {
+                            'title': 'Conference Details ',
+                            'type': 'postback',
+                            'payload': 'conference'                        
+                        }
+                    ]
+                },
+                {
                     "title": "Agenda of the Conference",
                     "image_url": "http://www.ellenhartson.com/wp-content/uploads/2011/04/agenda.gif",
                     "buttons": [
