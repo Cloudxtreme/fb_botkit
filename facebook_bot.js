@@ -163,13 +163,13 @@ controller.hears(['Conference details'], 'message_received,facebook_postback', f
                                 }
                             ]                
                         }, {
-                            "title": "Hotels nearby guide",
+                            "title": "Venue",
                             "image_url": "http://www.cardabeachhotel.gr/wp-content/uploads/kos-carda-beach-hotel-1680x1050.jpg",
                             "buttons": [
                                 {   
-                                    'title': 'Near By Hotels ',
+                                    'title': 'Venue ',
                                     'type': 'postback',
-                                    'payload': 'Near By Hotels'                       
+                                    'payload': 'Venue'                       
                                 }
                             ]                
                         }
@@ -347,7 +347,7 @@ controller.hears(['what is my name', 'who am i'], 'message_received', function (
     })
 })
 
-controller.hears(['Near By Hotels'], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['Venue'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
         convo.ask('The conference is at madras cafe inside gateway hotel. Do you know this place ?', [{
                 pattern: bot.utterances.yes,
