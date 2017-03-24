@@ -157,7 +157,9 @@ controller.hears(['Conference details'], 'message_received','facebook_postback',
                     'template_type': 'generic',
                     'elements': [
                         {
-                            'title': 'Conference Details',
+                            'title': 'ATUNE 2nd Conference',
+                            'image_url': 'http://www.safety4sea.com/wp-content/uploads/2015/11/Conference.jpg',
+                            'subtitle': 'This is the second conference of ATUNE we are having.',
                             'buttons': [
                                 {
                                     'type': 'postback',
