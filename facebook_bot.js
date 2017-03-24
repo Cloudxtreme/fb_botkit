@@ -90,68 +90,38 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received', function(bot
                     'template_type': 'generic',
                     'elements': [
                         {
-                            'title': 'Conference Details',
+                            'title': 'ATUNE 2nd Conference',
                             'image_url': 'http://www.safety4sea.com/wp-content/uploads/2015/11/Conference.jpg',
-                            'subtitle': 'Cultivated in Karnataka in harmony with nature, the lush and layered coffee captivates from first sip.',
+                            'subtitle': 'This is the second conference of ATUNE we are having.',
                             'buttons': [
                                 {
-                                    'type': 'web_url',
-                                    'url': 'http://www.starbucks.in/coffee/medium/india-estates-blend/whole-bean',
-                                    'title': 'View Coffee'
-                                },
-                                {
-                                    'type': 'web_url',
-                                    'url': 'http://www.starbucks.in/coffee/medium/india-estates-blend/whole-bean',
-                                    'title': 'Buy Coffee'
-                                },
-                                {
                                     'type': 'postback',
-                                    'title': 'Find in near by store',
-                                    'payload': 'India Estates Blend'
+                                    'url': 'http://www.starbucks.in/coffee/medium/india-estates-blend/whole-bean',
+                                    'payload': 'Conference details'
                                 }
                             ]
                         },
                         {
-                            'title': 'Location/Venue',
+                            'title': 'First time to be in bhubaneshwar',
                             'image_url': 'http://www.aids2016.org/portals/0/Image/Thumb/pic_venue_outdoor.jpg?ver=2015-11-04-120531-493',
                             'subtitle': 'And big – awash with a full-bodied juiciness that makes it instantly recognizable to its many, many fans. These qualities are all true of our Kenya coffee. ',
                             'buttons': [
                                 {
-                                    'type': 'web_url',
-                                    'url': 'http://www.starbucks.in/coffee/medium/kenya/whole-bean',
-                                    'title': 'View Coffee'
-                                },
-                                {
-                                    'type': 'web_url',
-                                    'url': 'http://www.starbucks.in/coffee/medium/kenya/whole-bean',
-                                    'title': 'Order Coffee'
-                                },
-                                {
                                     'type': 'postback',
                                     'title': 'Find in near by store',
-                                    'payload': 'Kenya'
+                                    'payload': 'Venue Details'
                                 }
                             ]
                         },
                         {
-                            'title': 'About myself',
-                            'image_url': 'https://www.bing.com/images/search?view=detailV2&ccid=ueGFWdtD&id=B725607D63A1EA2411ED95B5246ADBC10680933A&q=about+myself+images&simid=608024700290728898&selectedIndex=176&ajaxhist=0',
+                            'title': 'I am here assisting you',
+                            'image_url': 'http://worldartsme.com/images/i-me-clipart-1.jpg',
                             'subtitle': 'This coffee gets its distinctive sweetness from the way it is roasted: dark, and darker still. Somewhere beyond the caramel notes of our Espresso Roast but short of the smokiness that identifies our French Roast – that is the sweet spot held by Italian Roast.',
                             'buttons': [
                                 {
-                                    'type': 'web_url',
-                                    'url': 'http://www.starbucks.in/coffee/dark/fair-trade-certified-italian-roast/whole-bean',
-                                    'title': 'View Coffee'
-                                },
-                                {
-                                    'type': 'web_url',
-                                    'url': 'http://www.starbucks.in/coffee/dark/fair-trade-certified-italian-roast/whole-bean',
-                                    'title': 'Order Coffee'
-                                },
-                                {
                                     'type': 'postback',
                                     'title': 'Find in near by store',
-                                    'payload': 'Fair Trade Certified™ Italian Roast'
+                                    'payload': 'About myself'
                                 }
                             ]
                         },{
@@ -160,19 +130,9 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received', function(bot
                             'subtitle': 'This coffee gets its distinctive sweetness from the way it is roasted: dark, and darker still. Somewhere beyond the caramel notes of our Espresso Roast but short of the smokiness that identifies our French Roast – that is the sweet spot held by Italian Roast.',
                             'buttons': [
                                 {
-                                    'type': 'web_url',
-                                    'url': 'http://www.starbucks.in/coffee/dark/fair-trade-certified-italian-roast/whole-bean',
-                                    'title': 'View Coffee'
-                                },
-                                {
-                                    'type': 'web_url',
-                                    'url': 'http://www.starbucks.in/coffee/dark/fair-trade-certified-italian-roast/whole-bean',
-                                    'title': 'Order Coffee'
-                                },
-                                {
                                     'type': 'postback',
                                     'title': 'Find in near by store',
-                                    'payload': 'Fair Trade Certified™ Italian Roast'
+                                    'payload': 'City Guide'
                                 }
                             ]
                         }
@@ -186,6 +146,50 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received', function(bot
         });
     });
 })
+
+controller.hears(['Conference details'], 'message_received','facebook_postback', function(bot, message) {
+
+    bot.startConversation(message, function(err, convo) {
+        convo.ask({
+            attachment: {
+                'type': 'template',
+                'payload': {
+                    'template_type': 'generic',
+                    'elements': [
+                        {
+                            'title': 'Conference Details',
+                            'buttons': [
+                                {
+                                    'type': 'postback',
+                                    'url': 'http://www.starbucks.in/coffee/medium/india-estates-blend/whole-bean',
+                                    'title': 'Agenda'
+                                },
+                                {
+                                    'type': 'postback',
+                                    'url': 'http://www.starbucks.in/coffee/medium/india-estates-blend/whole-bean',
+                                    'title': 'Schedule & Duration'
+                                },
+                                {
+                                    'type': 'postback',
+                                    'title': 'Find in near by store',
+                                    'payload': 'Near By Hotels'
+                                },{
+                                    'type': 'postback',
+                                    'title': 'Find in near by store',
+                                    'payload': 'Accomodation & Food'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }, function(response, convo) {
+            // whoa, I got the postback payload as a response to my convo.ask!
+            convo.next();
+        });
+    });
+})
+
 
 controller.hears(['what is my name', 'who am i'], 'message_received', function (bot, message) {
     controller.storage.users.get(message.user, function (err, user) {
