@@ -156,33 +156,30 @@ controller.hears(['Conference details'], 'message_received,facebook_postback', f
             "elements": [
                 {
                     "title": "Agenda of the Conference",
-                    "image_url": "https://peterssendreceiveapp.ngrok.io/img/collection.png",
+                    "image_url": "http://www.ellenhartson.com/wp-content/uploads/2011/04/agenda.gif",
                     "buttons": [
                         {
                             'type': 'postback',
-                            'title': 'Agenda',
                             'payload': 'agenda'                        
                         }
                     ]
                 },
                 {
                     "title": "Schedule And Duration of the Meet",
-                    "image_url": "https://peterssendreceiveapp.ngrok.io/img/collection.png",
+                    "image_url": "http://www.gifs.net/Animation11/Words/Other_Words/schedule.gif",
                     "buttons": [
                         {
                             'type': 'postback',
-                            'title': 'Schedule & Duration',
                             'payload': 'schedule_duration'                       
                         }
                     ]                
                 },
                 {
                     "title": "Hotels nearby guide",
-                    "image_url": "https://peterssendreceiveapp.ngrok.io/img/collection.png",
+                    "image_url": "http://media.expedia.com/hotels/1000000/560000/551100/551042/551042_33_b.jpg",
                     "buttons": [
                         {
                             'type': 'postback',
-                            'title': 'Find in near by hotels',
                             'payload': 'Near By Hotels'                       
                         }
                     ]                
