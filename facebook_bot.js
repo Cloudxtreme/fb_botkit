@@ -108,7 +108,7 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received', function(bot
                             'buttons': [
                                 {
                                     'type': 'postback',
-                                    'title': 'Find in near by store',
+                                    'title': 'Venue Details',
                                     'payload': 'Venue Details'
                                 }
                             ]
@@ -120,7 +120,7 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received', function(bot
                             'buttons': [
                                 {
                                     'type': 'postback',
-                                    'title': 'Find in near by store',
+                                    'title': 'About myself',
                                     'payload': 'About myself'
                                 }
                             ]
@@ -131,7 +131,7 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received', function(bot
                             'buttons': [
                                 {
                                     'type': 'postback',
-                                    'title': 'Find in near by store',
+                                    'title': 'City Guide',
                                     'payload': 'City Guide'
                                 }
                             ]
@@ -147,7 +147,7 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received', function(bot
     });
 })
 
-controller.hears(['Conference details'], 'message_received', function(bot, message) {
+controller.hears(['Conference details'], 'message_received,facebook_postback', function(bot, message) {
 
     bot.startConversation(message, function(err, convo) {
         convo.ask({
