@@ -1,7 +1,7 @@
-var Botkit = require('./lib/Botkit.js');
-var os = require('os');
-var localtunnel = require('localtunnel');
-var opn = require('opn');
+var Botkit = require('./lib/Botkit.js')
+var os = require('os')
+var localtunnel = require('localtunnel')
+var opn = require('opn')
 
 var controller = Botkit.facebookbot({
     debug: true,
@@ -12,16 +12,6 @@ var controller = Botkit.facebookbot({
     validate_requests: true, // Refuse any requests that don't come from FB on your receive webhook, must provide FB_APP_SECRET in environment variables
 });
 
-var Utterances = {
-    yes: new RegExp(/^(yes|yea|yup|yep|ya|sure|ok|y|yeah|yah|sounds good)/i),
-    no: new RegExp(/^(no|nah|nope|n|never|not a chance)/i),
-    quit: new RegExp(/^(quit|cancel|end|stop|nevermind|never mind)/i),
-    greetings: new RegExp(/^(hi|hello|greetings|hi there|yo|was up|whats up)/),
-
-};
-
-var bot = controller.spawn({});
-
 controller.setupWebserver(process.env.PORT || process.env.port || 3000, function (err, webserver) {
     controller.createWebhookEndpoints(webserver, bot, function () {
         console.log('ONLINE!');
@@ -29,7 +19,7 @@ controller.setupWebserver(process.env.PORT || process.env.port || 3000, function
 });
 
 controller.api.thread_settings.greeting('Hello! welcome to ABC Network Meet!');
-controller.api.thread_settings.get_started();
+// controller.api.thread_settings.get_started();
 // controller.api.thread_settings.menu([
 //     {
 //         "type":"postback",
@@ -48,8 +38,23 @@ controller.api.thread_settings.get_started();
 //     },
 // ]);
 
-controller.hears(['map'], 'message_received', function (bot, message) {
 
+// var controller = Botkit.consolebot({
+//     debug: true,
+//     log: true,
+// })
+
+var Utterances = {
+    yes: new RegExp(/^(yes|yea|yup|yep|ya|sure|ok|y|yeah|yah|sounds good)/i),
+    no: new RegExp(/^(no|nah|nope|n|never|not a chance)/i),
+    quit: new RegExp(/^(quit|cancel|end|stop|nevermind|never mind)/i),
+    greetings: new RegExp(/^(hi|hello|greetings|hi there|yo|was up|whats up)/)
+}
+
+var bot = controller.spawn({});
+
+
+controller.hears(['map'], 'message_received', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
         convo.ask({
             attachment: {
@@ -64,19 +69,16 @@ controller.hears(['map'], 'message_received', function (bot, message) {
             }
         }, function (response, convo) {
             // whoa, I got the postback payload as a response to my convo.ask!
-            convo.next();
-        });
-    });
-});
-
+            convo.next()
+        })
+    })
+})
 
 
 // this is triggered when a user clicks the send-to-messenger plugin
 controller.on('facebook_optin', function (bot, message) {
-
-    bot.reply(message, 'Welcome To My Chatbot Thanks Alot!');
-
-});
+    bot.reply(message, 'Welcome To My Chatbot Thanks Alot!')
+})
 
 controller.hears(['^hello', '^hi'], 'message_received,facebook_postback', function (bot, message) {
     controller.storage.users.get(message.user, function (err, user) {
@@ -85,8 +87,8 @@ controller.hears(['^hello', '^hi'], 'message_received,facebook_postback', functi
         } else {
             bot.reply(message, 'Hello.');
         }
-    });
-});
+    })
+})
 
 controller.hears(['what is my name', 'who am i'], 'message_received', function (bot, message) {
     controller.storage.users.get(message.user, function (err, user) {
@@ -105,8 +107,7 @@ controller.hears(['what is my name', 'who am i'], 'message_received', function (
                                     // the conversation will end naturally with status == 'completed'
                                     convo.next();
                                 }
-                            },
-                            {
+                            }, {
                                 pattern: bot.utterances.yes,
                                 callback: function (response, convo) {
                                     convo.say('I am in what say!');
@@ -114,47 +115,44 @@ controller.hears(['what is my name', 'who am i'], 'message_received', function (
                                     // stop the conversation. this will cause it to end with status == 'stopped'
                                     convo.stop();
                                 }
-                            },
-                            {
+                            }, {
                                 default: true,
                                 callback: function (response, convo) {
                                     convo.repeat();
                                     convo.next();
                                 }
                             }
-                        ]);
-
-                        convo.next();
-
+                        ])
+                        convo.next()
                     }, {
                         'key': 'nickname'
-                    }); // store the results in a field called nickname
+                    }) // store the results in a field called nickname
 
                     convo.on('end', function (convo) {
                         if (convo.status == 'completed') {
-                            bot.reply(message, 'OK! I will update my dossier...');
+                            bot.reply(message, 'OK! I will update my dossier...')
 
                             controller.storage.users.get(message.user, function (err, user) {
                                 if (!user) {
                                     user = {
                                         id: message.user,
-                                    };
+                                    }
                                 }
-                                user.name = convo.extractResponse('nickname');
+                                user.name = convo.extractResponse('nickname')
                                 controller.storage.users.save(user, function (err, id) {
-                                    bot.reply(message, 'Got it. I will call you ' + user.name + ' from now on.');
-                                });
-                            });
+                                    bot.reply(message, 'Got it. I will call you ' + user.name + ' from now on.')
+                                })
+                            })
                         } else {
                             // this happens if the conversation ended prematurely for some reason
                             bot.reply(message, 'OK, nevermind!');
                         }
-                    });
+                    })
                 }
-            });
+            })
         }
-    });
-});
+    })
+})
 
 controller.hears(['where', 'location', 'located', '^where', '^location'], 'message_received', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
@@ -190,7 +188,7 @@ controller.hears(['where', 'location', 'located', '^where', '^location'], 'messa
                                 }]
                             }
                         }
-                    });
+                    })
                     // convo.ask('do you want to know directions', [{
                     //     pattern: bot.utterances.yes,
                     //     default: true,
@@ -223,25 +221,22 @@ controller.hears(['where', 'location', 'located', '^where', '^location'], 'messa
                     // })
                     convo.next();
                 }
-            },
-            {
+            }, {
                 default: true,
                 callback: function (response, convo) {
                     convo.repeat();
                     convo.next();
                 }
             }
-        ]);
-
-    });
-});
-
+        ])
+    })
+})
 
 controller.hears(['when', 'date', '^when', '^date'], 'message_received,facebook_postback', function (bot, message) {
     controller.storage.users.get(message.user, function (err, user) {
         bot.reply(message, 'Event is on 5 th of october 2016');
-    });
-});
+    })
+})
 
 controller.hears(['agenda'], 'message_received', function (bot, message) {
     bot.reply(message, 'The main agenda of the meeting is to have a interaction with the whole team and develop interaction among the teams and the unit.');
@@ -261,7 +256,6 @@ controller.hears(['call me (.*)', 'my name is (.*)'], 'message_received', functi
         });
     });
 });
-
 
 controller.hears(['shutdown'], 'message_received', function (bot, message) {
 
