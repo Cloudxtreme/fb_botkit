@@ -96,7 +96,7 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received', function(bot
                             'buttons': [
                                 {
                                     'type': 'postback',
-                                    'url': 'http://www.starbucks.in/coffee/medium/india-estates-blend/whole-bean',
+                                    'title': 'Conference Details',
                                     'payload': 'Conference details'
                                 }
                             ]
