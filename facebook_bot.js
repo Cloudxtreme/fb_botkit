@@ -107,8 +107,8 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received', function(bot
                             'buttons': [
                                 {
                                     'type': 'postback',
-                                    'title': 'Venue Details',
-                                    'payload': 'Venue Details'
+                                    'title': 'Location and Venue',
+                                    'payload': 'Location and Venue'
                                 }
                             ]
                         }, {
@@ -122,19 +122,7 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received', function(bot
                                     'payload': 'About myself'
                                 }
                             ]
-                        },{
-                            'title': 'others',
-                            'image_url': 'http://globalassets.starbucks.com/assets/ba003714b7494e948af043d5f0664669.png',
-                            'subtitle': 'This coffee gets its distinctive sweetness from the way it is roasted: dark, and darker still. Somewhere beyond the caramel notes of our Espresso Roast but short of the smokiness that identifies our French Roast – that is the sweet spot held by Italian Roast.',
-                            'buttons': [
-                                {
-                                    'type': 'postback',
-                                    'title': 'City Guide',
-                                    'payload': 'City Guide'
-                                }
-                            ]
                         }
-
                     ]
                 }
             }
@@ -171,7 +159,7 @@ controller.hears(['Conference details'], 'message_received,facebook_postback', f
                                 {
                                     'title': 'Schedule duration ',
                                     'type': 'postback',
-                                    'payload': 'schedule_duration'                       
+                                    'payload': 'Schedule duration'                       
                                 }
                             ]                
                         }, {
@@ -195,6 +183,105 @@ controller.hears(['Conference details'], 'message_received,facebook_postback', f
     });
 })
 
+controller.hears(['Location and Venue'], 'message_received,facebook_postback', function(bot, message) {
+
+    bot.startConversation(message, function(err, convo) {
+        convo.ask({
+             attachment: {
+                'type': 'template',
+                'payload': {
+                    'template_type': 'generic',
+                    'elements': [
+                        {
+                            'title': 'Weather Forecast View',
+                            'image_url': 'http://0.s3.envato.com/files/1616804/Preview_image.jpg',
+                            'buttons': [
+                                {
+                                    'type': 'postback',
+                                    'title': 'Weather',
+                                    'payload': 'Weather'
+                                }
+                            ]
+                        },{
+                            "title": "Venue Map View",
+                            "image_url": "http://northamptonshireguide.co.uk/images/img_9019-medium.jpg",
+                            "buttons": [
+                                {
+                                    'title': 'Venue',
+                                    'type': 'postback',
+                                    'payload': 'Venue'                       
+                                }
+                            ]                
+                        }, {
+                            "title": "Tourist View",
+                            "image_url": "https://3.bp.blogspot.com/-O7bty3tTJAk/VyqO0Aca_yI/AAAAAAAABwE/7DL4kqrbAOoSAyYERjOPt8dp_M0IG1huQCLcB/w1200-h630-p-nu/Shillong_beautiful_wallpapers.jpg",
+                            "buttons": [
+                                {   
+                                    'title': 'Tourist Guide',
+                                    'type': 'postback',
+                                    'payload': 'Tourist Guide'                       
+                                }
+                            ]                
+                        }
+                    ]
+                }
+            }    
+   }, function(response, convo) {
+            // whoa, I got the postback payload as a response to my convo.ask!
+            convo.next();
+        });
+    });
+})
+
+controller.hears(['About myself'], 'message_received,facebook_postback', function(bot, message) {
+
+    bot.startConversation(message, function(err, convo) {
+        convo.ask({
+             attachment: {
+                'type': 'template',
+                'payload': {
+                    'template_type': 'generic',
+                    'elements': [
+                        {
+                            'title': 'Who am I',
+                            'image_url': 'http://manchestershambhala.org/wordpress/wp-content/uploads/2013/03/Who-am-I.jpg',
+                            'buttons': [
+                                {
+                                    'type': 'postback',
+                                    'title': 'know about me',
+                                    'payload': 'know about me'
+                                }
+                            ]
+                        },{
+                            "title": "what Do I Know ?",
+                            "image_url": "https://www.dougsguides.com/sites/default/files/Indecision.jpg",
+                            "buttons": [
+                                {
+                                    'title': 'I know.. ',
+                                    'type': 'postback',
+                                    'payload': 'I know..'                       
+                                }
+                            ]                
+                        }, {
+                            "title": "About ATUNE",
+                            "image_url": "http://www.grindd.com/blog/wp-content/uploads/2013/10/sales_team_mgt.jpg",
+                            "buttons": [
+                                {   
+                                    'title': 'About ATUNE ',
+                                    'type': 'postback',
+                                    'payload': 'About ATUNE'                       
+                                }
+                            ]                
+                        }
+                    ]
+                }
+            }    
+   }, function(response, convo) {
+            // whoa, I got the postback payload as a response to my convo.ask!
+            convo.next();
+        });
+    });
+})
 
 controller.hears(['what is my name', 'who am i'], 'message_received', function (bot, message) {
     controller.storage.users.get(message.user, function (err, user) {
