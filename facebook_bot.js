@@ -100,11 +100,10 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received', function(bot
                                     'payload': 'Conference details'
                                 }
                             ]
-                        },
-                        {
+                        },{
                             'title': 'First time to be in bhubaneshwar',
                             'image_url': 'http://www.aids2016.org/portals/0/Image/Thumb/pic_venue_outdoor.jpg?ver=2015-11-04-120531-493',
-                            'subtitle': 'And big – awash with a full-bodied juiciness that makes it instantly recognizable to its many, many fans. These qualities are all true of our Kenya coffee. ',
+                            'subtitle': 'And big – awash with a full-bodied juiciness that makes it instantly recognizable. ',
                             'buttons': [
                                 {
                                     'type': 'postback',
@@ -112,11 +111,10 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received', function(bot
                                     'payload': 'Venue Details'
                                 }
                             ]
-                        },
-                        {
+                        }, {
                             'title': 'I am here assisting you',
                             'image_url': 'http://worldartsme.com/images/i-me-clipart-1.jpg',
-                            'subtitle': 'This coffee gets its distinctive sweetness from the way it is roasted: dark, and darker still. Somewhere beyond the caramel notes of our Espresso Roast but short of the smokiness that identifies our French Roast – that is the sweet spot held by Italian Roast.',
+                            'subtitle': 'This coffee gets its distinctive sweetness from the way it is roasted: dark, and darker still.',
                             'buttons': [
                                 {
                                     'type': 'postback',
