@@ -161,13 +161,13 @@ controller.hears(['Conference details'], 'message_received,facebook_postback', f
                             'buttons': [
                                 {
                                     'type': 'postback',
-                                    'url': 'http://www.starbucks.in/coffee/medium/india-estates-blend/whole-bean',
-                                    'title': 'Agenda'
+                                    'title': 'Agenda',
+                                    'payload': 'agenda'
                                 },
                                 {
                                     'type': 'postback',
-                                    'url': 'http://www.starbucks.in/coffee/medium/india-estates-blend/whole-bean',
-                                    'title': 'Schedule & Duration'
+                                    'title': 'Schedule & Duration',
+                                    'payload': 'schedule_duration'
                                 },
                                 {
                                     'type': 'postback',
