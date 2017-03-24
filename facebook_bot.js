@@ -113,7 +113,7 @@ controller.hears(['what is my name', 'who am i'], 'message_received', function (
                                     convo.say('I am in what say!');
 
                                     // stop the conversation. this will cause it to end with status == 'stopped'
-                                    convo.stop();
+                                    convo.next();
                                 }
                             }, {
                                 default: true,
@@ -224,7 +224,6 @@ controller.hears(['where', 'location', 'located', '^where', '^location'], 'messa
             }, {
                 default: true,
                 callback: function (response, convo) {
-                    convo.repeat();
                     convo.next();
                 }
             }
@@ -232,7 +231,7 @@ controller.hears(['where', 'location', 'located', '^where', '^location'], 'messa
     })
 })
 
-controller.hears(['when', 'date', '^when', '^date'], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['when', 'date', '^when', '^date'], 'message_received', function (bot, message) {
     controller.storage.users.get(message.user, function (err, user) {
         bot.reply(message, 'Event is on 5 th of october 2016');
     })
