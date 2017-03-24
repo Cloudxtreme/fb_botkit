@@ -159,6 +159,7 @@ controller.hears(['Conference details'], 'message_received,facebook_postback', f
                     "image_url": "http://www.ellenhartson.com/wp-content/uploads/2011/04/agenda.gif",
                     "buttons": [
                         {
+                            'title': ' ',
                             'type': 'postback',
                             'payload': 'agenda'                        
                         }
@@ -169,6 +170,7 @@ controller.hears(['Conference details'], 'message_received,facebook_postback', f
                     "image_url": "http://www.gifs.net/Animation11/Words/Other_Words/schedule.gif",
                     "buttons": [
                         {
+                            'title': ' ',
                             'type': 'postback',
                             'payload': 'schedule_duration'                       
                         }
@@ -176,9 +178,10 @@ controller.hears(['Conference details'], 'message_received,facebook_postback', f
                 },
                 {
                     "title": "Hotels nearby guide",
-                    "image_url": "http://media.expedia.com/hotels/1000000/560000/551100/551042/551042_33_b.jpg",
+                    "image_url": "https://peterssendreceiveapp.ngrok.io/img/collection.png",
                     "buttons": [
-                        {
+                        {   
+                            'title': ' ',
                             'type': 'postback',
                             'payload': 'Near By Hotels'                       
                         }
@@ -187,7 +190,7 @@ controller.hears(['Conference details'], 'message_received,facebook_postback', f
             ],
              "buttons": [
                 {
-                    "title": "View More",
+                    "title": " ",
                     "type": "postback",
                     "payload": "payload"                        
                 }
