@@ -149,36 +149,54 @@ controller.hears(['Conference details'], 'message_received,facebook_postback', f
 
     bot.startConversation(message, function(err, convo) {
         convo.ask({
-            attachment: {
-                'type': 'template',
-                'payload': {
-                    'template_type': 'generic',
-                    'elements': [
+        "attachment": {
+        "type": "template",
+        "payload": {
+            "template_type": "list",
+            "elements": [
+                {
+                    "title": "Agenda of the Conference",
+                    "image_url": "https://peterssendreceiveapp.ngrok.io/img/collection.png",
+                    "buttons": [
                         {
-                            'title': 'ATUNE 2nd Conference',
-                            'image_url': 'http://www.safety4sea.com/wp-content/uploads/2015/11/Conference.jpg',
-                            'subtitle': 'This is the second conference of ATUNE we are having.',
-                            'buttons': [
-                                {
-                                    'type': 'postback',
-                                    'title': 'Agenda',
-                                    'payload': 'agenda'
-                                },
-                                {
-                                    'type': 'postback',
-                                    'title': 'Schedule & Duration',
-                                    'payload': 'schedule_duration'
-                                },
-                                {
-                                    'type': 'postback',
-                                    'title': 'Find in near by store',
-                                    'payload': 'Near By Hotels'
-                                }
-                            ]
+                            'type': 'postback',
+                            'title': 'Agenda',
+                            'payload': 'agenda'                        
                         }
                     ]
+                },
+                {
+                    "title": "Schedule And Duration of the Meet",
+                    "image_url": "https://peterssendreceiveapp.ngrok.io/img/collection.png",
+                    "buttons": [
+                        {
+                            'type': 'postback',
+                            'title': 'Schedule & Duration',
+                            'payload': 'schedule_duration'                       
+                        }
+                    ]                
+                },
+                {
+                    "title": "Hotels nearby guide",
+                    "image_url": "https://peterssendreceiveapp.ngrok.io/img/collection.png",
+                    "buttons": [
+                        {
+                            'type': 'postback',
+                            'title': 'Find in near by hotels',
+                            'payload': 'Near By Hotels'                       
+                        }
+                    ]                
                 }
-            }
+            ],
+             "buttons": [
+                {
+                    "title": "View More",
+                    "type": "postback",
+                    "payload": "payload"                        
+                }
+            ]  
+        }
+    }
         }, function(response, convo) {
             // whoa, I got the postback payload as a response to my convo.ask!
             convo.next();
