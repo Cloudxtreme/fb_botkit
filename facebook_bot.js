@@ -537,7 +537,7 @@ controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your na
 
 
 
-controller.on('message_received', function (bot, message) {
+controller.on(['okay','k'],'message_received', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
 
         convo.ask('Do you need any further information?', [{
@@ -545,7 +545,52 @@ controller.on('message_received', function (bot, message) {
                 default: true,
                 callback: function (response, convo) {
                     convo.say('You can proceed with your queries');
+                    convo.say('here is the guide for you');
+                        convo.ask({
+                     attachment: {
+                        'type': 'template',
+                        'payload': {
+                            'template_type': 'generic',
+                            'elements': [
+                                {
+                                    'title': 'Agenda of the Conference',
+                                    'image_url': 'http://www.ellenhartson.com/wp-content/uploads/2011/04/agenda.gif',
+                                    'buttons': [
+                                        {
+                                            'type': 'postback',
+                                            'title': 'Agenda',
+                                            'payload': 'Agenda'
+                                        }
+                                    ]
+                                },{
+                                    "title": "Schedule And Duration of the Meet",
+                                    "image_url": "http://www.gifs.net/Animation11/Words/Other_Words/schedule.gif",
+                                    "buttons": [
+                                        {
+                                            'title': 'Schedule duration ',
+                                            'type': 'postback',
+                                            'payload': 'Schedule duration'                       
+                                        }
+                                    ]                
+                                }, {
+                                    "title": "Venue",
+                                    "image_url": "http://www.cardabeachhotel.gr/wp-content/uploads/kos-carda-beach-hotel-1680x1050.jpg",
+                                    "buttons": [
+                                        {   
+                                            'title': 'Venue ',
+                                            'type': 'postback',
+                                            'payload': 'Venue'                       
+                                        }
+                                    ]                
+                                }
+                            ]
+                        }
+                    }    
+           }, function(response, convo) {
+                    // whoa, I got the postback payload as a response to my convo.ask!
                     convo.next();
+                });
+                
                 }
             },
             {
