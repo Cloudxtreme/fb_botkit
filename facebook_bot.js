@@ -535,34 +535,8 @@ controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your na
     bot.reply(message, ':|] I am a bot. I have been running for ' + uptime + ' on ' + hostname + '.');
 });
 
-controller.hears(['k','okay','kk'], 'message_received', function (bot, message) {
-    bot.startConversation(message, function (err, convo) {
-    convo.say('Do you need anymore details?');
-    convo.ask({
-        "attachment":{
-          "type":"template",
-          "payload":{
-            "template_type":"button",
-            "text":"well do you know about ATUNE",
-            "buttons":[
-              {
-                "type":"postback",
-                "title":"yeah",
-                "payload":"yeah i want more details"
-              },
-              {
-                "type":"postback",
-                "title":"nopes",
-                "payload":"nopes thanks i dont want further details"
-              }
-            ]
-          }
-        }    
-   }, function(response, convo) {
-            // whoa, I got the postback payload as a response to my convo.ask!
-            convo.next();
-        }); 
- })
+controller.hears(['okay', 'k'], 'message_received', function (bot, message) {
+    bot.reply(message, 'iam okay thanks');
 });
 
 controller.hears(['yeah i want more details'], 'message_received,facebook_postback', function (bot, message) {
