@@ -327,49 +327,45 @@ controller.hears(['what is my name', 'who am i'], 'message_received', function (
 })
 
 controller.hears(['Venue'], 'message_received,facebook_postback', function (bot, message) {
-    bot.startConversation(message, function (err, convo) {
-        convo.ask('The conference is at bhubaneshwar crown plaza near Kumrangar. Do you know this place ?', [{
-                pattern: bot.utterances.yes,
-                callback: function (response, convo) {
-                    convo.say('Oh grt!!');
-                    convo.say('Then we can meet up in the event then.See you soon!');
-                    convo.next();
-                }
-            }, {
-                pattern: "no",
-                callback: function (response, convo) {
-                    convo.say('ohhhk no prblm');
-                    convo.say('So i can help you with that!');
-                    convo.say({
-                        "attachment": {
-                            "type": "template",
-                            "payload": {
-                                "template_type": "generic",
-                                "elements": [{
-                                    "title": "Your current location",
-                                    "image_url": "https://maps.googleapis.com/maps/api/staticmap?center=gateway+hotel+chennai&zoom=17&scale=false&size=600x300&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7Cgateway+hotel+chennai",
-                                    "buttons": [{
-                                            'type': 'web_url',
-                                            'url': 'https://www.google.co.in/maps/dir//The+Gateway+Hotel,+309+Rajiv+Gandhi+Salai+(OMR),+Elcot+Sez,+Sholinganallur,+Chennai,+Tamil+Nadu+600119/@12.9056392,80.2256728,17z/data=!4m15!1m6!3m5!1s0x3a525b9ecc7572e7:0xe53a02455570c2df!2sThe+Gateway+Hotel!8m2!3d12.9056392!4d80.2278615!4m7!1m0!1m5!1m1!1s0x3a525b9ecc7572e7:0xe53a02455570c2df!2m2!1d80.2278615!2d12.9056392',
-                                            'title': 'View directions'
-                                        }
-                                    ]
-                                }]
-                            }
-                        }
-
-                    })
-                    convo.next();
-                }
-            }, {
-                default: true,
-                callback: function (response, convo) {
-                    convo.next();
-                }
-            }
-        ])
-    })
+     bot.startConversation(message, function(err, convo) {
+        convo.ask({
+        "attachment":{
+          "type":"template",
+          "payload":{
+            "template_type":"button",
+            "text":"The conference is at bhubaneshwar crown plaza near Kumrangar. Do you know this place ?",
+            "buttons":[
+              {
+                "type":"postback",
+                "title":"yes i know the place",
+                "payload":"user know place"
+              },
+              {
+                "type":"postback",
+                "title":"nopes i donno",
+                "payload":"user donno place"
+              }
+            ]
+          }
+        }    
+   }, function(response, convo) {
+            // whoa, I got the postback payload as a response to my convo.ask!
+            convo.next();
+        });
+    });
 })
+
+controller.hears(['user know place'], 'message_received,facebook_postback', function (bot, message) {
+    controller.storage.users.get(message.user, function (err, user) {
+        bot.reply(message, 'wow cool');
+    });
+});
+
+controller.hears(['user donno place'], 'message_received,facebook_postback', function (bot, message) {
+    controller.storage.users.get(message.user, function (err, user) {
+        bot.reply(message, 'oh no worries'); 
+    });
+});
 
 controller.hears(['Schedule duration'], 'message_received,facebook_postback', function (bot, message) {
     controller.storage.users.get(message.user, function (err, user) {
