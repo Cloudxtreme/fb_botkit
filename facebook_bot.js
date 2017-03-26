@@ -335,7 +335,7 @@ controller.hears(['what is my name', 'who am i'], 'message_received', function (
     })
 })
 
-controller.hears(['Venue'], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['Venue','where','location'], 'message_received,facebook_postback', function (bot, message) {
      bot.startConversation(message, function(err, convo) {
         convo.ask({
         "attachment":{
@@ -365,9 +365,19 @@ controller.hears(['Venue'], 'message_received,facebook_postback', function (bot,
 })
 
 controller.hears(['user know place'], 'message_received,facebook_postback', function (bot, message) {
-    controller.storage.users.get(message.user, function (err, user) {
-        bot.reply(message, 'wow cool');
-    });
+    bot.startConversation(message, function (err, convo) {
+    convo.say('woooooooo');
+       convo.say({
+                      "attachment":{
+                      "type":"image",
+                      "payload":{
+                        "url":"https://s-media-cache-ak0.pinimg.com/originals/85/89/46/858946b7dadb1089cd6d4b00f44c416b.gif"
+                      }
+                    }
+                });
+    convo.say('meet u soon den !');
+
+});
 });
 
 controller.hears(['user donno place'], 'message_received,facebook_postback', function (bot, message) {
@@ -403,9 +413,9 @@ controller.hears(['user donno place'], 'message_received,facebook_postback', fun
     convo.next();
 });
 
-controller.hears(['Schedule duration'], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['Schedule duration','when'], 'message_received,facebook_postback', function (bot, message) {
     controller.storage.users.get(message.user, function (err, user) {
-        bot.reply(message, 'Conference is scheduled on 5 th of october 2016');
+        bot.reply(message, 'Conference is scheduled on 5 th of October 2016');
     });
 });
 
