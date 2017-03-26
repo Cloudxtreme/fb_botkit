@@ -226,9 +226,9 @@ controller.hears(['Weather','weather'], 'message_received,facebook_postback', fu
     bot.startConversation(message, function (err, convo) {
      request('http://apidev.accuweather.com/currentconditions/v1/1-189781_1_AL.json?language=en&apikey=hoArfRosT1215', function (error, response, body) {
         if (!error && response.statusCode == 200) {
-        var  forecast = JSON.stringify(JSON.parse(body)[0].WeatherText).replace( /,/g, "" );
+        var  forecast = JSON.stringify(JSON.parse(body)[0].WeatherText).replace( /"/g, "" );
         var  temp     = JSON.stringify(JSON.parse(body)[0].Temperature.Metric.Value);
-        var degree    = JSON.stringify(JSON.parse(body)[0].Temperature.Metric.Unit).replace( /,/g, "" );
+        var degree    = JSON.stringify(JSON.parse(body)[0].Temperature.Metric.Unit).replace( /"/g, "" );
 
            convo.say('weather is '+ forecast+temp+degree); 
         }
