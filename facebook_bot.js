@@ -120,7 +120,6 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received,facebook_postb
             convo.next();
         });
     });
-    convo.next();
 })
 
 controller.hears(['Conference details'], 'message_received,facebook_postback', function(bot, message) {
@@ -171,7 +170,6 @@ controller.hears(['Conference details'], 'message_received,facebook_postback', f
             convo.next();
         });
     });
-    convo.next();
 })
 
 controller.hears(['Location and Venue'], 'message_received,facebook_postback', function(bot, message) {
@@ -222,7 +220,6 @@ controller.hears(['Location and Venue'], 'message_received,facebook_postback', f
             convo.next();
         });
     });
-    convo.next();
 });
 
 controller.hears(['Weather','weather'], 'message_received,facebook_postback', function (bot, message) {
@@ -245,9 +242,8 @@ controller.hears(['Weather','weather'], 'message_received,facebook_postback', fu
             });
         }
      });
-    
-     });
     convo.next();
+     });
 });
 
 controller.hears(['About myself'], 'message_received,facebook_postback', function(bot, message) {
@@ -439,8 +435,8 @@ controller.hears(['user donno place'], 'message_received,facebook_postback', fun
                                 }
                             }
             });
+        convo.next();
        });
-    convo.next();
 });
 
 controller.hears(['Schedule duration','when'], 'message_received,facebook_postback', function (bot, message) {
@@ -476,9 +472,8 @@ controller.hears(['Agenda','about','related'], 'message_received,facebook_postba
             // whoa, I got the postback payload as a response to my convo.ask!
             convo.next();
         }); 
- })
-    convo.next();
-})
+ });
+});
 
 controller.hears(['user know ATUNE'], 'message_received,facebook_postback', function (bot, message) {
         bot.reply(message, 'So agenda is actually to introduce new technologies and have networking among employees');
@@ -488,8 +483,8 @@ controller.hears(['user donno ATUNE'], 'message_received,facebook_postback', fun
     bot.startConversation(message, function (err, convo) {
     convo.say('ATUNE is ATU networking program that arranges conference yearly twice.this is the second one.');
     convo.say('So agenda is actually to introduce new technologies and have networking among employees');
-    })
     convo.next();
+    });
 });
 
 controller.hears(['call me (.*)', 'my name is (.*)'], 'message_received', function (bot, message) {
@@ -534,29 +529,7 @@ controller.hears(['shutdown'], 'message_received', function (bot, message) {
 });
 
 controller.hears(['okay'], 'message_received', function (bot, message) {
-
-    bot.startConversation(message, function (err, convo) {
-
-        convo.ask('Are you sure you want me to shutdown?', [{
-                pattern: bot.utterances.yes,
-                callback: function (response, convo) {
-                    convo.say('Bye!');
-                    convo.next();
-                    setTimeout(function () {
-                        process.exit();
-                    }, 3000);
-                }
-            },
-            {
-                pattern: bot.utterances.no,
-                default: true,
-                callback: function (response, convo) {
-                    convo.say('*Phew!*');
-                    convo.next();
-                }
-            }
-        ]);
-    });
+    bot.reply(message, 'hey iam okay');
 });
 
 controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your name'], 'message_received,facebook_postback', function (bot, message) {
