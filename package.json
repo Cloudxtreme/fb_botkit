@@ -5,7 +5,8 @@
   "main": "facebook_bot.js",
   "dependencies": {
     "botkit": "^0.5.1",
-    "opn": "^4.0.2"
+    "opn": "^4.0.2",
+    "request": "^2.81.0"
   },
   "scripts": {
     "start": "node facebook_bot.js"

@@ -2,6 +2,7 @@ var Botkit = require('./lib/Botkit.js')
 var os = require('os')
 var localtunnel = require('localtunnel')
 var opn = require('opn')
+var request = require('request');
 
 var controller = Botkit.facebookbot({
     debug: true,
@@ -219,7 +220,18 @@ controller.hears(['Location and Venue'], 'message_received,facebook_postback', f
             convo.next();
         });
     });
-})
+});
+
+controller.hears(['Weather','weather'], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+     request('http://apidev.accuweather.com/currentconditions/v1/1-189781_1_AL.json?language=en&apikey=hoArfRosT1215', function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            weatherText = JSON.parse(body)[0].WeatherText;
+        }
+    });
+    convo.say('weather is'+ weatherText); 
+ });
+});
 
 controller.hears(['About myself'], 'message_received,facebook_postback', function(bot, message) {
 
