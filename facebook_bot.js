@@ -59,7 +59,7 @@ controller.on('facebook_optin', function (bot, message) {
     bot.reply(message, 'Welcome To My Chatbot Thanks Alot!')
 })
 
-controller.hears(['hi','hello','^hi','^hello'], 'message_received', function(bot, message) {
+controller.hears(['hi','hello','^hi','^hello'], 'message_received,facebook_postback', function(bot, message) {
 
     bot.startConversation(message, function(err, convo) {
         
@@ -241,9 +241,10 @@ controller.hears(['Weather','weather'], 'message_received,facebook_postback', fu
                 }
             });
         }
-    });
+     });
     
- });
+     });
+    convo.next();
 });
 
 controller.hears(['About myself'], 'message_received,facebook_postback', function(bot, message) {
@@ -296,7 +297,7 @@ controller.hears(['About myself'], 'message_received,facebook_postback', functio
     });
 })
 
-controller.hears(['what is my name', 'who am i'], 'message_received', function (bot, message) {
+controller.hears(['what is my name', 'who am i'], 'message_received,facebook_postback', function (bot, message) {
     controller.storage.users.get(message.user, function (err, user) {
         if (user && user.name) {
             bot.reply(message, 'Your name is ' + user.name);
@@ -401,8 +402,9 @@ controller.hears(['user know place'], 'message_received,facebook_postback', func
                     }
                 });
     convo.say('meet u soon den !');
+    convo.next();
 
-});
+    });
 });
 
 controller.hears(['user donno place'], 'message_received,facebook_postback', function (bot, message) {
@@ -527,7 +529,7 @@ controller.hears(['shutdown'], 'message_received', function (bot, message) {
     });
 });
 
-controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your name'], 'message_received', function (bot, message) {
+controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your name'], 'message_received,facebook_postback', function (bot, message) {
 
     var hostname = os.hostname();
     var uptime = formatUptime(process.uptime());
