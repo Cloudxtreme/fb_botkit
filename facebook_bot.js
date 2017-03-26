@@ -61,7 +61,16 @@ controller.on('facebook_optin', function (bot, message) {
 controller.hears(['hi','hello','^hi','^hello'], 'message_received', function(bot, message) {
 
     bot.startConversation(message, function(err, convo) {
-        convo.say('i have query guide for you.What do you want to know?');
+        
+        convo.say({
+                      "attachment":{
+                      "type":"image",
+                      "payload":{
+                        "url":"http://www.la-coffee-melodie-suite.com/image-files/nbs-giftut7.gif"
+                      }
+                    }
+                });
+        convo.say('wassup!! i have guide for you');
         convo.ask({
             attachment: {
                 'type': 'template',
@@ -362,7 +371,6 @@ controller.hears(['user know place'], 'message_received,facebook_postback', func
 });
 
 controller.hears(['user donno place'], 'message_received,facebook_postback', function (bot, message) {
-    controller.storage.users.get(message.user, function (err, user) {
          bot.startConversation(message, function(err, convo) {
            convo.say('oh i guess you are new to city !'); 
              convo.say({
@@ -379,7 +387,7 @@ controller.hears(['user donno place'], 'message_received,facebook_postback', fun
                                 "payload": {
                                     "template_type": "generic",
                                     "elements": [{
-                                        "title": "Your current location",
+                                        "title": "Its Venue location",
                                         "image_url": "https://maps.googleapis.com/maps/api/staticmap?center=gateway+hotel+chennai&zoom=17&scale=false&size=600x300&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7Cgateway+hotel+chennai",
                                         "buttons": [{
                                                 'type': 'web_url',
@@ -392,7 +400,7 @@ controller.hears(['user donno place'], 'message_received,facebook_postback', fun
                             }
             });
        });
-    });
+    convo.next();
 });
 
 controller.hears(['Schedule duration'], 'message_received,facebook_postback', function (bot, message) {
@@ -402,8 +410,46 @@ controller.hears(['Schedule duration'], 'message_received,facebook_postback', fu
 });
 
 controller.hears(['Agenda','about','related'], 'message_received,facebook_postback', function (bot, message) {
-    bot.reply(message, 'The main agenda of this conference meet is to have a interaction with the our senior team members and develop knowledge on the upcoming analytics and reporting technologies.');
+    bot.startConversation(message, function (err, convo) {
+    convo.say('i know little abt it!');
+    convo.ask({
+        "attachment":{
+          "type":"template",
+          "payload":{
+            "template_type":"button",
+            "text":"well do you know about ATUNE",
+            "buttons":[
+              {
+                "type":"postback",
+                "title":"yeah",
+                "payload":"user know ATUNE"
+              },
+              {
+                "type":"postback",
+                "title":"nopes",
+                "payload":"user donno ATUNE"
+              }
+            ]
+          }
+        }    
+   }, function(response, convo) {
+            // whoa, I got the postback payload as a response to my convo.ask!
+            convo.next();
+        }); 
+ })
 })
+
+controller.hears(['user know ATUNE'], 'message_received,facebook_postback', function (bot, message) {
+        bot.reply(message, 'So agenda is actually to introduce new technologies and have networking among employees');
+});
+
+controller.hears(['user donno ATUNE'], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+    convo.say('ATUNE is ATU networking program that arranges conference yearly twice.this is the second one.');
+    convo.say('So agenda is actually to introduce new technologies and have networking among employees');
+    })
+    convo.next();
+});
 
 controller.hears(['call me (.*)', 'my name is (.*)'], 'message_received', function (bot, message) {
     var name = message.match[1];
