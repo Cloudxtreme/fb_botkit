@@ -529,16 +529,38 @@ controller.hears(['shutdown'], 'message_received', function (bot, message) {
     });
 });
 
+controller.hears(['okay'], 'message_received', function (bot, message) {
+
+    bot.startConversation(message, function (err, convo) {
+
+        convo.ask('Are you sure you want me to shutdown?', [{
+                pattern: bot.utterances.yes,
+                callback: function (response, convo) {
+                    convo.say('Bye!');
+                    convo.next();
+                    setTimeout(function () {
+                        process.exit();
+                    }, 3000);
+                }
+            },
+            {
+                pattern: bot.utterances.no,
+                default: true,
+                callback: function (response, convo) {
+                    convo.say('*Phew!*');
+                    convo.next();
+                }
+            }
+        ]);
+    });
+});
+
 controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your name'], 'message_received,facebook_postback', function (bot, message) {
 
     var hostname = os.hostname();
     var uptime = formatUptime(process.uptime());
 
     bot.reply(message, ':|] I am a bot. I have been running for ' + uptime + ' on ' + hostname + '.');
-});
-
-controller.hears(['okay', 'k'], 'message_received', function (bot, message) {
-    bot.reply(message, 'iam okay thanks');
 });
 
 controller.hears(['yeah i want more details'], 'message_received,facebook_postback', function (bot, message) {
