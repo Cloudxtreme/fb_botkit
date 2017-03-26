@@ -616,8 +616,65 @@ controller.on('message_received', function (bot, message) {
                 pattern: bot.utterances.yes,
                 default: true,
                 callback: function (response, convo) {
-                    convo.say('You can proceed with your queries');
-                    convo.next();
+        bot.startConversation(message, function(err, convo) {
+        
+/*        convo.say({
+                      "attachment":{
+                      "type":"image",
+                      "payload":{
+                        "url":"http://www.la-coffee-melodie-suite.com/image-files/nbs-giftut7.gif"
+                      }
+                    }
+                });*/
+        convo.say('wassup!! i have guide for you again');
+        convo.ask({
+            attachment: {
+                'type': 'template',
+                'payload': {
+                    'template_type': 'generic',
+                    'elements': [
+                        {
+                            'title': 'ATUNE 2nd Conference',
+                            'image_url': 'http://www.safety4sea.com/wp-content/uploads/2015/11/Conference.jpg',
+                            'subtitle': 'This is the second conference of ATUNE we are having.',
+                            'buttons': [
+                                {
+                                    'type': 'postback',
+                                    'title': 'Conference Details',
+                                    'payload': 'Conference details'
+                                }
+                            ]
+                        },{
+                            'title': 'First time to be in bhubaneshwar',
+                            'image_url': 'http://www.aids2016.org/portals/0/Image/Thumb/pic_venue_outdoor.jpg?ver=2015-11-04-120531-493',
+                            'subtitle': 'And big – awash with a full-bodied juiciness that makes it instantly recognizable. ',
+                            'buttons': [
+                                {
+                                    'type': 'postback',
+                                    'title': 'Location and Venue',
+                                    'payload': 'Location and Venue'
+                                }
+                            ]
+                        }, {
+                            'title': 'I am here assisting you',
+                            'image_url': 'http://worldartsme.com/images/i-me-clipart-1.jpg',
+                            'subtitle': 'This coffee gets its distinctive sweetness from the way it is roasted: dark, and darker still.',
+                            'buttons': [
+                                {
+                                    'type': 'postback',
+                                    'title': 'About myself',
+                                    'payload': 'About myself'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }, function(response, convo) {
+            // whoa, I got the postback payload as a response to my convo.ask!
+            convo.next();
+        });
+    });
                 }
             },
             {
