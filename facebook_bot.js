@@ -537,7 +537,7 @@ controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your na
 
 
 
-controller.on(['okay','k'],'message_received', function (bot, message) {
+controller.on('message_received', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
 
         convo.ask('Do you need any further information?', [{
