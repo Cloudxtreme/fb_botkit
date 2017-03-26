@@ -337,10 +337,6 @@ controller.hears(['shutdown'], 'message_received', function (bot, message) {
     });
 });
 
-controller.hears(['okay'], 'message_received', function (bot, message) {
-    bot.reply(message, 'hey iam okay');
-});
-
 controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your name'], 'message_received,facebook_postback', function (bot, message) {
 
     var hostname = os.hostname();
