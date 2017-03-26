@@ -366,17 +366,13 @@ controller.hears(['user donno place'], 'message_received,facebook_postback', fun
          bot.startConversation(message, function(err, convo) {
            convo.say('oh i guess you are new to city !'); 
              convo.say({
-                      "attachment": {
-                                "type": "template",
-                                "payload": {
-                                    "template_type": "generic",
-                                    "elements": [{
-                                        "title": "????????????????????????????",
-                                        "image_url": "https://bsbproduction.s3.amazonaws.com/portals/9755/images/faq.gif",
-                                    }]
-                                }
-                            }
-            });
+                      "attachment":{
+                      "type":"image",
+                      "payload":{
+                        "url":"https://bsbproduction.s3.amazonaws.com/portals/9755/images/faq.gif"
+                      }
+                    }
+                });
            convo.say({
                 "attachment": {
                                 "type": "template",
