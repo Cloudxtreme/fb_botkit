@@ -222,13 +222,15 @@ controller.hears(['Location and Venue'], 'message_received,facebook_postback', f
     });
 });
 
-var dt,wt;
 controller.hears(['Weather','weather'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
      request('http://apidev.accuweather.com/currentconditions/v1/1-189781_1_AL.json?language=en&apikey=hoArfRosT1215', function (error, response, body) {
         if (!error && response.statusCode == 200) {
-           dt = JSON.parse(body)[0].WeatherText
-           convo.say('weather is '+ JSON.stringify(JSON.parse(body)[0].WeatherText)); 
+        var  forecast = JSON.stringify(JSON.parse(body)[0].WeatherText);
+        var  temp     = JSON.stringify(JSON.parse(body)[0].Temperature.Metric.Value);
+        var degree    = JSON.stringify(JSON.parse(body)[0].Temperature.Metric.Unit);
+
+           convo.say('weather is '+ forecast+temp+degree); 
         }
     });
     
