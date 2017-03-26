@@ -18,7 +18,11 @@ controller.setupWebserver(process.env.PORT || process.env.port || 3000, function
     });
 });
 
+<<<<<<< HEAD
+controller.api.thread_settings.greeting('Hey ,hope you are doing well.My name is ATUNEBot.I can help you with info on ATUNE!');
+=======
 controller.api.thread_settings.greeting('Hello! welcome to our First Conference Meet!');
+>>>>>>> origin/master
 controller.api.thread_settings.get_started('Let\'s get started');
 // controller.api.thread_settings.menu([
 //     {
@@ -53,6 +57,8 @@ var Utterances = {
 
 var bot = controller.spawn({});
 
+<<<<<<< HEAD
+=======
 
 controller.hears(['map'], 'message_received', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
@@ -75,6 +81,7 @@ controller.hears(['map'], 'message_received', function (bot, message) {
 })
 
 
+>>>>>>> origin/master
 // this is triggered when a user clicks the send-to-messenger plugin
 controller.on('facebook_optin', function (bot, message) {
     bot.reply(message, 'Welcome To My Chatbot Thanks Alot!')
@@ -83,6 +90,10 @@ controller.on('facebook_optin', function (bot, message) {
 controller.hears(['hi','hello','^hi','^hello'], 'message_received', function(bot, message) {
 
     bot.startConversation(message, function(err, convo) {
+<<<<<<< HEAD
+        convo.say('i have query guide for you.What do you want to know?');
+=======
+>>>>>>> origin/master
         convo.ask({
             attachment: {
                 'type': 'template',
@@ -349,7 +360,11 @@ controller.hears(['what is my name', 'who am i'], 'message_received', function (
 
 controller.hears(['Venue'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
+<<<<<<< HEAD
+        convo.ask('The conference is at bhubaneshwar crown plaza near Kumrangar. Do you know this place ?', [{
+=======
         convo.ask('The conference is at madras cafe inside gateway hotel. Do you know this place ?', [{
+>>>>>>> origin/master
                 pattern: bot.utterances.yes,
                 callback: function (response, convo) {
                     convo.say('Oh grt!!');
@@ -378,6 +393,9 @@ controller.hears(['Venue'], 'message_received,facebook_postback', function (bot,
                                 }]
                             }
                         }
+<<<<<<< HEAD
+                    })
+=======
 
                     })
                     // convo.ask('do you want to know directions', [{
@@ -410,6 +428,7 @@ controller.hears(['Venue'], 'message_received,facebook_postback', function (bot,
                     //         }
                     //     ]
                     // })
+>>>>>>> origin/master
                     convo.next();
                 }
             }, {
