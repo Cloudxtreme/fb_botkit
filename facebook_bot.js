@@ -535,9 +535,108 @@ controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your na
     bot.reply(message, ':|] I am a bot. I have been running for ' + uptime + ' on ' + hostname + '.');
 });
 
+controller.hears(['k','okay','kk'], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+    convo.say('Do you need anymore details?');
+    convo.ask({
+        "attachment":{
+          "type":"template",
+          "payload":{
+            "template_type":"button",
+            "text":"well do you know about ATUNE",
+            "buttons":[
+              {
+                "type":"postback",
+                "title":"yeah",
+                "payload":"yeah i want more details"
+              },
+              {
+                "type":"postback",
+                "title":"nopes",
+                "payload":"nopes thanks i dont want further details"
+              }
+            ]
+          }
+        }    
+   }, function(response, convo) {
+            // whoa, I got the postback payload as a response to my convo.ask!
+            convo.next();
+        }); 
+ })
+})
 
+controller.hears(['yeah i want more details'], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+         convo.say('You can proceed with your queries');
+          convo.say('here is a guide for you again');
+           convo.ask({
+            attachment: {
+                'type': 'template',
+                'payload': {
+                    'template_type': 'generic',
+                    'elements': [
+                        {
+                            'title': 'ATUNE 2nd Conference',
+                            'image_url': 'http://www.safety4sea.com/wp-content/uploads/2015/11/Conference.jpg',
+                            'subtitle': 'This is the second conference of ATUNE we are having.',
+                            'buttons': [
+                                {
+                                    'type': 'postback',
+                                    'title': 'Conference Details',
+                                    'payload': 'Conference details'
+                                }
+                            ]
+                        },{
+                            'title': 'First time to be in bhubaneshwar',
+                            'image_url': 'http://www.aids2016.org/portals/0/Image/Thumb/pic_venue_outdoor.jpg?ver=2015-11-04-120531-493',
+                            'subtitle': 'And big – awash with a full-bodied juiciness that makes it instantly recognizable. ',
+                            'buttons': [
+                                {
+                                    'type': 'postback',
+                                    'title': 'Location and Venue',
+                                    'payload': 'Location and Venue'
+                                }
+                            ]
+                        }, {
+                            'title': 'I am here assisting you',
+                            'image_url': 'http://worldartsme.com/images/i-me-clipart-1.jpg',
+                            'subtitle': 'This coffee gets its distinctive sweetness from the way it is roasted: dark, and darker still.',
+                            'buttons': [
+                                {
+                                    'type': 'postback',
+                                    'title': 'About myself',
+                                    'payload': 'About myself'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }, function(response, convo) {
+            // whoa, I got the postback payload as a response to my convo.ask!
+            convo.next();
+        });
+    });
+});
+controller.hears(['nopes thanks i dont want further details'], 'message_received,facebook_postback', function (bot, message) {
+     bot.startConversation(message, function (err, convo) {
+        convo.say('Okay!Bubye then cya next time');
+            convo.say({
+                "attachment":{
+                    "type":"image",
+                    "payload":{
+                    "url":"https://media.giphy.com/media/7NO5hb2oAiE2Q/giphy.gif"
+                    }
+                }
+            });
+        convo.next();
+        setTimeout(function () {
+            process.exit();
+        }, 3000);
+    });
+});
 
-controller.hears(['okay', 'k'],'message_received', function (bot, message) {
+controller.on('message_received', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
 
         convo.ask('Do you need any further information?', [{
@@ -545,52 +644,7 @@ controller.hears(['okay', 'k'],'message_received', function (bot, message) {
                 default: true,
                 callback: function (response, convo) {
                     convo.say('You can proceed with your queries');
-                    convo.say('here is the guide for you');
-                        convo.ask({
-                     attachment: {
-                        'type': 'template',
-                        'payload': {
-                            'template_type': 'generic',
-                            'elements': [
-                                {
-                                    'title': 'Agenda of the Conference',
-                                    'image_url': 'http://www.ellenhartson.com/wp-content/uploads/2011/04/agenda.gif',
-                                    'buttons': [
-                                        {
-                                            'type': 'postback',
-                                            'title': 'Agenda',
-                                            'payload': 'Agenda'
-                                        }
-                                    ]
-                                },{
-                                    "title": "Schedule And Duration of the Meet",
-                                    "image_url": "http://www.gifs.net/Animation11/Words/Other_Words/schedule.gif",
-                                    "buttons": [
-                                        {
-                                            'title': 'Schedule duration ',
-                                            'type': 'postback',
-                                            'payload': 'Schedule duration'                       
-                                        }
-                                    ]                
-                                }, {
-                                    "title": "Venue",
-                                    "image_url": "http://www.cardabeachhotel.gr/wp-content/uploads/kos-carda-beach-hotel-1680x1050.jpg",
-                                    "buttons": [
-                                        {   
-                                            'title': 'Venue ',
-                                            'type': 'postback',
-                                            'payload': 'Venue'                       
-                                        }
-                                    ]                
-                                }
-                            ]
-                        }
-                    }    
-           }, function(response, convo) {
-                    // whoa, I got the postback payload as a response to my convo.ask!
                     convo.next();
-                });
-                
                 }
             },
             {
