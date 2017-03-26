@@ -535,7 +535,7 @@ controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your na
     bot.reply(message, ':|] I am a bot. I have been running for ' + uptime + ' on ' + hostname + '.');
 });
 
-controller.hears(['k','okay','kk'], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['k','okay','kk'], 'message_received', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
     convo.say('Do you need anymore details?');
     convo.ask({
@@ -563,7 +563,7 @@ controller.hears(['k','okay','kk'], 'message_received,facebook_postback', functi
             convo.next();
         }); 
  })
-})
+});
 
 controller.hears(['yeah i want more details'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
