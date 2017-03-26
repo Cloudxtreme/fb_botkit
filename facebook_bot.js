@@ -227,10 +227,10 @@ controller.hears(['Weather','weather'], 'message_received,facebook_postback', fu
     bot.startConversation(message, function (err, convo) {
      request('http://apidev.accuweather.com/currentconditions/v1/1-189781_1_AL.json?language=en&apikey=hoArfRosT1215', function (error, response, body) {
         if (!error && response.statusCode == 200) {
-           dt = JSON.parse(body);
+           dt = body;
         }
     });
-    convo.say('weather is'+ dt); 
+    convo.say('weather is '+ dt); 
  });
 });
 
