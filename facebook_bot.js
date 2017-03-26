@@ -18,7 +18,7 @@ controller.setupWebserver(process.env.PORT || process.env.port || 3000, function
     });
 });
 
-controller.api.thread_settings.greeting('Hello! welcome to our First Conference Meet!');
+controller.api.thread_settings.greeting('Hey ,hope you are doing well.My name is ATUNEBot.I can help you with info on ATUNE!');
 controller.api.thread_settings.get_started('Let\'s get started');
 // controller.api.thread_settings.menu([
 //     {
@@ -53,28 +53,6 @@ var Utterances = {
 
 var bot = controller.spawn({});
 
-
-controller.hears(['map'], 'message_received', function (bot, message) {
-    bot.startConversation(message, function (err, convo) {
-        convo.ask({
-            attachment: {
-                'type': 'template',
-                'payload': {
-                    'template_type': 'generic',
-                    'elements': [{
-                        'title': 'Classic White T-Shirt',
-                        'image_url': 'http://petersapparel.parseapp.com/img/item100-thumb.png',
-                    }]
-                }
-            }
-        }, function (response, convo) {
-            // whoa, I got the postback payload as a response to my convo.ask!
-            convo.next()
-        })
-    })
-})
-
-
 // this is triggered when a user clicks the send-to-messenger plugin
 controller.on('facebook_optin', function (bot, message) {
     bot.reply(message, 'Welcome To My Chatbot Thanks Alot!')
@@ -83,6 +61,7 @@ controller.on('facebook_optin', function (bot, message) {
 controller.hears(['hi','hello','^hi','^hello'], 'message_received', function(bot, message) {
 
     bot.startConversation(message, function(err, convo) {
+        convo.say('i have query guide for you.What do you want to know?');
         convo.ask({
             attachment: {
                 'type': 'template',
@@ -349,7 +328,7 @@ controller.hears(['what is my name', 'who am i'], 'message_received', function (
 
 controller.hears(['Venue'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
-        convo.ask('The conference is at madras cafe inside gateway hotel. Do you know this place ?', [{
+        convo.ask('The conference is at bhubaneshwar crown plaza near Kumrangar. Do you know this place ?', [{
                 pattern: bot.utterances.yes,
                 callback: function (response, convo) {
                     convo.say('Oh grt!!');
@@ -380,36 +359,6 @@ controller.hears(['Venue'], 'message_received,facebook_postback', function (bot,
                         }
 
                     })
-                    // convo.ask('do you want to know directions', [{
-                    //     pattern: bot.utterances.yes,
-                    //     default: true,
-                    //     callback: function (response, convo) {
-                    //         convo.say('We have redirected you');
-                    //         convo.say('http://www.sindresorhus.com');
-                    //         opn('http://www.sindresorhus.com');
-                    //         convo.next();
-                    //     }
-                    // }, {
-                    //     pattern: bot.utterances.no,
-                    //     callback: function (response, convo) {
-                    //         convo.say('Okay!Bubye');
-                    //         convo.next();
-                    //     }
-                    // }]);
-                    // bot.reply(message, {
-                    //     text: 'Hey! This message has some quick replies attached.',
-                    //     quick_replies: [{
-                    //             "content_type": "text",
-                    //             "title": "Yes",
-                    //             "payload": "http://www.bing.com"
-                    //         },
-                    //         {
-                    //             "content_type": "text",
-                    //             "title": "No",
-                    //             "payload": "no"
-                    //         }
-                    //     ]
-                    // })
                     convo.next();
                 }
             }, {
