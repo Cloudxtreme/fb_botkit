@@ -230,7 +230,16 @@ controller.hears(['Weather','weather'], 'message_received,facebook_postback', fu
         var  temp     = JSON.stringify(JSON.parse(body)[0].Temperature.Metric.Value);
         var degree    = JSON.stringify(JSON.parse(body)[0].Temperature.Metric.Unit).replace( /"/g, "" );
 
-           convo.say('weather is '+ forecast+temp+degree); 
+        convo.say('bhubaneshwar current\'s weather forecast  is '+ forecast+temp+degree); 
+        convo.say('most of the time its minimum 29C in day time and around 22C at nyt time');
+        convo.say({
+                "attachment":{
+                "type":"image",
+                "payload":{
+                    "url":"https://img.clipartfest.com/ca530423485be0b31c38cb5c1a760985_animated-sun-images-clipart-animated-sun_600-600.gif"
+                    }
+                }
+            });
         }
     });
     
