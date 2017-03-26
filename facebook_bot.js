@@ -63,14 +63,14 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received,facebook_postb
 
     bot.startConversation(message, function(err, convo) {
         
-/*        convo.say({
+        convo.say({
                       "attachment":{
                       "type":"image",
                       "payload":{
                         "url":"http://www.la-coffee-melodie-suite.com/image-files/nbs-giftut7.gif"
                       }
                     }
-                });*/
+                });
         convo.say('wassup!! i have guide for you');
         convo.ask({
             attachment: {
@@ -232,14 +232,14 @@ controller.hears(['Weather','weather'], 'message_received,facebook_postback', fu
 
         convo.say('bhubaneshwar current\'s weather forecast  is '+ forecast+temp+degree); 
         convo.say('most of the time its minimum 29C in day time and around 22C at nyt time');
-       /* convo.say({
+        convo.say({
                 "attachment":{
                 "type":"image",
                 "payload":{
                     "url":"https://img.clipartfest.com/ca530423485be0b31c38cb5c1a760985_animated-sun-images-clipart-animated-sun_600-600.gif"
                     }
                 }
-            */});
+            });
         }
      });
     convo.next();
@@ -295,59 +295,6 @@ controller.hears(['About myself'], 'message_received,facebook_postback', functio
         });
     });
 })
-
-controller.hears(['call me (.*)', 'my name is (.*)'], 'message_received', function (bot, message) {
-    var name = message.match[1];
-    controller.storage.users.get(message.user, function (err, user) {
-        if (!user) {
-            user = {
-                id: message.user,
-            };
-        }
-        user.name = name;
-        controller.storage.users.save(user, function (err, id) {
-            bot.reply(message, 'Got it. I will call you ' + user.name + ' from now on.');
-        });
-    });
-});
-
-controller.hears(['shutdown'], 'message_received', function (bot, message) {
-
-    bot.startConversation(message, function (err, convo) {
-
-        convo.ask('Are you sure you want me to shutdown?', [{
-                pattern: bot.utterances.yes,
-                callback: function (response, convo) {
-                    convo.say('Bye!');
-                    convo.next();
-                    setTimeout(function () {
-                        process.exit();
-                    }, 3000);
-                }
-            },
-            {
-                pattern: bot.utterances.no,
-                default: true,
-                callback: function (response, convo) {
-                    convo.say('*Phew!*');
-                    convo.next();
-                }
-            }
-        ]);
-    });
-});
-
-controller.hears(['okay'], 'message_received', function (bot, message) {
-    bot.reply(message, 'hey iam okay');
-});
-
-controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your name'], 'message_received,facebook_postback', function (bot, message) {
-
-    var hostname = os.hostname();
-    var uptime = formatUptime(process.uptime());
-
-    bot.reply(message, ':|] I am a bot. I have been running for ' + uptime + ' on ' + hostname + '.');
-});
 
 controller.hears(['what is my name', 'who am i'], 'message_received,facebook_postback', function (bot, message) {
     controller.storage.users.get(message.user, function (err, user) {
@@ -445,14 +392,14 @@ controller.hears(['Venue','where','location'], 'message_received,facebook_postba
 controller.hears(['user know place'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
     convo.say('woooooooo');
-   /*    convo.say({
+       convo.say({
                       "attachment":{
                       "type":"image",
                       "payload":{
                         "url":"https://s-media-cache-ak0.pinimg.com/originals/85/89/46/858946b7dadb1089cd6d4b00f44c416b.gif"
                       }
                     }
-                });*/
+                });
     convo.say('meet u soon den !');
     convo.next();
 
@@ -462,14 +409,14 @@ controller.hears(['user know place'], 'message_received,facebook_postback', func
 controller.hears(['user donno place'], 'message_received,facebook_postback', function (bot, message) {
          bot.startConversation(message, function(err, convo) {
            convo.say('oh i guess you are new to city !'); 
-/*             convo.say({
+             convo.say({
                       "attachment":{
                       "type":"image",
                       "payload":{
                         "url":"https://bsbproduction.s3.amazonaws.com/portals/9755/images/faq.gif"
                       }
                     }
-                });*/
+                });
            convo.say({
                 "attachment": {
                                 "type": "template",
@@ -540,7 +487,58 @@ controller.hears(['user donno ATUNE'], 'message_received,facebook_postback', fun
     });
 });
 
+controller.hears(['call me (.*)', 'my name is (.*)'], 'message_received', function (bot, message) {
+    var name = message.match[1];
+    controller.storage.users.get(message.user, function (err, user) {
+        if (!user) {
+            user = {
+                id: message.user,
+            };
+        }
+        user.name = name;
+        controller.storage.users.save(user, function (err, id) {
+            bot.reply(message, 'Got it. I will call you ' + user.name + ' from now on.');
+        });
+    });
+});
 
+controller.hears(['shutdown'], 'message_received', function (bot, message) {
+
+    bot.startConversation(message, function (err, convo) {
+
+        convo.ask('Are you sure you want me to shutdown?', [{
+                pattern: bot.utterances.yes,
+                callback: function (response, convo) {
+                    convo.say('Bye!');
+                    convo.next();
+                    setTimeout(function () {
+                        process.exit();
+                    }, 3000);
+                }
+            },
+            {
+                pattern: bot.utterances.no,
+                default: true,
+                callback: function (response, convo) {
+                    convo.say('*Phew!*');
+                    convo.next();
+                }
+            }
+        ]);
+    });
+});
+
+controller.hears(['okay'], 'message_received', function (bot, message) {
+    bot.reply(message, 'hey iam okay');
+});
+
+controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your name'], 'message_received,facebook_postback', function (bot, message) {
+
+    var hostname = os.hostname();
+    var uptime = formatUptime(process.uptime());
+
+    bot.reply(message, ':|] I am a bot. I have been running for ' + uptime + ' on ' + hostname + '.');
+});
 
 controller.hears(['yeah i want more details'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
@@ -598,14 +596,14 @@ controller.hears(['yeah i want more details'], 'message_received,facebook_postba
 controller.hears(['nopes thanks i dont want further details'], 'message_received,facebook_postback', function (bot, message) {
      bot.startConversation(message, function (err, convo) {
         convo.say('Okay!Bubye then cya next time');
- /*           convo.say({
+            convo.say({
                 "attachment":{
                     "type":"image",
                     "payload":{
                     "url":"https://media.giphy.com/media/7NO5hb2oAiE2Q/giphy.gif"
                     }
                 }
-            });*/
+            });
         convo.next();
         setTimeout(function () {
             process.exit();
