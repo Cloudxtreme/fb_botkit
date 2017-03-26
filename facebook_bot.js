@@ -336,7 +336,7 @@ controller.hears(['Venue'], 'message_received,facebook_postback', function (bot,
                     convo.next();
                 }
             }, {
-                pattern: bot.utterances.no,
+                pattern: "no",
                 callback: function (response, convo) {
                     convo.say('ohhhk no prblm');
                     convo.say('So i can help you with that!');
