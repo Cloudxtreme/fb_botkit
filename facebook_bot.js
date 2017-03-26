@@ -120,6 +120,7 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received,facebook_postb
             convo.next();
         });
     });
+    convo.next();
 })
 
 controller.hears(['Conference details'], 'message_received,facebook_postback', function(bot, message) {
@@ -170,6 +171,7 @@ controller.hears(['Conference details'], 'message_received,facebook_postback', f
             convo.next();
         });
     });
+    convo.next();
 })
 
 controller.hears(['Location and Venue'], 'message_received,facebook_postback', function(bot, message) {
@@ -220,6 +222,7 @@ controller.hears(['Location and Venue'], 'message_received,facebook_postback', f
             convo.next();
         });
     });
+    convo.next();
 });
 
 controller.hears(['Weather','weather'], 'message_received,facebook_postback', function (bot, message) {
@@ -474,6 +477,7 @@ controller.hears(['Agenda','about','related'], 'message_received,facebook_postba
             convo.next();
         }); 
  })
+    convo.next();
 })
 
 controller.hears(['user know ATUNE'], 'message_received,facebook_postback', function (bot, message) {
