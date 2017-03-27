@@ -160,7 +160,7 @@ controller.hears(['Conference Details'], 'message_received,facebook_postback', f
                             'buttons': [
                                 {
                                     'type': 'postback',
-                                    'title': 'Agenda of the Conference',
+                                    'title': 'Agenda',
                                     'payload': 'Agenda'
                                 },
                                 {
@@ -184,7 +184,7 @@ controller.hears(['Conference Details'], 'message_received,facebook_postback', f
     });
 })
 
-controller.hears(['Location Details'], 'message_received,facebook_postback', function(bot, message) {
+controller.hears(['Location Details','location','Location'], 'message_received,facebook_postback', function(bot, message) {
 
     bot.startConversation(message, function(err, convo) {
        convo.ask({
@@ -225,7 +225,7 @@ controller.hears(['Location Details'], 'message_received,facebook_postback', fun
     });
 });
 
-controller.hears(['Weather'], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['Weather','weather'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
      request('http://apidev.accuweather.com/currentconditions/v1/1-189781_1_AL.json?language=en&apikey=hoArfRosT1215', function (error, response, body) {
         if (!error && response.statusCode == 200) {
@@ -242,7 +242,7 @@ controller.hears(['Weather'], 'message_received,facebook_postback', function (bo
      });
 });
 
-controller.hears(['Event Organizers'], 'message_received,facebook_postback', function(bot, message) {
+controller.hears(['Event Organizers','organizer','Organizer'], 'message_received,facebook_postback', function(bot, message) {
 
     bot.startConversation(message, function(err, convo) {
         convo.ask({
@@ -282,15 +282,15 @@ controller.hears(['Event Organizers'], 'message_received,facebook_postback', fun
     });
 })
 
-controller.hears(['Schedule duration'], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['Schedule duration','schedule','Schedule'], 'message_received,facebook_postback', function (bot, message) {
         bot.reply(message, 'Conference is scheduled on 23-Apr-17 (Sunday) & 24-Apr-17(Monday)');
 });
 
-controller.hears(['Swon Details'], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['Swon Details','swon','SWON'], 'message_received,facebook_postback', function (bot, message) {
         bot.reply(message, 'SWON Number for Travel is 1042816 ');
 });
 
-controller.hears(['Agenda'], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['Agenda','agenda'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
     convo.say('Agenda');
     convo.ask({
@@ -332,7 +332,7 @@ controller.hears(['user donno ATUNE'], 'message_received,facebook_postback', fun
     });
 });
  
-controller.hears(['Venue'], 'message_received,facebook_postback', function(bot, message) {
+controller.hears(['Venue','venue'], 'message_received,facebook_postback', function(bot, message) {
      bot.startConversation(message, function(err, convo) {
                 convo.say('Hotel address is: 8-B, Jaydev Vihar, Bhubaneshwar, Odisha 751013');
                 convo.say('You can also refer to link : http://www.mayfairhotels.com/ for more details');
