@@ -446,9 +446,9 @@ controller.on('message_received', function (bot, message) {
     
 controller.hears(['Venue'], 'message_received,facebook_postback', function(bot, message) {
      bot.startConversation(message, function(err, convo) {
-                convo.say('Hotel address is:');
-                convo.say('Facilities are:');
-                convo.say('Gallery');
+                convo.say('Hotel address is: 8-B, Jaydev Vihar, Bhubaneshwar, Odisha 751013');
+                convo.say('You can also refer to link : http://www.mayfairhotels.com/ for more details');
+                convo.say('Mayfair Hotels Gallery');
                 convo.ask({
                         attachment: {
                             'type': 'template',
@@ -503,13 +503,13 @@ controller.hears(['Sight Seeing'], 'message_received,facebook_postback', functio
 })    
 
 controller.hears(['Travel Organizers'], 'message_received,facebook_postback', function (bot, message) {
-        bot.reply(message, 'travel organizers.......... ');
+        bot.reply(message, 'For Travel Details you can contact Murli , Ph no: 9715608893');
 });
 controller.hears(['Accomodation Organizers'], 'message_received,facebook_postback', function (bot, message) {
-        bot.reply(message, 'Accomodation Organizers.......... ');
+        bot.reply(message, 'For Accomodation related queries and details you can contact Shreedhar , Ph no: 9715608893');
 });
 controller.hears(['Tourist Agents'], 'message_received,facebook_postback', function (bot, message) {
-        bot.reply(message, 'Tourist Agents.......... ');
+        bot.reply(message, 'For Tourist Guidance you can contact sreelatha , Ph no: 9715608893');
 });
 
 
