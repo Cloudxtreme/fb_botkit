@@ -58,7 +58,7 @@ controller.on('facebook_optin', function (bot, message) {
 
 controller.hears(['start_payload'], 'message_received,facebook_postback', function(bot, message) {
     bot.startConversation(message, function(err, convo) {
-        convo.say('Welcome to ATUNE Event.')
+        convo.say('Welcome to ATUNE Event. I am ATUNE-Bot. I will be happy to guide you with event details ☺')
         convo.ask({
             attachment: {
                 'type': 'template',
