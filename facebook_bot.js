@@ -145,50 +145,52 @@ controller.hears(['hi','start_payload','hello'], 'message_received,facebook_post
 
 
 controller.hears(['Conference Details'], 'message_received,facebook_postback', function(bot, message) {
-
-    bot.startConversation(message, function(err, convo) {
-        convo.ask({
-             attachment: {
+      var attachment = {
                 'type': 'template',
                 'payload': {
                     'template_type': 'generic',
                     'elements': [
                         {
-                            'title': 'ATUNE-2017 Conference',
-                            'image_url': 'http://www.safety4sea.com/wp-content/uploads/2015/11/Conference.jpg',
-                            'subtitle': '',
+                            'title': 'Agenda of the Conference',
+                            'image_url': 'http://www.ellenhartson.com/wp-content/uploads/2011/04/agenda.gif',
                             'buttons': [
                                 {
                                     'type': 'postback',
                                     'title': 'Agenda',
                                     'payload': 'Agenda'
-                                },
-                                {
-                                    'type': 'postback',
-                                    'title': 'Schedule And Duration',
-                                    'payload': 'Schedule Duration'
-                                },
-                                {
-                                    'type': 'postback',
-                                    'title': 'SWON Details',
-                                    'payload': 'Swon Details'
                                 }
                             ]
+                        },{
+                            "title": "Schedule And Duration of the Meet",
+                            "image_url": "http://www.gifs.net/Animation11/Words/Other_Words/schedule.gif",
+                            "buttons": [
+                                {
+                                    'title': 'Schedule & Duration ',
+                                    'type': 'postback',
+                                    'payload': 'Schedule duration'                       
+                                }
+                            ]                
+                        }, {
+                            "title": "SWON Details",
+                            "image_url": "http://www.cardabeachhotel.gr/wp-content/uploads/kos-carda-beach-hotel-1680x1050.jpg",
+                            "buttons": [
+                                {   
+                                    'title': 'SWON Details',
+                                    'type': 'postback',
+                                    'payload': 'Swon Details'                       
+                                }
+                            ]                
                         }
                     ]
                 }
-            }    
-   }, function(response, convo) {           
-            convo.next();
+            } ;
+        bot.reply(message, {
+        attachment: attachment,
         });
-    });
-})
+});
 
 controller.hears(['Location Details','location','Location'], 'message_received,facebook_postback', function(bot, message) {
-
-    bot.startConversation(message, function(err, convo) {
-       convo.ask({
-            attachment: {
+     var attachment =  {
                 'type': 'template',
                 'payload': {
                     'template_type': 'generic',
@@ -217,12 +219,10 @@ controller.hears(['Location Details','location','Location'], 'message_received,f
                         }
                     ]
                 }
-            }
-        }, function(response, convo) {
-            // whoa, I got the postback payload as a response to my convo.ask!
-            convo.next();
-        });        
-    });
+            };
+            bot.reply(message, {
+            attachment: attachment,
+            });  
 });
 
 controller.hears(['Weather','weather'], 'message_received,facebook_postback', function (bot, message) {
@@ -243,10 +243,7 @@ controller.hears(['Weather','weather'], 'message_received,facebook_postback', fu
 });
 
 controller.hears(['Event Organizers','organizer','Organizer'], 'message_received,facebook_postback', function(bot, message) {
-
-    bot.startConversation(message, function(err, convo) {
-        convo.ask({
-             attachment: {
+    var  attachment = {
                 'type': 'template',
                 'payload': {
                     'template_type': 'generic',
@@ -274,13 +271,11 @@ controller.hears(['Event Organizers','organizer','Organizer'], 'message_received
                         }
                     ]
                 }
-            }    
-   }, function(response, convo) {
-            // whoa, I got the postback payload as a response to my convo.ask!
-            convo.next();
-        });
-    });
-})
+            } ;
+            bot.reply(message, {
+            attachment: attachment,
+            });    
+});
 
 controller.hears(['Schedule duration','schedule','Schedule'], 'message_received,facebook_postback', function (bot, message) {
         bot.reply(message, 'Conference is scheduled on 23-Apr-17 (Sunday) & 24-Apr-17(Monday)');
