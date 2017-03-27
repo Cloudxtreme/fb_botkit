@@ -21,29 +21,6 @@ controller.setupWebserver(process.env.PORT || process.env.port || 3000, function
 
 controller.api.thread_settings.greeting('Hey ,hope you are doing well.My name is ATUNEBot.I can help you with info on ATUNE!');
 controller.api.thread_settings.get_started('Let\'s get started');
-// controller.api.thread_settings.menu([
-//     {
-//         "type":"postback",
-//         "title":"Hello",
-//         "payload":"hello"
-//     },
-//     {
-//         "type":"postback",
-//         "title":"Help",
-//         "payload":"help"
-//     },
-//     {
-//       "type":"web_url",
-//       "title":"Botkit Docs",
-//       "url":"https://github.com/howdyai/botkit/blob/master/readme-facebook.md"
-//     },
-// ]);
-
-
-// var controller = Botkit.consolebot({
-//     debug: true,
-//     log: true,
-// })
 
 var Utterances = {
     yes: new RegExp(/^(yes|yea|yup|yep|ya|sure|ok|y|yeah|yah|sounds good)/i),
