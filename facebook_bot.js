@@ -55,7 +55,7 @@ controller.on('facebook_optin', function (bot, message) {
     bot.reply(message, 'Welcome To My Chatbot Thanks Alot!')
 })
 
-controller.hears(['Get Started'], 'message_received', function(bot, message) {
+controller.hears(['Get Started'], 'message_received,facebook_postback', function(bot, message) {
     bot.startConversation(message, function(err, convo) {
         convo.say('Welcome to ATUNE Event.')
         convo.ask({
