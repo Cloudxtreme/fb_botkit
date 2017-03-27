@@ -331,26 +331,7 @@ controller.hears(['user donno ATUNE'], 'message_received,facebook_postback', fun
     convo.next();
     });
 });
-
-controller.on('facebook_postback', function (bot, message) {
-    convo.ask({
-        attachment:{
-            'type':'generic',
-            'elements': [
-                {
-                "buttons":[
-                     {
-                    "type":"postback",
-                    "title":"what else can I guide you",
-                    "payload":"start_payload"
-                    }
-                ]
-                }
-            ]
-        }
-    })
-});
-  
+ 
 controller.hears(['Venue'], 'message_received,facebook_postback', function(bot, message) {
      bot.startConversation(message, function(err, convo) {
                 convo.say('Hotel address is: 8-B, Jaydev Vihar, Bhubaneshwar, Odisha 751013');
