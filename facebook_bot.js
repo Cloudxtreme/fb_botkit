@@ -58,7 +58,7 @@ controller.on('facebook_optin', function (bot, message) {
 
 controller.hears(['start_payload'], 'message_received,facebook_postback', function(bot, message) {
     bot.startConversation(message, function(err, convo) {
-        convo.say('Welcome to ATUNE Event. I am ATUNE-Bot. I will be happy to guide you with event details ☺')
+        convo.say('Hi.. I am ATUNE-Bot. I will be happy to guide you with event details ☺')
         convo.ask({
             attachment: {
                 'type': 'template',
@@ -152,43 +152,33 @@ controller.hears(['Conference Details'], 'message_received,facebook_postback', f
                     'template_type': 'generic',
                     'elements': [
                         {
-                            'title': 'Agenda of the Conference',
-                            'image_url': 'http://www.ellenhartson.com/wp-content/uploads/2011/04/agenda.gif',
+                            'title': 'ATUNE-2017 Conference',
+                            'image_url': 'http://www.safety4sea.com/wp-content/uploads/2015/11/Conference.jpg',
+                            'subtitle': '',
                             'buttons': [
                                 {
                                     'type': 'postback',
-                                    'title': 'Agenda',
+                                    'title': 'Agenda of the Conference',
                                     'payload': 'Agenda'
-                                }
-                            ]
-                        },{
-                            "title": "Schedule And Duration of the Meet",
-                            "image_url": "http://www.gifs.net/Animation11/Words/Other_Words/schedule.gif",
-                            "buttons": [
+                                },
                                 {
-                                    'title': 'Schedule & Duration ',
                                     'type': 'postback',
-                                    'payload': 'Schedule duration'                       
-                                }
-                            ]                
-                        }, {
-                            "title": "SWON Details",
-                            "image_url": "http://www.cardabeachhotel.gr/wp-content/uploads/kos-carda-beach-hotel-1680x1050.jpg",
-                            "buttons": [
-                                {   
+                                    'title': 'Schedule And Duration',
+                                    'payload': 'Schedule Duration'
+                                },
+                                {
+                                    'type': 'postback',
                                     'title': 'SWON Details',
-                                    'type': 'postback',
-                                    'payload': 'Swon Details'                       
+                                    'payload': 'Swon Details'
                                 }
-                            ]                
+                            ]    
                         }
                     ]
-                }
-            }    
-   }, function(response, convo) {           
+                }    
+        }, function(response, convo) {           
             convo.next();
+        }
         });
-    });
 })
 
 controller.hears(['Location Details'], 'message_received,facebook_postback', function(bot, message) {
