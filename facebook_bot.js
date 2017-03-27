@@ -171,14 +171,15 @@ controller.hears(['Conference Details'], 'message_received,facebook_postback', f
                                     'title': 'SWON Details',
                                     'payload': 'Swon Details'
                                 }
-                            ]    
+                            ]
                         }
                     ]
-                }    
-        }, function(response, convo) {           
+                }
+            }    
+   }, function(response, convo) {           
             convo.next();
-        }
         });
+    });
 })
 
 controller.hears(['Location Details'], 'message_received,facebook_postback', function(bot, message) {
