@@ -84,6 +84,7 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received,facebook_postb
                       }
                     }
                 });*/
+        convo.say('Hey! Hope you are doing good. I am ATUNE Bot. I here to give the details about the ATUNE Event');
         convo.say('wassup!! i have guide for you');
         convo.ask({
             attachment: {
