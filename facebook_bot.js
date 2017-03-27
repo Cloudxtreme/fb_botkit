@@ -151,35 +151,26 @@ controller.hears(['Conference Details'], 'message_received,facebook_postback', f
                     'template_type': 'generic',
                     'elements': [
                         {
-                            'title': 'Agenda of the Conference',
-                            'image_url': 'http://www.ellenhartson.com/wp-content/uploads/2011/04/agenda.gif',
+                            'title': 'ATUNE-2017 Conference',
+                            'image_url': 'http://www.safety4sea.com/wp-content/uploads/2015/11/Conference.jpg',
+                            'subtitle': '',
                             'buttons': [
                                 {
                                     'type': 'postback',
                                     'title': 'Agenda',
                                     'payload': 'Agenda'
+                                },
+                                {
+                                    'type': 'postback',
+                                    'title': 'Schedule',
+                                    'payload': 'Schedule Duration'
+                                },
+                                {
+                                    'type': 'postback',
+                                    'title': 'Other Details',
+                                    'payload': 'Swon Details'
                                 }
                             ]
-                        },{
-                            "title": "Schedule And Duration of the Meet",
-                            "image_url": "http://www.gifs.net/Animation11/Words/Other_Words/schedule.gif",
-                            "buttons": [
-                                {
-                                    'title': 'Schedule & Duration ',
-                                    'type': 'postback',
-                                    'payload': 'Schedule duration'                       
-                                }
-                            ]                
-                        }, {
-                            "title": "SWON Details",
-                            "image_url": "http://www.cardabeachhotel.gr/wp-content/uploads/kos-carda-beach-hotel-1680x1050.jpg",
-                            "buttons": [
-                                {   
-                                    'title': 'SWON Details',
-                                    'type': 'postback',
-                                    'payload': 'Swon Details'                       
-                                }
-                            ]                
                         }
                     ]
                 }
@@ -286,10 +277,7 @@ controller.hears(['Swon Details','swon','SWON'], 'message_received,facebook_post
 });
 
 controller.hears(['Agenda','agenda'], 'message_received,facebook_postback', function (bot, message) {
-    bot.startConversation(message, function (err, convo) {
-    convo.say('Agenda');
-    convo.ask({
-        "attachment":{
+     var attachment = {
           "type":"template",
           "payload":{
             "template_type":"button",
@@ -307,12 +295,10 @@ controller.hears(['Agenda','agenda'], 'message_received,facebook_postback', func
               }
             ]
           }
-        }    
-   }, function(response, convo) {
-            // whoa, I got the postback payload as a response to my convo.ask!
-            convo.next();
-        }); 
- });
+        };
+            bot.reply(message, {
+            attachment: attachment,
+            }); 
 });
 
 controller.hears(['user know ATUNE'], 'message_received,facebook_postback', function (bot, message) {
@@ -358,10 +344,7 @@ controller.hears(['Venue','venue'], 'message_received,facebook_postback', functi
 });
 
 controller.hears(['Sight Seeing'], 'message_received,facebook_postback', function(bot, message) {
-
-    bot.startConversation(message, function(err, convo) {
-        convo.ask({
-             attachment: {
+var attachment =  {
                 'type': 'template',
                 'payload': {
                     'template_type': 'generic',
@@ -378,11 +361,10 @@ controller.hears(['Sight Seeing'], 'message_received,facebook_postback', functio
                         }
                     ]
                 }
-            }    
-   }, function(response, convo) {           
-            convo.next();
-        });
-    });
+            }; 
+            bot.reply(message, {
+            attachment: attachment,
+            });      
 })    
 
 controller.hears(['Travel Organizers'], 'message_received,facebook_postback', function (bot, message) {
@@ -400,21 +382,3 @@ controller.on('message_received,facebook_postback', function(bot, message) {
     bot.reply(message, 'Try: agenda` or `schedule` or `venue`');
     return false;
 });
-
-function formatUptime(uptime) {
-    var unit = 'second';
-    if (uptime > 60) {
-        uptime = uptime / 60;
-        unit = 'minute';
-    }
-    if (uptime > 60) {
-        uptime = uptime / 60;
-        unit = 'hour';
-    }
-    if (uptime != 1) {
-        unit = unit + 's';
-    }
-
-    uptime = uptime + ' ' + unit;
-    return uptime;
-}
