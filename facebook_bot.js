@@ -53,19 +53,9 @@ controller.on('facebook_optin', function (bot, message) {
     bot.reply(message, 'Welcome To My Chatbot Thanks Alot!')
 })
 
-controller.hears(['hi','hello','^hi','^hello'], 'message_received,facebook_postback', function(bot, message) {
+controller.hears(['hi','hello','^hi','^hello'], 'message_received', function(bot, message) {
 
     bot.startConversation(message, function(err, convo) {
-        
-/*        convo.say({
-                      "attachment":{
-                      "type":"image",
-                      "payload":{
-                        "url":"http://www.la-coffee-melodie-suite.com/image-files/nbs-giftut7.gif"
-                      }
-                    }
-                });*/
-        convo.say('wassup!! i have guide for you');
         convo.ask({
             attachment: {
                 'type': 'template',
@@ -73,36 +63,68 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received,facebook_postb
                     'template_type': 'generic',
                     'elements': [
                         {
-                            'title': 'ATUNE Conference',
+                            'title': 'ATUNE 2017 Conference',
                             'image_url': 'http://www.safety4sea.com/wp-content/uploads/2015/11/Conference.jpg',
-                            'subtitle': 'This is the second conference of ATUNE we are having.',
+                            'subtitle': '',
                             'buttons': [
                                 {
                                     'type': 'postback',
-                                    'title': 'Conference Details',
-                                    'payload': 'Conference Details'
+                                    'title': 'Agenda of the Conference',
+                                    'payload': 'Agenda'
+                                },
+                                {
+                                    'type': 'postback',
+                                    'title': 'Schedule and Duration',
+                                    'payload': 'Schedule Duration'
+                                },
+                                {
+                                    'type': 'postback',
+                                    'title': 'Swon Details',
+                                    'payload': 'Swon Details'
                                 }
                             ]
-                        },{
+                        },
+                        {
                             'title': 'Location Details',
                             'image_url': 'http://www.aids2016.org/portals/0/Image/Thumb/pic_venue_outdoor.jpg?ver=2015-11-04-120531-493',
-                            'subtitle': 'And big – awash with a full-bodied juiciness that makes it instantly recognizable. ',
+                            'subtitle': '',
                             'buttons': [
+                               {
+                                    'type': 'postback',
+                                    'title': 'Weather Forecast View',
+                                    'payload': 'Weather'
+                                },
                                 {
                                     'type': 'postback',
-                                    'title': 'Location Details',
-                                    'payload': 'Location Details'
+                                    'title': 'Venue',
+                                    'payload': 'Venue'
+                                },
+                                 {
+                                    'type': 'postback',
+                                    'title': 'Sight view',
+                                    'payload': 'Sight view'
                                 }
                             ]
-                        }, {
+                        },
+                        {
                             'title': 'Event Organizers',
-                            'image_url': 'http://worldartsme.com/images/i-me-clipart-1.jpg',
-                            'subtitle': 'This coffee gets its distinctive sweetness from the way it is roasted: dark, and darker still.',
+                            'image_url': 'http://globalassets.starbucks.com/assets/ba003714b7494e948af043d5f0664669.png',
+                            'subtitle': '',
                             'buttons': [
                                 {
                                     'type': 'postback',
-                                    'title': 'Event Organizers',
-                                    'payload': 'Event Organizers'
+                                    'title': 'Travel Organizers ',
+                                    'payload': 'Travel Organizers'
+                                },
+                                 {
+                                    'type': 'postback',
+                                    'title': 'Accomodation Organizers',
+                                    'payload': 'Accomodation Organizers'
+                                },
+                                {
+                                    'type': 'postback',
+                                    'title': 'Tourist Agents',
+                                    'payload': 'Tourist Agents'
                                 }
                             ]
                         }
@@ -114,7 +136,8 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received,facebook_postb
             convo.next();
         });
     });
-})
+});
+
 
 controller.hears(['Conference Details'], 'message_received,facebook_postback', function(bot, message) {
 
@@ -250,33 +273,33 @@ controller.hears(['Event Organizers'], 'message_received,facebook_postback', fun
                     'template_type': 'generic',
                     'elements': [
                         {
-                            'title': 'Who am I',
+                            'title': 'Travel Organizers',
                             'image_url': 'http://manchestershambhala.org/wordpress/wp-content/uploads/2013/03/Who-am-I.jpg',
                             'buttons': [
                                 {
                                     'type': 'postback',
-                                    'title': 'know about me',
-                                    'payload': 'know about me'
+                                    'title': 'know more >',
+                                    'payload': 'Travel Organizers'
                                 }
                             ]
                         },{
-                            "title": "what Do I Know ?",
+                            "title": "Accomodation Organizers",
                             "image_url": "https://www.dougsguides.com/sites/default/files/Indecision.jpg",
                             "buttons": [
-                                {
-                                    'title': 'I know.. ',
+                                 {
                                     'type': 'postback',
-                                    'payload': 'I know..'                       
+                                    'title': 'know more >',
+                                    'payload': 'Accomodation Organizers'
                                 }
                             ]                
                         }, {
-                            "title": "About ATUNE",
+                            "title": "Tourist Agents",
                             "image_url": "http://www.grindd.com/blog/wp-content/uploads/2013/10/sales_team_mgt.jpg",
                             "buttons": [
-                                {   
-                                    'title': 'About ATUNE ',
+                                {
                                     'type': 'postback',
-                                    'payload': 'About ATUNE'                       
+                                    'title': 'know more >',
+                                    'payload': 'Tourist Agents'
                                 }
                             ]                
                         }
