@@ -266,22 +266,12 @@ controller.hears(['Event Organizers'], 'message_received,facebook_postback', fun
                                     'type': 'postback',
                                     'title': 'know more >',
                                     'payload': 'Travel Organizers'
-                                }
-                            ]
-                        },{
-                            "title": "Accomodation",
-                            "image_url": "https://www.dougsguides.com/sites/default/files/Indecision.jpg",
-                            "buttons": [
-                                 {
+                                },
+                                {
                                     'type': 'postback',
                                     'title': 'know more >',
                                     'payload': 'Accomodation Organizers'
-                                }
-                            ]                
-                        }, {
-                            "title": "Tourist Agents",
-                            "image_url": "http://www.grindd.com/blog/wp-content/uploads/2013/10/sales_team_mgt.jpg",
-                            "buttons": [
+                                },
                                 {
                                     'type': 'postback',
                                     'title': 'know more >',
@@ -457,8 +447,8 @@ controller.on('message_received', function (bot, message) {
 controller.hears(['Venue'], 'message_received,facebook_postback', function(bot, message) {
      bot.startConversation(message, function(err, convo) {
                 convo.say('Hotel address is:');
-                convo.say('facilities are:');
-                convo.say('gallery');
+                convo.say('Facilities are:');
+                convo.say('Gallery');
                 convo.ask({
                         attachment: {
                             'type': 'template',
@@ -467,10 +457,10 @@ controller.hears(['Venue'], 'message_received,facebook_postback', function(bot, 
                                 'elements': [
                                     {
                                         'title': 'Room',
-                                        'image_url': 'https://en.wikipedia.org/wiki/Lingaraja_Temple#/media/File:Beauty_of_LingrajTemple.jpg'
+                                        'image_url': 'http://media-cdn.tripadvisor.com/media/photo-o/02/83/a6/00/mon-port-hotel-spa.jpg'
                                     },{
                                         "title": "reception",
-                                        "image_url": "https://en.wikipedia.org/wiki/Nandankanan_Zoological_Park#/media/File:Nandankanan,Bhubaneswar,Odisha.JPG"
+                                        "image_url": "http://www.college-hotel.com/client/cache/contenu/_500____college-hotelp1diapo1_718.jpg"
                                     }, {
                                         "title": "around view",
                                         "image_url": "http://www.cardabeachhotel.gr/wp-content/uploads/kos-carda-beach-hotel-1680x1050.jpg"
@@ -501,7 +491,7 @@ controller.hears(['Sight Seeing'], 'message_received,facebook_postback', functio
                             "image_url": "https://en.wikipedia.org/wiki/Nandankanan_Zoological_Park#/media/File:Nandankanan,Bhubaneswar,Odisha.JPG"
                         }, {
                             "title": "Dhauli Giri Hills",
-                            "image_url": "http://www.cardabeachhotel.gr/wp-content/uploads/kos-carda-beach-hotel-1680x1050.jpg"
+                            "image_url": "https://en.wikipedia.org/wiki/Peace_Pagoda#/media/File:The_Front_View_Of_Peace_Pagoda.JPG"
                         }
                     ]
                 }
