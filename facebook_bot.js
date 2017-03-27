@@ -59,6 +59,7 @@ controller.on('facebook_optin', function (bot, message) {
 controller.hears(['start_payload'], 'message_received,facebook_postback', function(bot, message) {
     bot.startConversation(message, function(err, convo) {
         convo.say('Hi.. I am ATUNE-Bot. I will be happy to guide you with event details ☺')
+        convo.say('What would you like to know more about...')
         convo.ask({
             attachment: {
                 'type': 'template',
@@ -72,17 +73,17 @@ controller.hears(['start_payload'], 'message_received,facebook_postback', functi
                             'buttons': [
                                 {
                                     'type': 'postback',
-                                    'title': 'Agenda of the Conference',
+                                    'title': 'Agenda',
                                     'payload': 'Agenda'
                                 },
                                 {
                                     'type': 'postback',
-                                    'title': 'Schedule And Duration',
+                                    'title': 'Schedule',
                                     'payload': 'Schedule Duration'
                                 },
                                 {
                                     'type': 'postback',
-                                    'title': 'SWON Details',
+                                    'title': 'Other Details',
                                     'payload': 'Swon Details'
                                 }
                             ]
@@ -140,6 +141,7 @@ controller.hears(['start_payload'], 'message_received,facebook_postback', functi
         });
     });
 });
+
 
 
 controller.hears(['Conference Details'], 'message_received,facebook_postback', function(bot, message) {
@@ -330,111 +332,25 @@ controller.hears(['user donno ATUNE'], 'message_received,facebook_postback', fun
     });
 });
 
-controller.on('message_received', function (bot, message) {
-    bot.startConversation(message, function (err, convo) {
-
-        convo.ask('Do you need any further information?', [{
-                pattern: bot.utterances.yes,
-                default: true,
-                callback: function (response, convo) {
-                   bot.startConversation(message, function(err, convo) {
-                            convo.say('Welcome to ATUNE Event.')
-                            convo.ask({
-                                attachment: {
-                                    'type': 'template',
-                                    'payload': {
-                                        'template_type': 'generic',
-                                        'elements': [
-                                            {
-                                                'title': 'ATUNE-2017 Conference',
-                                                'image_url': 'http://www.safety4sea.com/wp-content/uploads/2015/11/Conference.jpg',
-                                                'subtitle': '',
-                                                'buttons': [
-                                                    {
-                                                        'type': 'postback',
-                                                        'title': 'Agenda of the Conference',
-                                                        'payload': 'Agenda'
-                                                    },
-                                                    {
-                                                        'type': 'postback',
-                                                        'title': 'Schedule and Duration',
-                                                        'payload': 'Schedule Duration'
-                                                    },
-                                                    {
-                                                        'type': 'postback',
-                                                        'title': 'Swon Details',
-                                                        'payload': 'Swon Details'
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                'title': 'Location Details',
-                                                'image_url': 'http://www.aids2016.org/portals/0/Image/Thumb/pic_venue_outdoor.jpg?ver=2015-11-04-120531-493',
-                                                'subtitle': '',
-                                                'buttons': [
-                                                {
-                                                        'type': 'postback',
-                                                        'title': 'Weather Forecast',
-                                                        'payload': 'Weather'
-                                                    },
-                                                    {
-                                                        'type': 'postback',
-                                                        'title': 'Venue',
-                                                        'payload': 'Venue'
-                                                    },
-                                                    {
-                                                        'type': 'postback',
-                                                        'title': 'Sight Seeing',
-                                                        'payload': 'Sight Seeing'
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                'title': 'Event Organizers',
-                                                'image_url': 'http://globalassets.starbucks.com/assets/ba003714b7494e948af043d5f0664669.png',
-                                                'subtitle': '',
-                                                'buttons': [
-                                                    {
-                                                        'type': 'postback',
-                                                        'title': 'Travel ',
-                                                        'payload': 'Travel Organizers'
-                                                    },
-                                                    {
-                                                        'type': 'postback',
-                                                        'title': 'Accomodation',
-                                                        'payload': 'Accomodation Organizers'
-                                                    },
-                                                    {
-                                                        'type': 'postback',
-                                                        'title': 'Tourist Agents',
-                                                        'payload': 'Tourist Agents'
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                }
-                            }, function(response, convo) {
-                                // whoa, I got the postback payload as a response to my convo.ask!
-                                convo.next();
-                            });
-                });  
-                }
-                },
+controller.on('facebook_postback', function (bot, message) {
+    convo.ask({
+        attachment:{
+            'type':'generic',
+            'elements': [
                 {
-                    pattern: bot.utterances.no,
-                    callback: function (response, convo) {
-                        convo.say('Okay!Bubye');
-                        convo.next();
-                        setTimeout(function () {
-                            process.exit();
-                        }, 3000);
+                "buttons":[
+                     {
+                    "type":"postback",
+                    "title":"what else can I guide you",
+                    "payload":"start_payload"
                     }
+                ]
                 }
-            ]);
-        });
+            ]
+        }
+    })
 });
-    
+  
 controller.hears(['Venue'], 'message_received,facebook_postback', function(bot, message) {
      bot.startConversation(message, function(err, convo) {
                 convo.say('Hotel address is: 8-B, Jaydev Vihar, Bhubaneshwar, Odisha 751013');
