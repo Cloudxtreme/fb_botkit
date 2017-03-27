@@ -19,11 +19,43 @@ controller.setupWebserver(process.env.PORT || process.env.port || 3000, function
     });
 });
 
-//controller.api.thread_settings.greeting('Hey ,hope you are doing well.My name is ATUNEBot.I can help you with info on ATUNE!');
-//controller.api.thread_settings.get_started('Let\'s get started');
 
 controller.api.messenger_profile.greeting('Hey! Hope you are doing good. I am ATUNE Bot. I here to give the details about the ATUNE Event');
-controller.api.messenger_profile.get_started();
+controller.api.messenger_profile.get_started('sample_get_started_payload');
+controller.api.messenger_profile.menu([{
+    "locale":"default",
+    "composer_input_disabled":true,
+    "call_to_actions":[
+        {
+            "title":"My Skills",
+            "type":"nested",
+            "call_to_actions":[
+                {
+                    "title":"Hello",
+                    "type":"postback",
+                    "payload":"Hello"
+                },
+                {
+                    "title":"Hi",
+                    "type":"postback",
+                    "payload":"Hi"
+                }
+            ]
+        },
+        {
+            "type":"web_url",
+            "title":"Botkit Docs",
+            "url":"https://github.com/howdyai/botkit/blob/master/readme-facebook.md",
+            "webview_height_ratio":"full"
+        }
+    ]
+},
+    {
+        "locale":"zh_CN",
+        "composer_input_disabled":false
+    }
+]);
+
 
 
 var Utterances = {
