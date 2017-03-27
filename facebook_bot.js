@@ -19,8 +19,12 @@ controller.setupWebserver(process.env.PORT || process.env.port || 3000, function
     });
 });
 
-controller.api.thread_settings.greeting('Hey ,hope you are doing well.My name is ATUNEBot.I can help you with info on ATUNE!');
-controller.api.thread_settings.get_started('Let\'s get started');
+//controller.api.thread_settings.greeting('Hey ,hope you are doing well.My name is ATUNEBot.I can help you with info on ATUNE!');
+//controller.api.thread_settings.get_started('Let\'s get started');
+
+controller.api.messenger_profile.greeting('Hey! Hope you are doing good. I am ATUNE Bot. I here to give the details about the ATUNE Event');
+controller.api.messenger_profile.get_started();
+
 
 var Utterances = {
     yes: new RegExp(/^(yes|yea|yup|yep|ya|sure|ok|y|yeah|yah|sounds good)/i),
