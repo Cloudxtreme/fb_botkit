@@ -247,9 +247,9 @@ controller.hears(['Weather','weather'], 'message_received,facebook_postback', fu
         var  temp     = JSON.stringify(JSON.parse(body)[0].Temperature.Metric.Value);
         var degree    = JSON.stringify(JSON.parse(body)[0].Temperature.Metric.Unit).replace( /"/g, "" );
 
-        convo.say('bhubaneshwar current\'s weather forecast  is '+ forecast+temp+degree); 
-        convo.say('most of the time its minimum 29C in day time and around 22C at nyt time');
-        convo.say('on 21st october';)
+        convo.say('Bhubaneshwar current\'s weather forecast  is '+ forecast+temp+degree); 
+        convo.say('Most of the time its minimum 29C in day time and around 22C at nyt time');
+        convo.say('on 21st october');
         }
      });
     convo.next();
