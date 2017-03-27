@@ -401,7 +401,7 @@ controller.hears(['Tourist Agents'], 'message_received,facebook_postback', funct
 });
 
 
-controller.on('message_received', function(bot, message) {
+controller.on('message_received,facebook_postback', function(bot, message) {
     bot.reply(message, 'Try: agenda` or `schedule` or `venue`');
     return false;
 });
