@@ -499,9 +499,11 @@ controller.hears(['user donno place'], 'message_received,facebook_postback', fun
 });
 
 controller.hears(['Schedule duration','when'], 'message_received,facebook_postback', function (bot, message) {
-    controller.storage.users.get(message.user, function (err, user) {
-        bot.reply(message, 'Conference is scheduled on 5 th of October 2016');
-    });
+        bot.reply(message, 'Conference is scheduled for  23-Apr-17,Sunday and 24-Apr-17,Monday. ');
+});
+
+controller.hears(['Swon Details'], 'message_received,facebook_postback', function (bot, message) {
+        bot.reply(message, 'SWON Number for Travel is 1042816 ');
 });
 
 controller.hears(['Agenda','about','related'], 'message_received,facebook_postback', function (bot, message) {
@@ -626,79 +628,169 @@ controller.on('message_received', function (bot, message) {
                 pattern: bot.utterances.yes,
                 default: true,
                 callback: function (response, convo) {
-        bot.startConversation(message, function(err, convo) {
-        
-/*        convo.say({
-                      "attachment":{
-                      "type":"image",
-                      "payload":{
-                        "url":"http://www.la-coffee-melodie-suite.com/image-files/nbs-giftut7.gif"
-                      }
+                   bot.startConversation(message, function(err, convo) {
+                    convo.say('Welcome to ATUNE Event.')
+                    convo.ask({
+                        attachment: {
+                            'type': 'template',
+                            'payload': {
+                                'template_type': 'generic',
+                                'elements': [
+                                    {
+                                        'title': 'ATUNE-2017 Conference',
+                                        'image_url': 'http://www.safety4sea.com/wp-content/uploads/2015/11/Conference.jpg',
+                                        'subtitle': '',
+                                        'buttons': [
+                                            {
+                                                'type': 'postback',
+                                                'title': 'Agenda of the Conference',
+                                                'payload': 'Agenda'
+                                            },
+                                            {
+                                                'type': 'postback',
+                                                'title': 'Schedule and Duration',
+                                                'payload': 'Schedule Duration'
+                                            },
+                                            {
+                                                'type': 'postback',
+                                                'title': 'Swon Details',
+                                                'payload': 'Swon Details'
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        'title': 'Location Details',
+                                        'image_url': 'http://www.aids2016.org/portals/0/Image/Thumb/pic_venue_outdoor.jpg?ver=2015-11-04-120531-493',
+                                        'subtitle': '',
+                                        'buttons': [
+                                        {
+                                                'type': 'postback',
+                                                'title': 'Weather Forecast',
+                                                'payload': 'Weather'
+                                            },
+                                            {
+                                                'type': 'postback',
+                                                'title': 'Venue',
+                                                'payload': 'Venue'
+                                            },
+                                            {
+                                                'type': 'postback',
+                                                'title': 'Sight Seeing',
+                                                'payload': 'Sight Seeing'
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        'title': 'Event Organizers',
+                                        'image_url': 'http://globalassets.starbucks.com/assets/ba003714b7494e948af043d5f0664669.png',
+                                        'subtitle': '',
+                                        'buttons': [
+                                            {
+                                                'type': 'postback',
+                                                'title': 'Travel Organizers ',
+                                                'payload': 'Travel Organizers'
+                                            },
+                                            {
+                                                'type': 'postback',
+                                                'title': 'Accomodation Organizers',
+                                                'payload': 'Accomodation Organizers'
+                                            },
+                                            {
+                                                'type': 'postback',
+                                                'title': 'Tourist Agents',
+                                                'payload': 'Tourist Agents'
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    }, function(response, convo) {
+                        // whoa, I got the postback payload as a response to my convo.ask!
+                        convo.next();
+                    });
+                });  
+                }
+                },
+                {
+                    pattern: bot.utterances.no,
+                    callback: function (response, convo) {
+                        convo.say('Okay!Bubye');
+                        convo.next();
+                        setTimeout(function () {
+                            process.exit();
+                        }, 3000);
                     }
-                });*/
-        convo.say('wassup!! i have guide for you again');
+                }
+            ]);
+        });
+    });
+controller.hears(['Location and Venue'], 'message_received,facebook_postback', function(bot, message) {
+     bot.startConversation(message, function(err, convo) {
+                convo.say('Hotel address is:');
+                convo.say('facilities are:');
+                convo.say('gallery');
+                convo.ask({
+                        attachment: {
+                            'type': 'template',
+                            'payload': {
+                                'template_type': 'generic',
+                                'elements': [
+                                    {
+                                        'title': 'Room',
+                                        'image_url': 'https://en.wikipedia.org/wiki/Lingaraja_Temple#/media/File:Beauty_of_LingrajTemple.jpg'
+                                    },{
+                                        "title": "reception",
+                                        "image_url": "https://en.wikipedia.org/wiki/Nandankanan_Zoological_Park#/media/File:Nandankanan,Bhubaneswar,Odisha.JPG"
+                                    }, {
+                                        "title": "around view",
+                                        "image_url": "http://www.cardabeachhotel.gr/wp-content/uploads/kos-carda-beach-hotel-1680x1050.jpg"
+                                    }
+                                ]
+                            }
+                        }    
+            }, function(response, convo) {           
+                        convo.next();
+                    });
+    });
+});
+
+controller.hears(['Sight Seeing'], 'message_received,facebook_postback', function(bot, message) {
+
+    bot.startConversation(message, function(err, convo) {
         convo.ask({
-            attachment: {
+             attachment: {
                 'type': 'template',
                 'payload': {
                     'template_type': 'generic',
                     'elements': [
                         {
-                            'title': 'ATUNE 2nd Conference',
-                            'image_url': 'http://www.safety4sea.com/wp-content/uploads/2015/11/Conference.jpg',
-                            'subtitle': 'This is the second conference of ATUNE we are having.',
-                            'buttons': [
-                                {
-                                    'type': 'postback',
-                                    'title': 'Conference Details',
-                                    'payload': 'Conference details'
-                                }
-                            ]
+                            'title': 'Lingaraj Temple',
+                            'image_url': 'https://en.wikipedia.org/wiki/Lingaraja_Temple#/media/File:Beauty_of_LingrajTemple.jpg'
                         },{
-                            'title': 'First time to be in bhubaneshwar',
-                            'image_url': 'http://www.aids2016.org/portals/0/Image/Thumb/pic_venue_outdoor.jpg?ver=2015-11-04-120531-493',
-                            'subtitle': 'And big – awash with a full-bodied juiciness that makes it instantly recognizable. ',
-                            'buttons': [
-                                {
-                                    'type': 'postback',
-                                    'title': 'Location and Venue',
-                                    'payload': 'Location and Venue'
-                                }
-                            ]
+                            "title": "Nandankanan zoological Park",
+                            "image_url": "https://en.wikipedia.org/wiki/Nandankanan_Zoological_Park#/media/File:Nandankanan,Bhubaneswar,Odisha.JPG"
                         }, {
-                            'title': 'I am here assisting you',
-                            'image_url': 'http://worldartsme.com/images/i-me-clipart-1.jpg',
-                            'subtitle': 'This coffee gets its distinctive sweetness from the way it is roasted: dark, and darker still.',
-                            'buttons': [
-                                {
-                                    'type': 'postback',
-                                    'title': 'About myself',
-                                    'payload': 'About myself'
-                                }
-                            ]
+                            "title": "Dhauli Giri Hills",
+                            "image_url": "http://www.cardabeachhotel.gr/wp-content/uploads/kos-carda-beach-hotel-1680x1050.jpg"
                         }
                     ]
                 }
-            }
-        }, function(response, convo) {
-            // whoa, I got the postback payload as a response to my convo.ask!
+            }    
+   }, function(response, convo) {           
             convo.next();
         });
     });
-                }
-            },
-            {
-                pattern: bot.utterances.no,
-                callback: function (response, convo) {
-                    convo.say('Okay!Bubye');
-                    convo.next();
-                    setTimeout(function () {
-                        process.exit();
-                    }, 3000);
-                }
-            }
-        ]);
-    });
+})    
+
+controller.hears(['Travel Organizers'], 'message_received,facebook_postback', function (bot, message) {
+        bot.reply(message, 'travel organizers.......... ');
+});
+controller.hears(['Accomodation Organizers'], 'message_received,facebook_postback', function (bot, message) {
+        bot.reply(message, 'Accomodation Organizers.......... ');
+});
+controller.hears(['Tourist Agents'], 'message_received,facebook_postback', function (bot, message) {
+        bot.reply(message, 'Tourist Agents.......... ');
 });
 
 
