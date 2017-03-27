@@ -20,7 +20,7 @@ controller.setupWebserver(process.env.PORT || process.env.port || 3000, function
 });
 
 controller.api.thread_settings.greeting('Welcome to ATUNE Event. I am ATUNE Bot to provide event details');
-controller.api.thread_settings.get_started('Get Started');
+controller.api.thread_settings.get_started('sample_get_started_payload');
 
 
 controller.api.thread_settings.menu([
