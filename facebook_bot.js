@@ -19,7 +19,7 @@ controller.setupWebserver(process.env.PORT || process.env.port || 3000, function
     });
 });
 
-controller.api.thread_settings.greeting('Hey! Hope you are doing good. I am ATUNE Bot. I am here to give the details about the ATUNE Event');
+controller.api.thread_settings.greeting('Welcome');
 controller.api.thread_settings.get_started('Conference Details');
 controller.api.thread_settings.menu([
     {
