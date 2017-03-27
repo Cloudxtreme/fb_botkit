@@ -56,7 +56,7 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received,facebook_postb
                     'template_type': 'generic',
                     'elements': [
                         {
-                            'title': 'ATUNE 2nd Conference',
+                            'title': 'ATUNE Conference',
                             'image_url': 'http://www.safety4sea.com/wp-content/uploads/2015/11/Conference.jpg',
                             'subtitle': 'This is the second conference of ATUNE we are having.',
                             'buttons': [
@@ -67,7 +67,7 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received,facebook_postb
                                 }
                             ]
                         },{
-                            'title': 'First time to be in bhubaneshwar',
+                            'title': 'Location Details',
                             'image_url': 'http://www.aids2016.org/portals/0/Image/Thumb/pic_venue_outdoor.jpg?ver=2015-11-04-120531-493',
                             'subtitle': 'And big – awash with a full-bodied juiciness that makes it instantly recognizable. ',
                             'buttons': [
@@ -78,7 +78,7 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received,facebook_postb
                                 }
                             ]
                         }, {
-                            'title': 'I am here assisting you',
+                            'title': 'Event Organizers',
                             'image_url': 'http://worldartsme.com/images/i-me-clipart-1.jpg',
                             'subtitle': 'This coffee gets its distinctive sweetness from the way it is roasted: dark, and darker still.',
                             'buttons': [
