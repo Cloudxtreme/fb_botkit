@@ -10,7 +10,7 @@ var controller = Botkit.facebookbot({
     access_token: process.env.page_token,
     verify_token: process.env.verify_token,
     app_secret: process.env.app_secret,
-    validate_requests: true, // Refuse any requests that don't come from FB on your receive webhook, must provide FB_APP_SECRET in environment variables
+    validate_requests: true // Refuse any requests that don't come from FB on your receive webhook, must provide FB_APP_SECRET in environment variables
 });
 
 controller.setupWebserver(process.env.PORT || process.env.port || 3000, function (err, webserver) {
@@ -19,13 +19,13 @@ controller.setupWebserver(process.env.PORT || process.env.port || 3000, function
     });
 });
 
-controller.api.thread_settings.greeting('Hey! Hope you are doing good. I am ATUNE Bot. I here to give the details about the ATUNE Event');
-controller.api.thread_settings.get_started('Let\'s get started');
+controller.api.thread_settings.greeting('Hey! Hope you are doing good. I am ATUNE Bot. I am here to give the details about the ATUNE Event');
+controller.api.thread_settings.get_started('Conference Details');
 controller.api.thread_settings.menu([
     {
         "type":"postback",
         "title":"Conference Details",
-        "payload":"Conference details"
+        "payload":"Conference Details"
     },
     {
         "type":"postback",
