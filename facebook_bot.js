@@ -19,44 +19,25 @@ controller.setupWebserver(process.env.PORT || process.env.port || 3000, function
     });
 });
 
-
-controller.api.messenger_profile.greeting('Hey! Hope you are doing good. I am ATUNE Bot. I here to give the details about the ATUNE Event');
-controller.api.messenger_profile.get_started('sample_get_started_payload');
-controller.api.messenger_profile.menu([{
-    "locale":"default",
-    "composer_input_disabled":true,
-    "call_to_actions":[
-        {
-            "title":"My Skills",
-            "type":"nested",
-            "call_to_actions":[
-                {
-                    "title":"Hello",
-                    "type":"postback",
-                    "payload":"Hello"
-                },
-                {
-                    "title":"Hi",
-                    "type":"postback",
-                    "payload":"Hi"
-                }
-            ]
-        },
-        {
-            "type":"web_url",
-            "title":"Botkit Docs",
-            "url":"https://github.com/howdyai/botkit/blob/master/readme-facebook.md",
-            "webview_height_ratio":"full"
-        }
-    ]
-},
+controller.api.thread_settings.greeting('Hey! Hope you are doing good. I am ATUNE Bot. I here to give the details about the ATUNE Event');
+controller.api.thread_settings.get_started('Let\'s get started');
+controller.api.thread_settings.menu([
     {
-        "locale":"zh_CN",
-        "composer_input_disabled":false
-    }
+        "type":"postback",
+        "title":"Conference Details",
+        "payload":"Conference details"
+    },
+    {
+        "type":"postback",
+        "title":"Location Details",
+        "payload":"Location Details"
+    },
+    {
+      "type":"postback",
+      "title":"Event Organizers",
+      "payload":"Event Organizers"
+    },
 ]);
-
-
 
 var Utterances = {
     yes: new RegExp(/^(yes|yea|yup|yep|ya|sure|ok|y|yeah|yah|sounds good)/i),
@@ -84,7 +65,6 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received,facebook_postb
                       }
                     }
                 });*/
-        convo.say('Hey! Hope you are doing good. I am ATUNE Bot. I here to give the details about the ATUNE Event');
         convo.say('wassup!! i have guide for you');
         convo.ask({
             attachment: {
@@ -100,7 +80,7 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received,facebook_postb
                                 {
                                     'type': 'postback',
                                     'title': 'Conference Details',
-                                    'payload': 'Conference details'
+                                    'payload': 'Conference Details'
                                 }
                             ]
                         },{
@@ -110,8 +90,8 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received,facebook_postb
                             'buttons': [
                                 {
                                     'type': 'postback',
-                                    'title': 'Location and Venue',
-                                    'payload': 'Location and Venue'
+                                    'title': 'Location Details',
+                                    'payload': 'Location Details'
                                 }
                             ]
                         }, {
@@ -121,8 +101,8 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received,facebook_postb
                             'buttons': [
                                 {
                                     'type': 'postback',
-                                    'title': 'About myself',
-                                    'payload': 'About myself'
+                                    'title': 'Event Organizers',
+                                    'payload': 'Event Organizers'
                                 }
                             ]
                         }
@@ -136,7 +116,7 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received,facebook_postb
     });
 })
 
-controller.hears(['Conference details'], 'message_received,facebook_postback', function(bot, message) {
+controller.hears(['Conference Details'], 'message_received,facebook_postback', function(bot, message) {
 
     bot.startConversation(message, function(err, convo) {
         convo.ask({
@@ -186,7 +166,7 @@ controller.hears(['Conference details'], 'message_received,facebook_postback', f
     });
 })
 
-controller.hears(['Location and Venue'], 'message_received,facebook_postback', function(bot, message) {
+controller.hears(['Location Details'], 'message_received,facebook_postback', function(bot, message) {
 
     bot.startConversation(message, function(err, convo) {
         convo.ask({
@@ -260,7 +240,7 @@ controller.hears(['Weather','weather'], 'message_received,facebook_postback', fu
      });
 });
 
-controller.hears(['About myself'], 'message_received,facebook_postback', function(bot, message) {
+controller.hears(['Event Organizers'], 'message_received,facebook_postback', function(bot, message) {
 
     bot.startConversation(message, function(err, convo) {
         convo.ask({
