@@ -13,14 +13,18 @@ var controller = Botkit.facebookbot({
     validate_requests: true // Refuse any requests that don't come from FB on your receive webhook, must provide FB_APP_SECRET in environment variables
 });
 
+var bot = controller.spawn({});
+
 controller.setupWebserver(process.env.PORT || process.env.port || 3000, function (err, webserver) {
     controller.createWebhookEndpoints(webserver, bot, function () {
         console.log('ONLINE!');
     });
 });
 
+
 controller.api.thread_settings.greeting('Welcome to ATUNE Event. I am ATUNE Bot to provide event details');
-controller.api.thread_settings.get_started('Get Started');
+controller.api.thread_settings.get_started('start_payload');
+
 
 controller.api.thread_settings.menu([
     {
@@ -47,14 +51,12 @@ var Utterances = {
     greetings: new RegExp(/^(hi|hello|greetings|hi there|yo|was up|whats up)/)
 }
 
-var bot = controller.spawn({});
-
 // this is triggered when a user clicks the send-to-messenger plugin
 controller.on('facebook_optin', function (bot, message) {
     bot.reply(message, 'Welcome To My Chatbot Thanks Alot!')
 })
 
-controller.hears(['Get Started'], 'message_received', function(bot, message) {
+controller.hears(['start_payload'], 'message_received,facebook_postback', function(bot, message) {
     bot.startConversation(message, function(err, convo) {
         convo.say('Welcome to ATUNE Event.')
         convo.ask({
