@@ -77,7 +77,7 @@ controller.hears(['start_payload'], 'message_received,facebook_postback', functi
                                 },
                                 {
                                     'type': 'postback',
-                                    'title': 'Schedule and Duration',
+                                    'title': 'Schedule And Duration',
                                     'payload': 'Schedule Duration'
                                 },
                                 {
@@ -259,22 +259,22 @@ controller.hears(['Event Organizers'], 'message_received,facebook_postback', fun
                     'template_type': 'generic',
                     'elements': [
                         {
-                            'title': 'Travel',
+                            'title': 'Event Organizers',
                             'image_url': 'http://manchestershambhala.org/wordpress/wp-content/uploads/2013/03/Who-am-I.jpg',
                             'buttons': [
                                 {
                                     'type': 'postback',
-                                    'title': 'know more >',
+                                    'title': 'Travel',
                                     'payload': 'Travel Organizers'
                                 },
                                 {
                                     'type': 'postback',
-                                    'title': 'know more >',
+                                    'title': 'Accomodation',
                                     'payload': 'Accomodation Organizers'
                                 },
                                 {
                                     'type': 'postback',
-                                    'title': 'know more >',
+                                    'title': 'Tourist',
                                     'payload': 'Tourist Agents'
                                 }
                             ]                
@@ -485,13 +485,13 @@ controller.hears(['Sight Seeing'], 'message_received,facebook_postback', functio
                     'elements': [
                         {
                             'title': 'Lingaraj Temple',
-                            'image_url': 'https://en.wikipedia.org/wiki/Lingaraja_Temple#/media/File:Beauty_of_LingrajTemple.jpg'
+                            'image_url': 'http://veda.wdfiles.com/local--files/info%3Alingaraja-mandir/lingaraja-temple.jpg'
                         },{
-                            "title": "Nandankanan zoological Park",
-                            "image_url": "https://en.wikipedia.org/wiki/Nandankanan_Zoological_Park#/media/File:Nandankanan,Bhubaneswar,Odisha.JPG"
+                            "title": "Nandankanan Zoological Park",
+                            "image_url": "http://incredibleorissa.com/wp-content/uploads/Nandankanan-Zoological-Park.jpg"
                         }, {
                             "title": "Dhauli Giri Hills",
-                            "image_url": "https://en.wikipedia.org/wiki/Peace_Pagoda#/media/File:The_Front_View_Of_Peace_Pagoda.JPG"
+                            "image_url": "http://www.dhauli.net/images/excursion-dhauli-hill-1.jpg"
                         }
                     ]
                 }
