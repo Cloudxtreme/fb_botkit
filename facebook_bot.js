@@ -19,8 +19,9 @@ controller.setupWebserver(process.env.PORT || process.env.port || 3000, function
     });
 });
 
-controller.api.thread_settings.greeting('Welcome to ATUNE Event.');
+controller.api.thread_settings.greeting('Welcome to ATUNE Event. I am ATUNE Bot to provide event details');
 controller.api.thread_settings.get_started('Get Started');
+
 controller.api.thread_settings.menu([
     {
         "type":"postback",
@@ -53,9 +54,9 @@ controller.on('facebook_optin', function (bot, message) {
     bot.reply(message, 'Welcome To My Chatbot Thanks Alot!')
 })
 
-controller.hears(['hi','hello','^hi','^hello'], 'message_received', function(bot, message) {
-
+controller.hears(['Get Started'], 'message_received', function(bot, message) {
     bot.startConversation(message, function(err, convo) {
+        convo.say('Welcome to ATUNE Event.')
         convo.ask({
             attachment: {
                 'type': 'template',
@@ -63,7 +64,7 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received', function(bot
                     'template_type': 'generic',
                     'elements': [
                         {
-                            'title': 'ATUNE 2017 Conference',
+                            'title': 'ATUNE-2017 Conference',
                             'image_url': 'http://www.safety4sea.com/wp-content/uploads/2015/11/Conference.jpg',
                             'subtitle': '',
                             'buttons': [
@@ -91,7 +92,7 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received', function(bot
                             'buttons': [
                                {
                                     'type': 'postback',
-                                    'title': 'Weather Forecast View',
+                                    'title': 'Weather Forecast',
                                     'payload': 'Weather'
                                 },
                                 {
@@ -101,8 +102,8 @@ controller.hears(['hi','hello','^hi','^hello'], 'message_received', function(bot
                                 },
                                  {
                                     'type': 'postback',
-                                    'title': 'Sight view',
-                                    'payload': 'Sight view'
+                                    'title': 'Sight Seeing',
+                                    'payload': 'Sight Seeing'
                                 }
                             ]
                         },
@@ -182,8 +183,7 @@ controller.hears(['Conference Details'], 'message_received,facebook_postback', f
                     ]
                 }
             }    
-   }, function(response, convo) {
-            // whoa, I got the postback payload as a response to my convo.ask!
+   }, function(response, convo) {           
             convo.next();
         });
     });
@@ -249,14 +249,7 @@ controller.hears(['Weather','weather'], 'message_received,facebook_postback', fu
 
         convo.say('bhubaneshwar current\'s weather forecast  is '+ forecast+temp+degree); 
         convo.say('most of the time its minimum 29C in day time and around 22C at nyt time');
-       /* convo.say({
-                "attachment":{
-                "type":"image",
-                "payload":{
-                    "url":"https://img.clipartfest.com/ca530423485be0b31c38cb5c1a760985_animated-sun-images-clipart-animated-sun_600-600.gif"
-                    }
-                }
-            });*/
+        convo.say('on 21st october';)
         }
      });
     convo.next();
