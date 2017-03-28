@@ -360,7 +360,9 @@ controller.hears(['Venue','venue'], 'message_received,facebook_postback', functi
 });
 
 controller.hears(['Sight Seeing'], 'message_received,facebook_postback', function(bot, message) {
-var attachment =  {
+        bot.startConversation(message, function(err, convo) {
+        convo.ask({
+        attachment :  {
                 'type': 'template',
                 'payload': {
                     'template_type': 'generic',
@@ -377,11 +379,26 @@ var attachment =  {
                         }
                     ]
                 }
-            }; 
-            bot.reply(message, {
-            attachment: attachment,
-            });      
-})    
+            }, function(response,convo) {
+                    convo.next();
+            }
+    });
+    convo.on('end', function(convo) {
+                        if (convo.status == 'completed') {
+                                bot.reply(message, {
+                                text: 'How can I guide you further!',
+                                quick_replies: [
+                                    {
+                                        "content_type": "text",
+                                        "title": "Go Back",
+                                        "payload": "start_payload",
+                                    }
+                                ]
+                            });
+                  }
+    });
+});
+})
 
 controller.hears(['Travel Organizers'], 'message_received,facebook_postback', function (bot, message) {
         bot.reply(message, 'For Travel Details you can contact Murli , Ph no: 9715608893');
