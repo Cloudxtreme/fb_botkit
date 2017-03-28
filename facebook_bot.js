@@ -58,10 +58,10 @@ controller.on('facebook_optin', function (bot, message) {
 
 controller.hears(['hi','start_payload','hello'], 'message_received,facebook_postback', function(bot, message) {
     bot.startConversation(message, function(err, convo) {
+        bot.startTyping();
         convo.say('Hi.. I am ATUNE-Bot. I will be happy to guide you with event details ☺')
         convo.say('What would you like to know more about...')
         convo.ask({
-            sender_action: 'typing_on',
             attachment: {
                 'type': 'template',
                 'payload': {
@@ -140,6 +140,7 @@ controller.hears(['hi','start_payload','hello'], 'message_received,facebook_post
             // whoa, I got the postback payload as a response to my convo.ask!
             convo.next();
         });
+        bot.stopTyping();
     });
 });
 
