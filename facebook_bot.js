@@ -142,10 +142,10 @@ controller.hears(['hi','start_payload','hello'], 'message_received,facebook_post
     });
 });
 
-
-
 controller.hears(['Conference Details'], 'message_received,facebook_postback', function(bot, message) {
-      var attachment = {
+        bot.startConversation(message, function(err, convo) {
+        convo.ask({
+        attachment: {
                 'type': 'template',
                 'payload': {
                     'template_type': 'generic',
@@ -174,11 +174,27 @@ controller.hears(['Conference Details'], 'message_received,facebook_postback', f
                         }
                     ]
                 }
-            } ;
-        bot.reply(message, {
-        attachment: attachment,
+            }, function(response,convo) {
+                    convo.next();
+            }
+        });
+        convo.on('end', function(convo) {
+                        if (convo.status == 'completed') {
+                                bot.reply(message, {
+                                text: 'How can I guide you further!',
+                                quick_replies: [
+                                    {
+                                        "content_type": "text",
+                                        "title": "Go Back",
+                                        "payload": "start_payload",
+                                    }
+                                ]
+                            });
+                  }
         });
 });
+});
+
 
 controller.hears(['Location Details','location','Location'], 'message_received,facebook_postback', function(bot, message) {
      var attachment =  {
