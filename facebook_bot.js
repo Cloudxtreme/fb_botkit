@@ -492,7 +492,6 @@ controller.hears(['Sight Seeing'], 'message_received,facebook_postback', functio
 controller.hears(['Travel Organizers'], 'message_received,facebook_postback', function (bot, message) {
    bot.startConversation(message, function(err, convo) {
                 convo.say('For Travel Details you can contact Mr.XYZABCD , Ph no: 9999955555');
-        convo.next();
     });
 });
 
