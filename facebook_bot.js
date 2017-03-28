@@ -60,7 +60,9 @@ controller.hears(['hi','start_payload','hello'], 'message_received,facebook_post
     bot.startConversation(message, function(err, convo) {
         bot.startTyping(message);
         convo.say('Hi.. I am ATUNE-Bot. I will be happy to guide you with event details ☺')
+        bot.startTyping(message);
         convo.say('What would you like to know more about...')
+        bot.startTyping(message);
         convo.ask({
             attachment: {
                 'type': 'template',
@@ -140,7 +142,6 @@ controller.hears(['hi','start_payload','hello'], 'message_received,facebook_post
             // whoa, I got the postback payload as a response to my convo.ask!
             convo.next();
         });
-        bot.stopTyping(message);
     });
 });
 
