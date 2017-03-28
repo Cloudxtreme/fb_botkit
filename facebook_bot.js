@@ -226,6 +226,22 @@ controller.hears(['Weather','weather'], 'message_received,facebook_postback', fu
         convo.say('Bhubaneshwar weather forecast  on 23rd April '+ forecast+temp+degree); 
         convo.say('Bhubaneshwar weather forecast  on 24th April'+ forecast+temp+degree); 
         convo.say('Average Temperature 29C (Day) / 22C (Night)');
+             convo.ask({
+              "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"button",
+                "text":"What do you want to do next?",
+                "buttons":[
+                  {
+                    "type":"postback",
+                    "title":"Go Back",
+                    "payload":"Location Details"
+                  }
+                ]
+              }
+            }
+        });
         }
      });
     convo.next();
@@ -431,7 +447,9 @@ controller.hears(['Venue','venue'], 'message_received,facebook_postback', functi
 });
 
 controller.hears(['Sight Seeing'], 'message_received,facebook_postback', function(bot, message) {
-        var attachment =  {
+       bot.startConversation(message, function(err, convo) {
+       convo.ask({
+        "attachment" : {
                 'type': 'template',
                 'payload': {
                     'template_type': 'generic',
@@ -449,8 +467,27 @@ controller.hears(['Sight Seeing'], 'message_received,facebook_postback', functio
                     ]
                 }
             };
-            bot.reply(message, {attachment: attachment });
+       });    
+    
+        convo.ask({
+              "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"button",
+                "text":"What do you want to do next?",
+                "buttons":[
+                  {
+                    "type":"postback",
+                    "title":"Go Back",
+                    "payload":"Location Details"
+                  }
+                ]
+              }
+            }
+        });
+        convo.next();
     });
+});
 
 controller.hears(['Travel Organizers'], 'message_received,facebook_postback', function (bot, message) {
         bot.reply(message, 'For Travel Details you can contact Mr.XYZABCD , Ph no: 9999955555');
