@@ -319,6 +319,16 @@ controller.hears(['Agenda','agenda'], 'message_received,facebook_postback', func
 
 controller.hears(['user know ATUNE'], 'message_received,facebook_postback', function (bot, message) {
         bot.reply(message, 'Agenda is actually to introduce new technologies and have networking among employees');
+        bot.reply(message, {
+                                text: 'You can move back to Main Menu by clicking here!',
+                                quick_replies: [
+                                    {
+                                        "content_type": "text",
+                                        "title": "Go Back",
+                                        "payload": "start_payload",
+                                    }
+                                ]
+                  });
 });
 
 controller.hears(['user donno ATUNE'], 'message_received,facebook_postback', function (bot, message) {
@@ -392,13 +402,44 @@ controller.hears(['Sight Seeing'], 'message_received,facebook_postback', functio
     });
 
 controller.hears(['Travel Organizers'], 'message_received,facebook_postback', function (bot, message) {
-        bot.reply(message, 'For Travel Details you can contact Murli , Ph no: 9715608893');
+        bot.reply(message, 'For Travel Details you can contact Mr.XYZABCD , Ph no: 9999955555');
+    bot.reply(message, {
+                                text: 'You can move back to Main Menu by clicking here!',
+                                quick_replies: [
+                                    {
+                                        "content_type": "text",
+                                        "title": "Go Back",
+                                        "payload": "start_payload",
+                                    }
+                                ]
+                  });
 });
 controller.hears(['Accomodation Organizers'], 'message_received,facebook_postback', function (bot, message) {
-        bot.reply(message, 'For Accomodation related queries and details you can contact Shreedhar , Ph no: 9715608893');
+        bot.reply(message, 'For Accomodation related queries and details you can contact Mr.ABCDEFG , Ph no: 9999944444');
+    bot.reply(message, {
+                                text: 'You can move back to Main Menu by clicking here!',
+                                quick_replies: [
+                                    {
+                                        "content_type": "text",
+                                        "title": "Go Back",
+                                        "payload": "start_payload",
+                                    }
+                                ]
+                  });
 });
+
 controller.hears(['Tourist Agents'], 'message_received,facebook_postback', function (bot, message) {
-        bot.reply(message, 'For Tourist Guidance you can contact sreelatha , Ph no: 9715608893');
+        bot.reply(message, 'For Tourist Guidance you can contact Ms.ASDFGHJK , Ph no: 9999911111');
+    bot.reply(message, {
+                                text: 'You can move back to Main Menu by clicking here!',
+                                quick_replies: [
+                                    {
+                                        "content_type": "text",
+                                        "title": "Go Back",
+                                        "payload": "start_payload",
+                                    }
+                                ]
+                  });
 });
 
 
