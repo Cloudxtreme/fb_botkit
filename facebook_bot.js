@@ -281,7 +281,7 @@ controller.hears(['Schedule duration','schedule','Schedule'], 'message_received,
                   {
                     "type":"postback",
                     "title":"Go Back",
-                    "payload":"start_payload"
+                    "payload":"Conference Details"
                   }
                 ]
               }
@@ -291,7 +291,26 @@ controller.hears(['Schedule duration','schedule','Schedule'], 'message_received,
 });
 
 controller.hears(['Swon Details','swon','SWON'], 'message_received,facebook_postback', function (bot, message) {
-        bot.reply(message, 'SWON Number for Travel is 1042816 ');
+    bot.startConversation(message, function (err, convo) {
+    convo.say('SWON Number for Travel is 1042816');
+        convo.ask({
+              "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"button",
+                "text":"What do you want to do next?",
+                "buttons":[
+                  {
+                    "type":"postback",
+                    "title":"Go Back",
+                    "payload":"Conference Details"
+                  }
+                ]
+              }
+            }
+        });
+    convo.next();
+    });
 });
 
 controller.hears(['Agenda','agenda'], 'message_received,facebook_postback', function (bot, message) {
@@ -332,7 +351,7 @@ controller.hears(['user know ATUNE'], 'message_received,facebook_postback', func
                   {
                     "type":"postback",
                     "title":"Go Back",
-                    "payload":"start_payload"
+                    "payload":"Conference Details"
                   }
                 ]
               }
@@ -356,7 +375,7 @@ controller.hears(['user donno ATUNE'], 'message_received,facebook_postback', fun
                   {
                     "type":"postback",
                     "title":"Go Back",
-                    "payload":"start_payload"
+                    "payload":"Conference Details"
                   }
                 ]
               }
@@ -389,10 +408,25 @@ controller.hears(['Venue','venue'], 'message_received,facebook_postback', functi
                                     }
                                 ]
                             }
-                        }    
-            }, function(response, convo) {           
-                        convo.next();
-                    });
+                        }                     
+            });
+         convo.ask({
+              "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"button",
+                "text":"What do you want to do next?",
+                "buttons":[
+                  {
+                    "type":"postback",
+                    "title":"Go Back",
+                    "payload":"Location Details"
+                  }
+                ]
+              }
+            }
+        });
+    convo.next();
     });
 });
 
