@@ -320,13 +320,48 @@ controller.hears(['Agenda','agenda'], 'message_received,facebook_postback', func
 });
 
 controller.hears(['user know ATUNE'], 'message_received,facebook_postback', function (bot, message) {
-        bot.reply(message, 'Agenda is actually to introduce new technologies and have networking among employees');
+    bot.startConversation(message, function (err, convo) {
+    convo.say('Agenda is actually to introduce new technologies and have networking among employees');
+    convo.ask({
+              "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"button",
+                "text":"What do you want to do next?",
+                "buttons":[
+                  {
+                    "type":"postback",
+                    "title":"Go Back",
+                    "payload":"start_payload"
+                  }
+                ]
+              }
+            }
+        });
+    convo.next();
+});
 })
 
 controller.hears(['user donno ATUNE'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
     convo.say('ATUNE is ATU networking program that arranges conference yearly twice.this is the second one.');
     convo.say('So agenda is actually to introduce new technologies and have networking among employees');
+        convo.ask({
+              "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"button",
+                "text":"What do you want to do next?",
+                "buttons":[
+                  {
+                    "type":"postback",
+                    "title":"Go Back",
+                    "payload":"start_payload"
+                  }
+                ]
+              }
+            }
+        });
     convo.next();
     });
 });
