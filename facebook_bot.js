@@ -63,8 +63,10 @@ controller.hears(['hi','start_payload','hello'], 'message_received,facebook_post
         convo.ask({
             attachment: {
                 'type': 'template',
+                'sender_action':'typing_on',
                 'payload': {
                     'template_type': 'generic',
+                    'sender_action':'typing_on',
                     'elements': [
                         {
                             'title': 'ATUNE-2017 Conference',
