@@ -413,6 +413,7 @@ controller.hears(['Travel Organizers'], 'message_received,facebook_postback', fu
                                     }
                                 ]
                   });
+    return false;
 });
 controller.hears(['Accomodation Organizers'], 'message_received,facebook_postback', function (bot, message) {
         bot.reply(message, 'For Accomodation related queries and details you can contact Mr.ABCDEFG , Ph no: 9999944444');
@@ -426,6 +427,7 @@ controller.hears(['Accomodation Organizers'], 'message_received,facebook_postbac
                                     }
                                 ]
                   });
+    return false;
 });
 
 controller.hears(['Tourist Agents'], 'message_received,facebook_postback', function (bot, message) {
@@ -440,6 +442,7 @@ controller.hears(['Tourist Agents'], 'message_received,facebook_postback', funct
                                     }
                                 ]
                   });
+    return false;
 });
 
 
