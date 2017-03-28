@@ -232,6 +232,7 @@ controller.hears(['Weather','weather'], 'message_received,facebook_postback', fu
               "payload":{
                 "template_type":"button",
                 "text":"What do you want to do next?",
+                "sender_action":"typing_on",
                 "buttons":[
                   {
                     "type":"postback",
