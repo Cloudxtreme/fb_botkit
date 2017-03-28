@@ -267,6 +267,7 @@ controller.hears(['Event Organizers','organizer','Organizer'], 'message_received
             });    
 });
 
+
 controller.hears(['Schedule duration','schedule','Schedule'], 'message_received,facebook_postback', function (bot, message) {
      bot.startConversation(message, function(err, convo) {
        convo.say('Conference is scheduled on 23-Apr-17 (Sunday) & 24-Apr-17(Monday)');
@@ -277,14 +278,14 @@ controller.hears(['Schedule duration','schedule','Schedule'], 'message_received,
                 'template_type': 'generic',
                 'elements': [
                     {
-                    'title': 'Click below to go back',
-                    'buttons': [
-                        {
-                        'type': 'postback',
-                        'title': 'Go Back',
-                        'payload': 'start_payload'
-                        }
-                        ]
+                     text: 'How can I guide you further!',
+                                quick_replies: [
+                                    {
+                                        "content_type": "text",
+                                        "title": "Go Back",
+                                        "payload": "start_payload",
+                                    }
+                                ]
                     }
                   ]
                 }
