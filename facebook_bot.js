@@ -145,6 +145,7 @@ controller.hears(['hi','start_payload','hello'], 'message_received,facebook_post
 controller.hears(['Conference Details'], 'message_received,facebook_postback', function(bot, message) {
         var attachment = {
                 'type': 'template',
+                 "sender_action":"typing_on",
                 'payload': {
                     'template_type': 'generic',
                     'elements': [
@@ -155,7 +156,6 @@ controller.hears(['Conference Details'], 'message_received,facebook_postback', f
                             'buttons': [
                                 {
                                     'type': 'postback',
-                                    'sender_action':'typing_on',
                                     'title': 'Agenda',
                                     'payload': 'Agenda'
                                 },
