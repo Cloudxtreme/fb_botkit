@@ -155,9 +155,9 @@ controller.hears(['Conference Details'], 'message_received,facebook_postback', f
                             'buttons': [
                                 {
                                     'type': 'postback',
+                                    'sender_action':'typing_on',
                                     'title': 'Agenda',
-                                    'payload': 'Agenda',
-                                    "sender_action":"typing_on"
+                                    'payload': 'Agenda'
                                 },
                                 {
                                     'type': 'postback',
