@@ -466,7 +466,7 @@ controller.hears(['Sight Seeing'], 'message_received,facebook_postback', functio
                         }
                     ]
                 }
-            };
+            }
        });    
     
         convo.ask({
