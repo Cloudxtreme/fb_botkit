@@ -61,9 +61,9 @@ controller.hears(['hi','start_payload','hello'], 'message_received,facebook_post
         convo.say('Hi.. I am ATUNE-Bot. I will be happy to guide you with event details ☺')
         convo.say('What would you like to know more about...')
         convo.ask({
+            sender_action: 'typing_on',
             attachment: {
                 'type': 'template',
-                'sender_action':'typing_on',
                 'payload': {
                     'template_type': 'generic',
                     'sender_action':'typing_on',
