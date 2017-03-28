@@ -268,7 +268,31 @@ controller.hears(['Event Organizers','organizer','Organizer'], 'message_received
 });
 
 controller.hears(['Schedule duration','schedule','Schedule'], 'message_received,facebook_postback', function (bot, message) {
-        bot.reply(message, 'Conference is scheduled on 23-Apr-17 (Sunday) & 24-Apr-17(Monday)');
+     bot.startConversation(message, function(err, convo) {
+       convo.say('Conference is scheduled on 23-Apr-17 (Sunday) & 24-Apr-17(Monday)');
+        convo.ask({
+            attachment: {
+                'type': 'template',
+                'payload': {
+                'template_type': 'generic',
+                'elements': [
+                    {
+                    'title': 'Click below to go back',
+                    'buttons': [
+                        {
+                        'type': 'postback',
+                        'title': 'Go Back',
+                        'payload': 'start_payload'
+                        }
+                        ]
+                    }
+                  ]
+                }
+                }    
+            }, function(response, convo) {           
+                convo.next();
+            });
+     });
 });
 
 controller.hears(['Swon Details','swon','SWON'], 'message_received,facebook_postback', function (bot, message) {
