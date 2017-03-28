@@ -231,13 +231,16 @@ controller.hears(['Weather','weather'], 'message_received,facebook_postback', fu
               "payload":{
                 "template_type":"button",
                 "text":"What do you want to do next?",
-                "sender_action":"typing_on",
                 "buttons":[
                   {
                     "type":"postback",
                     "title":"Go Back",
                     "payload":"Location Details"
-                  }
+                  },{
+                    "type":"postback",
+                    "title":"Main Menu",
+                    "payload":"start_payload"
+                  }                
                 ]
               }
             }
@@ -298,6 +301,10 @@ controller.hears(['Schedule duration','schedule','Schedule'], 'message_received,
                     "type":"postback",
                     "title":"Go Back",
                     "payload":"Conference Details"
+                  },{
+                    "type":"postback",
+                    "title":"Main Menu",
+                    "payload":"start_payload"
                   }
                 ]
               }
@@ -308,6 +315,9 @@ controller.hears(['Schedule duration','schedule','Schedule'], 'message_received,
 
 controller.hears(['Swon Details','swon','SWON'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
+    convo.say('For associates travelling from outside India, if you are carrying laptop/tablet PC etc. suggest to carry an international power adapter. Also please refer to Ultimatix: Advisory: Electronics Ban on flights.');
+    convo.say('Please carry your original Government issued Photo ID (Passport, Driver license etc.) to produce at the Venue during check-in.');
+    convo.say('Dress code for the event would be Business Casuals.');
     convo.say('SWON Number for Travel is 1042816');
         convo.ask({
               "attachment":{
@@ -320,6 +330,10 @@ controller.hears(['Swon Details','swon','SWON'], 'message_received,facebook_post
                     "type":"postback",
                     "title":"Go Back",
                     "payload":"Conference Details"
+                  },{
+                    "type":"postback",
+                    "title":"Main Menu",
+                    "payload":"start_payload"
                   }
                 ]
               }
@@ -368,6 +382,10 @@ controller.hears(['user know ATUNE'], 'message_received,facebook_postback', func
                     "type":"postback",
                     "title":"Go Back",
                     "payload":"Conference Details"
+                  },{
+                    "type":"postback",
+                    "title":"Main Menu",
+                    "payload":"start_payload"
                   }
                 ]
               }
@@ -392,6 +410,10 @@ controller.hears(['user donno ATUNE'], 'message_received,facebook_postback', fun
                     "type":"postback",
                     "title":"Go Back",
                     "payload":"Conference Details"
+                  },{
+                    "type":"postback",
+                    "title":"Main Menu",
+                    "payload":"start_payload"
                   }
                 ]
               }
@@ -437,6 +459,10 @@ controller.hears(['Venue','venue'], 'message_received,facebook_postback', functi
                     "type":"postback",
                     "title":"Go Back",
                     "payload":"Location Details"
+                  },{
+                    "type":"postback",
+                    "title":"Main Menu",
+                    "payload":"start_payload"
                   }
                 ]
               }
@@ -480,6 +506,10 @@ controller.hears(['Sight Seeing'], 'message_received,facebook_postback', functio
                     "type":"postback",
                     "title":"Go Back",
                     "payload":"Location Details"
+                  },{
+                    "type":"postback",
+                    "title":"Main Menu",
+                    "payload":"start_payload"
                   }
                 ]
               }
@@ -503,6 +533,10 @@ controller.hears(['Travel'], 'message_received,facebook_postback', function (bot
                     "type":"postback",
                     "title":"Go Back",
                     "payload":"Event Organizers"
+                  },{
+                    "type":"postback",
+                    "title":"Main Menu",
+                    "payload":"start_payload"
                   }
                 ]
               }
@@ -526,6 +560,10 @@ controller.hears(['Accomodation'], 'message_received,facebook_postback', functio
                     "type":"postback",
                     "title":"Go Back",
                     "payload":"Event Organizers"
+                  },{
+                    "type":"postback",
+                    "title":"Main Menu",
+                    "payload":"start_payload"
                   }
                 ]
               }
@@ -549,6 +587,10 @@ controller.hears(['Tourist Agents'], 'message_received,facebook_postback', funct
                     "type":"postback",
                     "title":"Go Back",
                     "payload":"Event Organizers"
+                  },{
+                    "type":"postback",
+                    "title":"Main Menu",
+                    "payload":"start_payload"
                   }
                 ]
               }
