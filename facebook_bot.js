@@ -143,9 +143,7 @@ controller.hears(['hi','start_payload','hello'], 'message_received,facebook_post
 });
 
 controller.hears(['Conference Details'], 'message_received,facebook_postback', function(bot, message) {
-        bot.startConversation(message, function(err, convo) {
-        convo.ask({
-        attachment: {
+        var attachment = {
                 'type': 'template',
                 'payload': {
                     'template_type': 'generic',
@@ -174,25 +172,10 @@ controller.hears(['Conference Details'], 'message_received,facebook_postback', f
                         }
                     ]
                 }
-            }, function(response,convo) {
-                    convo.next();
-            }
-        });
-        convo.on('end', function(convo) {
-                        if (convo.status == 'completed') {
-                                bot.reply(message, {
-                                text: 'How can I guide you further!',
-                                quick_replies: [
-                                    {
-                                        "content_type": "text",
-                                        "title": "Go Back",
-                                        "payload": "start_payload",
-                                    }
-                                ]
-                            });
-                  }
-        });
-});
+            };
+            bot.reply(message, {
+               attachment: attachment
+            });
 });
 
 
@@ -228,7 +211,7 @@ controller.hears(['Location Details','location','Location'], 'message_received,f
                 }
             };
             bot.reply(message, {
-            attachment: attachment,
+            attachment: attachment
             });  
 });
 
@@ -280,7 +263,7 @@ controller.hears(['Event Organizers','organizer','Organizer'], 'message_received
                 }
             } ;
             bot.reply(message, {
-            attachment: attachment,
+            attachment: attachment
             });    
 });
 
@@ -313,23 +296,13 @@ controller.hears(['Agenda','agenda'], 'message_received,facebook_postback', func
           }
         };
             bot.reply(message, {
-            attachment: attachment,
+            attachment: attachment
             }); 
 });
 
 controller.hears(['user know ATUNE'], 'message_received,facebook_postback', function (bot, message) {
         bot.reply(message, 'Agenda is actually to introduce new technologies and have networking among employees');
-        bot.reply(message, {
-                                text: 'You can move back to Main Menu by clicking here!',
-                                quick_replies: [
-                                    {
-                                        "content_type": "text",
-                                        "title": "Go Back",
-                                        "payload": "start_payload",
-                                    }
-                                ]
-                  });
-});
+})
 
 controller.hears(['user donno ATUNE'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
@@ -388,17 +361,7 @@ controller.hears(['Sight Seeing'], 'message_received,facebook_postback', functio
                     ]
                 }
             };
-                //  bot.reply(message, {attachment: attachment });
-                  bot.reply(message, {
-                                text: 'How can I guide you further!',
-                                quick_replies: [
-                                    {
-                                        "content_type": "text",
-                                        "title": "Go Back",
-                                        "payload": "start_payload",
-                                    }
-                                ]
-                  });
+            bot.reply(message, {attachment: attachment });
     });
 
 controller.hears(['Travel Organizers'], 'message_received,facebook_postback', function (bot, message) {
