@@ -380,12 +380,7 @@ controller.hears(['Sight Seeing'], 'message_received,facebook_postback', functio
                     ]
                 }
             }, function(response,convo) {
-                    convo.next();
-            }
-    });
-    convo.on('end', function(convo) {
-                        if (convo.status == 'completed') {
-                                bot.reply(message, {
+                 bot.reply(message, {
                                 text: 'How can I guide you further!',
                                 quick_replies: [
                                     {
@@ -395,7 +390,8 @@ controller.hears(['Sight Seeing'], 'message_received,facebook_postback', functio
                                     }
                                 ]
                             });
-                  }
+                    convo.next();
+            }
     });
 });
 })
