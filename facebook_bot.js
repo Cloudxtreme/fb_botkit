@@ -10,7 +10,8 @@ var controller = Botkit.facebookbot({
     access_token: process.env.page_token,
     verify_token: process.env.verify_token,
     app_secret: process.env.app_secret,
-    validate_requests: true // Refuse any requests that don't come from FB on your receive webhook, must provide FB_APP_SECRET in environment variables
+    validate_requests: true, // Refuse any requests that don't come from FB on your receive webhook, must provide FB_APP_SECRET in environment variables
+    require_delivery: true
 });
 
 var bot = controller.spawn({});
