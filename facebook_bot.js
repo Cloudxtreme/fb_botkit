@@ -360,9 +360,7 @@ controller.hears(['Venue','venue'], 'message_received,facebook_postback', functi
 });
 
 controller.hears(['Sight Seeing'], 'message_received,facebook_postback', function(bot, message) {
-        bot.startConversation(message, function(err, convo) {
-        convo.ask({
-        attachment :  {
+        var attachment =  {
                 'type': 'template',
                 'payload': {
                     'template_type': 'generic',
@@ -379,8 +377,9 @@ controller.hears(['Sight Seeing'], 'message_received,facebook_postback', functio
                         }
                     ]
                 }
-            }, function(response,convo) {
-                 bot.reply(message, {
+            };
+                  bot.reply(message, {attachment: attachment });
+                  bot.reply(message, {
                                 text: 'How can I guide you further!',
                                 quick_replies: [
                                     {
@@ -389,12 +388,8 @@ controller.hears(['Sight Seeing'], 'message_received,facebook_postback', functio
                                         "payload": "start_payload",
                                     }
                                 ]
-                            });
-                    convo.next();
-            }
+                  });
     });
-});
-})
 
 controller.hears(['Travel Organizers'], 'message_received,facebook_postback', function (bot, message) {
         bot.reply(message, 'For Travel Details you can contact Murli , Ph no: 9715608893');
