@@ -58,9 +58,6 @@ controller.on('facebook_optin', function (bot, message) {
 
 controller.hears(['hi','start_payload','hello'], 'message_received,facebook_postback', function(bot, message) {
     bot.startConversation(message, function(err, convo) {
-        convo.say({
-            'sender_action': 'typing_on'
-        });
         convo.say('Hi.. I am ATUNE-Bot. I will be happy to guide you with event details ☺')
         convo.say('What would you like to know more about...')
         convo.ask({
@@ -68,7 +65,6 @@ controller.hears(['hi','start_payload','hello'], 'message_received,facebook_post
                 'type': 'template',
                 'payload': {
                     'template_type': 'generic',
-                    'sender_action': 'typing_on',
                     'elements': [
                         {
                             'title': 'ATUNE-2017 Conference',
@@ -198,17 +194,16 @@ controller.hears(['Location Details','location','Location'], 'message_received,f
                                     'type': 'postback',
                                     'title': 'Venue',
                                     'payload': 'Venue'
+                                },{
+                                    'type': 'postback',
+                                    'title': 'Weather Forecast',
+                                    'payload': 'Weather'
                                 },
                                 {
                                     'type': 'postback',
                                     'title': 'Sight Seeing',
                                     'payload': 'Sight Seeing'
                                 },
-                                {
-                                    'type': 'postback',
-                                    'title': 'Weather Forecast',
-                                    'payload': 'Weather'
-                                }
                             ]
                         }
                     ]
