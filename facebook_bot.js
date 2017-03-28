@@ -490,15 +490,73 @@ controller.hears(['Sight Seeing'], 'message_received,facebook_postback', functio
 });
 
 controller.hears(['Travel Organizers'], 'message_received,facebook_postback', function (bot, message) {
-        bot.reply(message, 'For Travel Details you can contact Mr.XYZABCD , Ph no: 9999955555');
+    bot.startConversation(message, function (err, convo) {
+    convo.say('For Travel Details you can contact Mr.XYZABCD , Ph no: 9999955555');
+        convo.ask({
+              "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"button",
+                "text":"What do you want to do next?",
+                "buttons":[
+                  {
+                    "type":"postback",
+                    "title":"Go Back",
+                    "payload":"Event Organizers"
+                  }
+                ]
+              }
+            }
+        });
+    convo.next();
+    });
 });
 
 controller.hears(['Accomodation Organizers'], 'message_received,facebook_postback', function (bot, message) {
-        bot.reply(message, 'For Accomodation related queries and details you can contact Mr.ABCDEFG , Ph no: 9999944444');
+    bot.startConversation(message, function (err, convo) {
+    convo.say('For Accomodation related queries and details you can contact Mr.ABCDEFG , Ph no: 9999944444');
+        convo.ask({
+              "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"button",
+                "text":"What do you want to do next?",
+                "buttons":[
+                  {
+                    "type":"postback",
+                    "title":"Go Back",
+                    "payload":"Event Organizers"
+                  }
+                ]
+              }
+            }
+        });
+    convo.next();
+    });
 });
 
 controller.hears(['Tourist Agents'], 'message_received,facebook_postback', function (bot, message) {
-        bot.reply(message, 'For Tourist Guidance you can contact Ms.ASDFGHJK , Ph no: 9999911111');
+    bot.startConversation(message, function (err, convo) {
+    convo.say('For Tourist Guidance you can contact Ms.ASDFGHJK , Ph no: 9999911111');
+        convo.ask({
+              "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"button",
+                "text":"What do you want to do next?",
+                "buttons":[
+                  {
+                    "type":"postback",
+                    "title":"Go Back",
+                    "payload":"Event Organizers"
+                  }
+                ]
+              }
+            }
+        });
+    convo.next();
+    });
+    
 });
 
 
