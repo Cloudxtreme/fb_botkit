@@ -272,13 +272,20 @@ controller.hears(['Schedule duration','schedule','Schedule'], 'message_received,
      bot.startConversation(message, function(err, convo) {
        convo.say('Conference is scheduled on 23-Apr-17 (Sunday) & 24-Apr-17(Monday)');
         convo.ask({
-            "buttons":[
-                    {
+              "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"button",
+                "text":"What do you want to do next?",
+                "buttons":[
+                  {
                     "type":"postback",
                     "title":"Go Back",
                     "payload":"start_payload"
-                    }
+                  }
                 ]
+              }
+            }
         });
      });
 });
