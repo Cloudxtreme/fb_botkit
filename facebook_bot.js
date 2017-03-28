@@ -388,7 +388,7 @@ controller.hears(['Sight Seeing'], 'message_received,facebook_postback', functio
                     ]
                 }
             };
-                  bot.reply(message, {attachment: attachment });
+                //  bot.reply(message, {attachment: attachment });
                   bot.reply(message, {
                                 text: 'How can I guide you further!',
                                 quick_replies: [
@@ -403,46 +403,14 @@ controller.hears(['Sight Seeing'], 'message_received,facebook_postback', functio
 
 controller.hears(['Travel Organizers'], 'message_received,facebook_postback', function (bot, message) {
         bot.reply(message, 'For Travel Details you can contact Mr.XYZABCD , Ph no: 9999955555');
-    bot.reply(message, {
-                                text: 'You can move back to Main Menu by clicking here!',
-                                quick_replies: [
-                                    {
-                                        "content_type": "text",
-                                        "title": "Go Back",
-                                        "payload": "start_payload",
-                                    }
-                                ]
-                  });
-    return false;
 });
+
 controller.hears(['Accomodation Organizers'], 'message_received,facebook_postback', function (bot, message) {
         bot.reply(message, 'For Accomodation related queries and details you can contact Mr.ABCDEFG , Ph no: 9999944444');
-    bot.reply(message, {
-                                text: 'You can move back to Main Menu by clicking here!',
-                                quick_replies: [
-                                    {
-                                        "content_type": "text",
-                                        "title": "Go Back",
-                                        "payload": "start_payload",
-                                    }
-                                ]
-                  });
-    return false;
 });
 
 controller.hears(['Tourist Agents'], 'message_received,facebook_postback', function (bot, message) {
         bot.reply(message, 'For Tourist Guidance you can contact Ms.ASDFGHJK , Ph no: 9999911111');
-    bot.reply(message, {
-                                text: 'You can move back to Main Menu by clicking here!',
-                                quick_replies: [
-                                    {
-                                        "content_type": "text",
-                                        "title": "Go Back",
-                                        "payload": "start_payload",
-                                    }
-                                ]
-                  });
-    return false;
 });
 
 
