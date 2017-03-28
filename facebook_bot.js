@@ -261,12 +261,12 @@ controller.hears(['Event Organizers','organizer','Organizer'], 'message_received
                                 {
                                     'type': 'postback',
                                     'title': 'Travel',
-                                    'payload': 'Travel Organizers'
+                                    'payload': 'Travel'
                                 },
                                 {
                                     'type': 'postback',
                                     'title': 'Accomodation',
-                                    'payload': 'Accomodation Organizers'
+                                    'payload': 'Accomodation'
                                 },
                                 {
                                     'type': 'postback',
@@ -489,13 +489,13 @@ controller.hears(['Sight Seeing'], 'message_received,facebook_postback', functio
     });
 });
 
-controller.hears(['Travel Organizers'], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['Travel'], 'message_received,facebook_postback', function (bot, message) {
    bot.startConversation(message, function(err, convo) {
                 convo.say('For Travel Details you can contact Mr.XYZABCD , Ph no: 9999955555');
     });
 });
 
-controller.hears(['Accomodation Organizers'], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['Accomodation'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
     convo.say('For Accomodation related queries and details you can contact Mr.ABCDEFG , Ph no: 9999944444');
         convo.ask({
