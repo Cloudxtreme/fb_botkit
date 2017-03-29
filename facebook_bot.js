@@ -436,12 +436,13 @@ controller.hears(['Agenda','agenda'], 'message_received,facebook_postback', func
           convo.say('Day 0 : 22-Apr-2017: 5:00 PM onwards to 9:30 PM'); 
           convo.say('Day 0 : 22-Apr-2017: 5:00 PM onwards to 9:30 PM');
           convo.say('Day 0 : 22-Apr-2017: 5:00 PM onwards to 9:30 PM');  
+          convo.say('I can share further details once I get them. The Organizers are finalising as we speak');
            convo.ask({
               "attachment":{
               "type":"template",
               "payload":{
                 "template_type":"button",
-                "text":"What do you want to do next?",
+                "text":"What would you like to know about next?",
                 "buttons":[
                   {
                     "type":"postback",
@@ -449,8 +450,16 @@ controller.hears(['Agenda','agenda'], 'message_received,facebook_postback', func
                     "payload":"Conference Details"
                   },{
                     "type":"postback",
-                    "title":"Main Menu",
-                    "payload":"start_payload"
+                    "title":"Agenda",
+                    "payload":"Agenda"
+                  },{
+                    "type":"postback",
+                    "title":"Location Details",
+                    "payload":"Location Details"
+                  },{
+                    "type":"postback",
+                    "title":"Other Details",
+                    "payload":"Other Details"
                   }
                 ]
               }
