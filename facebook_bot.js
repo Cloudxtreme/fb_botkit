@@ -195,7 +195,7 @@ controller.hears(['Weather','weather'], 'message_received,facebook_postback', fu
                   {
                     "type":"postback",
                     "title":"Go Back",
-                    "payload":"Location Details"
+                    "payload":"Bhubaneshwar"
                   },{
                     "type":"postback",
                     "title":"Main Menu",
@@ -299,14 +299,71 @@ controller.hears(['local_attraction'], 'message_received,facebook_postback', fun
                 }
             }
         });
-        convo.next();
+         convo.ask({
+              "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"button",
+                "text":"What do you want to do next?",
+                "buttons":[
+                  {
+                    "type":"postback",
+                    "title":"Go Back",
+                    "payload":"Bhubaneshwar"
+                  },{
+                    "type":"postback",
+                    "title":"Main Menu",
+                    "payload":"start_payload"
+                  }                
+                ]
+              }
+            }
+        });
     });
 });
 
 // Menu->Location->Bhubaneshwar->Local Attraction 
 controller.hears(['food'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
-        convo.next();
+        convo.say('Bhubaneshwar has the traditional Odisha delicacies as a major tourism center in India');
+        convo.say('Panchana Phutana special mixture used in most of dishes,Typically Odisha Meal tastes awsome too. ');
+          convo.ask({
+            "attachment":{
+            "type":"image",
+            "payload":{
+                "url":"https://s3-eu-west-1.amazonaws.com/sosnewbucketforlive/blog_img/strand_of_silk_-_journey_map_-_exploring_the_cuisine_of_odisha_-_lunch_thali.jpg"
+            }
+      }
+    });
+        convo.say('You cannot forget Rasgolla,Chamcham..');
+        convo.ask({
+            "attachment":{
+            "type":"image",
+            "payload":{
+                "url":"http://images.mapsofindia.com/my-india/Rasgulla-665x453.jpg"
+            }
+      }
+    });
+     convo.ask({
+              "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"button",
+                "text":"What do you want to do next?",
+                "buttons":[
+                  {
+                    "type":"postback",
+                    "title":"Go Back",
+                    "payload":"Bhubaneshwar"
+                  },{
+                    "type":"postback",
+                    "title":"Main Menu",
+                    "payload":"start_payload"
+                  }                
+                ]
+              }
+            }
+        });
     });
 });
 
