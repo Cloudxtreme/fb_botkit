@@ -568,33 +568,6 @@ controller.hears(['Sight Seeing'], 'message_received,facebook_postback', functio
     });
 });
 
-controller.hears([''], 'message_received,facebook_postback', function (bot, message) {
-   bot.startConversation(message, function(err, convo) {
-                convo.say('For Travel Details you can contact Mr.XYZABCD , Ph no: 9999955555');
-        convo.ask({
-              "attachment":{
-              "type":"template",
-              "payload":{
-                "template_type":"button",
-                "text":"What do you want to do next?",
-                "buttons":[
-                  {
-                    "type":"postback",
-                    "title":"Go Back",
-                    "payload":"Event Organizers"
-                  },{
-                    "type":"postback",
-                    "title":"Main Menu",
-                    "payload":"start_payload"
-                  }
-                ]
-              }
-            }
-        });
-    convo.next();
-    });
-});
-
 controller.hears(['Accomodation'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
     convo.say('For Accomodation related queries and details you can contact Mr.ABCDEFG , Ph no: 9999944444');
