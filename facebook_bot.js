@@ -245,26 +245,6 @@ controller.hears(['Bhubaneshwar'], 'message_received,facebook_postback', functio
             }
         }
     });
-    convo.ask({
-              "attachment":{
-              "type":"template",
-              "payload":{
-                "template_type":"button",
-                "text":"What do you want to do next?",
-                "buttons":[
-                  {
-                    "type":"postback",
-                    "title":"Go Back",
-                    "payload":"Location Details"
-                  },{
-                    "type":"postback",
-                    "title":"Main Menu",
-                    "payload":"start_payload"
-                  }                
-                ]
-              }
-            }
-    });
     });
  }); 
 
@@ -282,36 +262,36 @@ controller.hears(['local_attraction'], 'message_received,facebook_postback', fun
                         {
                             'title': 'Lingaraja temple',
                             'image_url': 'https://en.wikipedia.org/wiki/Lingaraja_Temple#/media/File:Beauty_of_LingrajTemple.jpg',
-                            'subtitle': '',
+                            'subtitle': 'Temple is the most prominent mark of the city.Is the largest temple i the city..',
                             "buttons":[
                                         {
                                             "type":"web_url",
                                             "url":"https://en.wikipedia.org/wiki/Lingaraja_Temple",
-                                            "title":"View More... "
+                                            "title":"View More Details... "
                                         },
                              ]
                         },
                         {
                             'title': 'Nandankanan Zoological park',
                             'image_url': 'https://en.wikipedia.org/wiki/Nandankanan_Zoological_Park#/media/File:Nandankanan,Bhubaneswar,Odisha.JPG',
-                            'subtitle': '',
+                            'subtitle': 'It contains a botanical garden and part of it has been declared a sanctuary. Nandankanan, literally meaning The Garden of Heavens..',
                              "buttons":[
                                         {
                                             "type":"web_url",
                                             "url":"https://en.wikipedia.org/wiki/Nandankanan_Zoological_Park",
-                                            "title":"View More... "
+                                            "title":"View More Details... "
                                         },
                              ]
                         },
                         {
                             'title': 'Udaygiri And Khandagiri caves',
                             'image_url': 'https://en.wikipedia.org/wiki/Udayagiri_and_Khandagiri_Caves#/media/File:Udayagiri_puri_-_March_2010.jpg',
-                            'subtitle': '',
+                            'subtitle': 'Theses caves are partly natural and partly artificial caves of archaeological, historical and religious importance.. ',
                              "buttons":[
                                         {
                                             "type":"web_url",
                                             "url":"https://en.wikipedia.org/wiki/Udayagiri_and_Khandagiri_Caves",
-                                            "title":"View More... "
+                                            "title":"View More Details... "
                                         },
                              ]
                         }
@@ -325,29 +305,6 @@ controller.hears(['local_attraction'], 'message_received,facebook_postback', fun
 
 // Menu->Location->Bhubaneshwar->Local Attraction 
 controller.hears(['food'], 'message_received,facebook_postback', function (bot, message) {
-    bot.startConversation(message, function (err, convo) {
-        convo.next();
-    });
-});
-
-// Menu->Location->Bhubaneshwar->Local Attraction->Lingaraja Temple 
-controller.hears(['lingaraja'], 'message_received,facebook_postback', function (bot, message) {
-    bot.startConversation(message, function (err, convo) {
-
-        convo.next();
-    });
-});
-
-//  Menu->Location->Bhubaneshwar->Local Attraction->Nandankanan Zoological Park 
-controller.hears(['nandankanan'], 'message_received,facebook_postback', function (bot, message) {
-    bot.startConversation(message, function (err, convo) {
-        convo.next();
-    });
-});
-
-
-// Menu->Location->Bhubaneshwar->Local Attraction->Udaygiri
-controller.hears(['udaygiri'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
         convo.next();
     });
