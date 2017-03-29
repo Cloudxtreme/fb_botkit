@@ -73,62 +73,18 @@ controller.hears(['hi','start_payload','hello'], 'message_received,facebook_post
                             'buttons': [
                                 {
                                     'type': 'postback',
-                                    'title': 'Agenda',
-                                    'payload': 'Agenda'
+                                    'title': 'ATUNE-2017 Conference',
+                                    'payload': 'Conference Details'
                                 },
                                 {
                                     'type': 'postback',
-                                    'title': 'Schedule',
-                                    'payload': 'Schedule Duration'
+                                    'title': 'Location Details',
+                                    'payload': 'Location Details'
                                 },
                                 {
                                     'type': 'postback',
-                                    'title': 'Other Details',
-                                    'payload': 'Other Details'
-                                }
-                            ]
-                        },
-                        {
-                            'title': 'Location Details',
-                            'image_url': 'http://www.aids2016.org/portals/0/Image/Thumb/pic_venue_outdoor.jpg?ver=2015-11-04-120531-493',
-                            'subtitle': '',
-                            'buttons': [
-                                {
-                                    'type': 'postback',
-                                    'title': 'Venue',
-                                    'payload': 'Venue'
-                                },
-                                {
-                                    'type': 'postback',
-                                    'title': 'Weather Forecast',
-                                    'payload': 'Weather'
-                                },
-                                 {
-                                    'type': 'postback',
-                                    'title': 'Sight Seeing',
-                                    'payload': 'Sight Seeing'
-                                }
-                            ]
-                        },
-                        {
-                            'title': 'Event Organizers',
-                            'image_url': 'http://globalassets.starbucks.com/assets/ba003714b7494e948af043d5f0664669.png',
-                            'subtitle': '',
-                            'buttons': [
-                                {
-                                    'type': 'postback',
-                                    'title': 'Travel ',
-                                    'payload': 'Travel Organizers'
-                                },
-                                 {
-                                    'type': 'postback',
-                                    'title': 'Accomodation',
-                                    'payload': 'Accomodation Organizers'
-                                },
-                                {
-                                    'type': 'postback',
-                                    'title': 'Tourist',
-                                    'payload': 'Tourist Agents'
+                                    'title': 'Event Organizers',
+                                    'payload': 'Event Organizers'
                                 }
                             ]
                         }
@@ -155,8 +111,8 @@ controller.hears(['Conference Details'], 'message_received,facebook_postback', f
                             'buttons': [
                                 {
                                     'type': 'postback',
-                                    'title': 'Agenda',
-                                    'payload': 'Agenda'
+                                    'title': 'Conference Details',
+                                    'payload': 'Conference Details'
                                 },
                                 {
                                     'type': 'postback',
@@ -449,27 +405,6 @@ controller.hears(['Agenda','agenda'], 'message_received,facebook_postback', func
                     "title":"Go Back",
                     "payload":"Conference Details"
                   }
-                ]
-              }
-            }
-        });
-          convo.ask({
-              "attachment":{
-              "type":"template",
-              "payload":{
-                "template_type":"button",
-                "text":"Pick a color:",
-                 quick_replies: [
-                    {
-                        "content_type": "text",
-                        "title": "Yes",
-                        "payload": "yes",
-                    },
-                    {
-                        "content_type": "text",
-                        "title": "No",
-                        "payload": "no",
-                    }
                 ]
               }
             }
