@@ -261,7 +261,7 @@ controller.hears(['local_attraction'], 'message_received,facebook_postback', fun
                     'elements': [
                         {
                             'title': 'Lingaraja temple',
-                            'image_url': 'https://en.wikipedia.org/wiki/Lingaraja_Temple#/media/File:Beauty_of_LingrajTemple.jpg',
+                            'image_url': 'https://dl.dropbox.com/s/gzoncsdgbvjfct0/bhubaneshwar_1.png',
                             'subtitle': 'Temple is the most prominent mark of the city.Is the largest temple i the city..',
                             "buttons":[
                                         {
@@ -273,7 +273,7 @@ controller.hears(['local_attraction'], 'message_received,facebook_postback', fun
                         },
                         {
                             'title': 'Nandankanan Zoological park',
-                            'image_url': 'https://en.wikipedia.org/wiki/Nandankanan_Zoological_Park#/media/File:Nandankanan,Bhubaneswar,Odisha.JPG',
+                            'image_url': 'https://dl.dropbox.com/s/mh2zyckvupkga57/nandankanan_1.png',
                             'subtitle': 'It contains a botanical garden and part of it has been declared a sanctuary. Nandankanan, literally meaning The Garden of Heavens..',
                              "buttons":[
                                         {
@@ -285,7 +285,7 @@ controller.hears(['local_attraction'], 'message_received,facebook_postback', fun
                         },
                         {
                             'title': 'Udaygiri And Khandagiri caves',
-                            'image_url': 'https://en.wikipedia.org/wiki/Udayagiri_and_Khandagiri_Caves#/media/File:Udayagiri_puri_-_March_2010.jpg',
+                            'image_url': 'https://dl.dropbox.com/s/dthpnjuvegfhnit/udayagiri_1.png',
                             'subtitle': 'Theses caves are partly natural and partly artificial caves of archaeological, historical and religious importance.. ',
                              "buttons":[
                                         {
@@ -481,6 +481,21 @@ controller.hears(['flight_timings'], 'message_received,facebook_postback', funct
 controller.hears(['flight_status'], 'message_received,facebook_postback', function (bot, message) {
      bot.startConversation(message, function (err, convo) {
     convo.say('Flight Status is :');
+          convo.ask({
+                "attachment":{
+                "type":"template",
+                "payload":{
+                "buttons":[
+                {
+                "type":"web_url",
+                "url":"http://www.flightstats.com/go/FlightStatus/flightStatusByAirport.do?airportCode=BBI&airportQueryType=1",
+                "title":"Click the link below to know the flight status",
+                "webview_height_ratio": "compact"
+                }
+                ]
+            }
+            }
+          });
         convo.ask({
               "attachment":{
               "type":"template",
