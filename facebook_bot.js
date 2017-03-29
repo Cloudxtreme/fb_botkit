@@ -221,10 +221,11 @@ controller.hears(['Weather','weather'], 'message_received,facebook_postback', fu
         var  forecast = JSON.stringify(JSON.parse(body)[0].WeatherText).replace( /"/g, "" );
         var  temp     = JSON.stringify(JSON.parse(body)[0].Temperature.Metric.Value);
         var degree    = JSON.stringify(JSON.parse(body)[0].Temperature.Metric.Unit).replace( /"/g, "" );
-        convo.say('As you know, I am a nice person, I collected the weather information for you upfront, so that you can plan better and have a lovely time :-)');
+        convo.say('As you know, I am a nice person');
+        convo.say('I collected the weather information for you upfront, so that you can plan better and have a lovely time ☺ ');
         convo.say('The forecasted weather for Bhubaneshwar on 23rd April is'+ forecast+temp+degree); 
         convo.say('The forecasted weather for Bhubaneshwar on 23rd April is'+ forecast+temp+degree); 
-        convo.say('I bet you will enjoy the weather');
+        convo.say('I bet you will enjoy the weather ☼');
              convo.ask({
               "attachment":{
               "type":"template",
@@ -313,7 +314,7 @@ controller.hears(['Schedule duration','schedule','Schedule'], 'message_received,
      });
 });
 
-controller.hears(['Other Details','swon','SWON'], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['Other Details'], 'message_received,facebook_postback', function (bot, message) {
       var  attachment = {
                 'type': 'template',
                 'payload': {
