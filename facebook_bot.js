@@ -457,6 +457,7 @@ controller.hears(['Agenda','agenda'], 'message_received,facebook_postback', func
               "attachment":{
               "type":"template",
               "payload":{
+                "template_type":"button",
                 "text":"Pick a color:",
                  quick_replies: [
                     {
