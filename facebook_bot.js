@@ -69,7 +69,7 @@ controller.hears(['hi','start_payload','hello'], 'message_received,facebook_post
                     'elements': [
                         {
                             'title': 'ATUNE 2017',
-                            'image_url': 'https://www.dropbox.com/sh/w8wcrsucqe9taov/AADtINGliBj_2uTEmQQOzqODa?dl=0&lst=&preview=bhubaneshwar_2.png',
+                            'image_url': 'https://dl.dropboxusercontent.com/s/7tcmop8umb3q8xw/conference_1.png',
                             'subtitle': '',
                             'buttons': [
                                 {
