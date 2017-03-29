@@ -56,6 +56,7 @@ controller.on('facebook_optin', function (bot, message) {
     bot.reply(message, 'Welcome To My Chatbot Thanks Alot!')
 })
 
+// starting with hi and start_payload
 controller.hears(['hi','start_payload','hello'], 'message_received,facebook_postback', function(bot, message) {
     bot.startConversation(message, function(err, convo) {
         convo.say('Hi.. I am ATUNE-Bot. I will be happy to guide you with event details ☺')
@@ -98,6 +99,7 @@ controller.hears(['hi','start_payload','hello'], 'message_received,facebook_post
     });
 });
 
+// Menu->Event 
 controller.hears(['Conference Details'], 'message_received,facebook_postback', function(bot, message) {
         var attachment = {
                 'type': 'template',
@@ -134,7 +136,7 @@ controller.hears(['Conference Details'], 'message_received,facebook_postback', f
             });
 });
 
-
+// Menu->Location 
 controller.hears(['Location Details','location','Location'], 'message_received,facebook_postback', function(bot, message) {
      var attachment =  {
                 'type': 'template',
@@ -170,6 +172,7 @@ controller.hears(['Location Details','location','Location'], 'message_received,f
             });  
 });
 
+// Menu->Location->Bhbaneshwar->Weather
 controller.hears(['Weather','weather'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
      request('http://apidev.accuweather.com/currentconditions/v1/1-189781_1_AL.json?language=en&apikey=hoArfRosT1215', function (error, response, body) {
@@ -208,39 +211,40 @@ controller.hears(['Weather','weather'], 'message_received,facebook_postback', fu
      });
 });
 
+// Menu->Location->Bhubaneshwar
 controller.hears(['Bhubaneshwar'], 'message_received,facebook_postback', function (bot, message) {
      bot.startConversation(message, function (err, convo) {
-    convo.ask({
+     convo.ask({
         "attachment":{
-              "type":"template",
-              "payload":{
-                    'template_type': 'generic',
-                    'elements': [
-                        {
-                            'title': 'Location Details',
-                            'image_url': 'http://www.aids2016.org/portals/0/Image/Thumb/pic_venue_outdoor.jpg?ver=2015-11-04-120531-493',
-                            'subtitle': '',
-                            'buttons': [
-                                {
-                                    'type': 'postback',
-                                    'title': 'Local Attraction',
-                                    'payload': 'local_attraction'
-                                },{
-                                    'type': 'postback',
-                                    'title': 'Food',
-                                    'payload': 'food'
-                                },
-                                {
-                                    'type': 'postback',
-                                    'title': 'Weather',
-                                    'payload': 'Weather'
-                                },
-                            ]
-                        }
+            "type":"template",
+            "payload":{
+                'template_type': 'generic',
+                'elements': [
+                 {
+                    'title': 'Location Details',
+                    'image_url': 'http://www.aids2016.org/portals/0/Image/Thumb/pic_venue_outdoor.jpg?ver=2015-11-04-120531-493',
+                    'subtitle': '',
+                    'buttons': [
+                    {
+                        'type': 'postback',
+                        'title': 'Local Attraction',
+                        'payload': 'local_attraction'
+                    },{
+                        'type': 'postback',
+                        'title': 'Food',
+                        'payload': 'food'
+                    },
+                    {
+                        'type': 'postback',
+                        'title': 'Weather',
+                        'payload': 'Weather'
+                    }
                     ]
                 }
+                ]
             }
-         });
+        }
+    });
     convo.ask({
               "attachment":{
               "type":"template",
@@ -260,10 +264,103 @@ controller.hears(['Bhubaneshwar'], 'message_received,facebook_postback', functio
                 ]
               }
             }
-        });
-      });
-   }); 
+    });
+    });
+ }); 
 
+
+
+// Menu->Location->Bhubaneshwar->Local Attraction 
+controller.hears(['local_attraction'], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+         convo.ask({
+              'attachment': {
+                'type': 'template',
+                'payload': {
+                    'template_type': 'generic',
+                    'elements': [
+                        {
+                            'title': 'Lingaraja temple',
+                            'image_url': 'https://en.wikipedia.org/wiki/Lingaraja_Temple#/media/File:Beauty_of_LingrajTemple.jpg',
+                            'subtitle': '',
+                            "buttons":[
+                                        {
+                                            "type":"web_url",
+                                            "url":"https://en.wikipedia.org/wiki/Lingaraja_Temple",
+                                            "title":"View More... "
+                                        },
+                             ]
+                        },
+                        {
+                            'title': 'Nandankanan Zoological park',
+                            'image_url': 'https://en.wikipedia.org/wiki/Nandankanan_Zoological_Park#/media/File:Nandankanan,Bhubaneswar,Odisha.JPG',
+                            'subtitle': '',
+                             "buttons":[
+                                        {
+                                            "type":"web_url",
+                                            "url":"https://en.wikipedia.org/wiki/Nandankanan_Zoological_Park",
+                                            "title":"View More... "
+                                        },
+                             ]
+                        },
+                        {
+                            'title': 'Udaygiri And Khandagiri caves',
+                            'image_url': 'https://en.wikipedia.org/wiki/Udayagiri_and_Khandagiri_Caves#/media/File:Udayagiri_puri_-_March_2010.jpg',
+                            'subtitle': '',
+                             "buttons":[
+                                        {
+                                            "type":"web_url",
+                                            "url":"https://en.wikipedia.org/wiki/Udayagiri_and_Khandagiri_Caves",
+                                            "title":"View More... "
+                                        },
+                             ]
+                        }
+                    ]
+                }
+            }
+        });
+        convo.next();
+    });
+});
+
+// Menu->Location->Bhubaneshwar->Local Attraction 
+controller.hears(['food'], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+        convo.next();
+    });
+});
+
+// Menu->Location->Bhubaneshwar->Local Attraction->Lingaraja Temple 
+controller.hears(['lingaraja'], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+
+        convo.next();
+    });
+});
+
+//  Menu->Location->Bhubaneshwar->Local Attraction->Nandankanan Zoological Park 
+controller.hears(['nandankanan'], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+        convo.next();
+    });
+});
+
+
+// Menu->Location->Bhubaneshwar->Local Attraction->Udaygiri
+controller.hears(['udaygiri'], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+        convo.next();
+    });
+});
+
+// Menu->Location->Bhubaneshwar->Organizers
+controller.hears(['organising_team'], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+        convo.next();
+    });
+});
+
+// Menu->Travel
 controller.hears(['Travel'], 'message_received,facebook_postback', function(bot, message) {
     var  attachment = {
                 'type': 'template',
@@ -299,7 +396,7 @@ controller.hears(['Travel'], 'message_received,facebook_postback', function(bot,
             });    
 });
 
-
+// Menu->Event->Schedule
 controller.hears(['Schedule duration','schedule','Schedule'], 'message_received,facebook_postback', function (bot, message) {
      bot.startConversation(message, function(err, convo) {
        convo.say('Conference is scheduled on 23-Apr-17 (Sunday) & 24-Apr-17(Monday)');
@@ -326,6 +423,7 @@ controller.hears(['Schedule duration','schedule','Schedule'], 'message_received,
      });
 });
 
+// Menu->Event->Other
 controller.hears(['Other Details'], 'message_received,facebook_postback', function (bot, message) {
       var  attachment = {
                 'type': 'template',
@@ -362,6 +460,7 @@ controller.hears(['Other Details'], 'message_received,facebook_postback', functi
             });        
 });
 
+// Menu->Event->Other->DressCode
 controller.hears(['dress_code'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
         convo.say('Dress code for the event would be Business Casuals.');
@@ -375,7 +474,7 @@ controller.hears(['dress_code'], 'message_received,facebook_postback', function 
                   {
                     "type":"postback",
                     "title":"Go Back",
-                    "payload":"Conference Details"
+                    "payload":"Other Details"
                   },{
                     "type":"postback",
                     "title":"Main Menu",
@@ -389,6 +488,7 @@ controller.hears(['dress_code'], 'message_received,facebook_postback', function 
     });
 });
 
+// Menu->Event->Other->SWON
 controller.hears(['swon_details'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
         convo.say('SWON Number for Travel is 1042816');
@@ -402,7 +502,7 @@ controller.hears(['swon_details'], 'message_received,facebook_postback', functio
                   {
                     "type":"postback",
                     "title":"Go Back",
-                    "payload":"Conference Details"
+                    "payload":"Other Details"
                   },{
                     "type":"postback",
                     "title":"Main Menu",
@@ -416,6 +516,7 @@ controller.hears(['swon_details'], 'message_received,facebook_postback', functio
     });
 });
 
+// Menu->Event->Agenda
 controller.hears(['Agenda','agenda'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
           convo.say('Day 0 : 22-Apr-2017: 5:00 PM onwards to 9:30 PM'); 
@@ -466,11 +567,14 @@ controller.hears(['Agenda','agenda'], 'message_received,facebook_postback', func
     }); 
 });
 
+// message recieve ATUNE
 controller.hears(['ATUNE'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
     convo.say('ATUNE is ATU networking program that arranges conference yearly twice.this is the second one.');
     });
 });
+
+// Menu->Travel-Travel Tips
 controller.hears(['tips'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
     convo.say('For associates travelling from outside India, if you are carrying laptop/tablet PC etc. suggest to carry an international power adapter. Also please refer to Ultimatix: Advisory: Electronics Ban on flights.');
@@ -499,6 +603,7 @@ controller.hears(['tips'], 'message_received,facebook_postback', function (bot, 
     });
 });
  
+// Menu->Location->Venue
 controller.hears(['Venue','venue'], 'message_received,facebook_postback', function(bot, message) {
      bot.startConversation(message, function(err, convo) {
                 convo.say('Hotel address is: 8-B, Jaydev Vihar, Bhubaneshwar, Odisha 751013');
@@ -514,10 +619,10 @@ controller.hears(['Venue','venue'], 'message_received,facebook_postback', functi
                                         'title': 'Room',
                                         'image_url': 'http://media-cdn.tripadvisor.com/media/photo-o/02/83/a6/00/mon-port-hotel-spa.jpg'
                                     },{
-                                        "title": "reception",
+                                        "title": "Reception",
                                         "image_url": "http://www.college-hotel.com/client/cache/contenu/_500____college-hotelp1diapo1_718.jpg"
                                     }, {
-                                        "title": "around view",
+                                        "title": "Around View",
                                         "image_url": "http://www.cardabeachhotel.gr/wp-content/uploads/kos-carda-beach-hotel-1680x1050.jpg"
                                     }
                                 ]
@@ -548,6 +653,7 @@ controller.hears(['Venue','venue'], 'message_received,facebook_postback', functi
     });
 });
 
+// Not required
 controller.hears(['Sight Seeing'], 'message_received,facebook_postback', function(bot, message) {
        bot.startConversation(message, function(err, convo) {
        convo.ask({
@@ -595,6 +701,7 @@ controller.hears(['Sight Seeing'], 'message_received,facebook_postback', functio
     });
 });
 
+// Menu->Location->Accomodation
 controller.hears(['Accomodation'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
     convo.say('For Accomodation related queries and details you can contact Mr.ABCDEFG , Ph no: 9999944444');
@@ -608,7 +715,7 @@ controller.hears(['Accomodation'], 'message_received,facebook_postback', functio
                   {
                     "type":"postback",
                     "title":"Go Back",
-                    "payload":"Event Organizers"
+                    "payload":"Location Details"
                   },{
                     "type":"postback",
                     "title":"Main Menu",
@@ -622,6 +729,7 @@ controller.hears(['Accomodation'], 'message_received,facebook_postback', functio
     });
 });
 
+// Menu->Event->Other->Organising Team
 controller.hears(['organising_team'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
         convo.say('For Travel Details you can contact Mr.XYZABCD , Ph no: 9999955555');
@@ -637,7 +745,7 @@ controller.hears(['organising_team'], 'message_received,facebook_postback', func
                   {
                     "type":"postback",
                     "title":"Go Back",
-                    "payload":"Conference Details"
+                    "payload":"Other Details"
                   },{
                     "type":"postback",
                     "title":"Main Menu",
@@ -652,7 +760,7 @@ controller.hears(['organising_team'], 'message_received,facebook_postback', func
     
 });
 
-
+// Default message
 controller.on('message_received,facebook_postback', function(bot, message) {
     bot.reply(message, 'Try: agenda` or `schedule` or `venue`');
     return false;
