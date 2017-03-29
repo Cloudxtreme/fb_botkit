@@ -277,7 +277,7 @@ controller.hears(['Travel'], 'message_received,facebook_postback', function(bot,
                                 {
                                     'type': 'postback',
                                     'title': 'Travel Tips',
-                                    'payload': 'travel_tips'
+                                    'payload': 'tips'
                                 },
                                 {
                                     'type': 'postback',
@@ -471,7 +471,7 @@ controller.hears(['ATUNE'], 'message_received,facebook_postback', function (bot,
     convo.say('ATUNE is ATU networking program that arranges conference yearly twice.this is the second one.');
     });
 });
-controller.hears(['travel_tips'], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['tips'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
     convo.say('For associates travelling from outside India, if you are carrying laptop/tablet PC etc. suggest to carry an international power adapter. Also please refer to Ultimatix: Advisory: Electronics Ban on flights.');
     convo.say('Please carry your original Government issued Photo ID (Passport, Driver license etc.) to produce at the Venue during check-in.');
