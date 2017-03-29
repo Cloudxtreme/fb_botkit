@@ -84,7 +84,7 @@ controller.hears(['hi','start_payload','hello'], 'message_received,facebook_post
                                 {
                                     'type': 'postback',
                                     'title': 'Other Details',
-                                    'payload': 'Swon Details'
+                                    'payload': 'Other Details'
                                 }
                             ]
                         },
@@ -166,7 +166,7 @@ controller.hears(['Conference Details'], 'message_received,facebook_postback', f
                                 {
                                     'type': 'postback',
                                     'title': 'Other Details',
-                                    'payload': 'Swon Details'
+                                    'payload': 'Other Details'
                                 }
                             ]
                         }
@@ -221,10 +221,10 @@ controller.hears(['Weather','weather'], 'message_received,facebook_postback', fu
         var  forecast = JSON.stringify(JSON.parse(body)[0].WeatherText).replace( /"/g, "" );
         var  temp     = JSON.stringify(JSON.parse(body)[0].Temperature.Metric.Value);
         var degree    = JSON.stringify(JSON.parse(body)[0].Temperature.Metric.Unit).replace( /"/g, "" );
-
-        convo.say('Bhubaneshwar weather forecast  on 23rd April '+ forecast+temp+degree); 
-        convo.say('Bhubaneshwar weather forecast  on 24th April'+ forecast+temp+degree); 
-        convo.say('Average Temperature 29C (Day) / 22C (Night)');
+        convo.say('As you know, I am a nice person, I collected the weather information for you upfront, so that you can plan better and have a lovely time :-)');
+        convo.say('The forecasted weather for Bhubaneshwar on 23rd April is'+ forecast+temp+degree); 
+        convo.say('The forecasted weather for Bhubaneshwar on 23rd April is'+ forecast+temp+degree); 
+        convo.say('I bet you will enjoy the weather');
              convo.ask({
               "attachment":{
               "type":"template",
@@ -313,12 +313,45 @@ controller.hears(['Schedule duration','schedule','Schedule'], 'message_received,
      });
 });
 
-controller.hears(['Swon Details','swon','SWON'], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['Other Details','swon','SWON'], 'message_received,facebook_postback', function (bot, message) {
+      var  attachment = {
+                'type': 'template',
+                'payload': {
+                    'template_type': 'generic',
+                    'elements': [
+                        {
+                            'title': 'Other Details',
+                            'image_url': 'http://manchestershambhala.org/wordpress/wp-content/uploads/2013/03/Who-am-I.jpg',
+                            'buttons': [
+                                {
+                                    'type': 'postback',
+                                    'title': 'Travel',
+                                    'payload': 'other_travel'
+                                },
+                                {
+                                    'type': 'postback',
+                                    'title': 'Dress Code',
+                                    'payload': 'dress_code'
+                                },
+                                {
+                                    'type': 'postback',
+                                    'title': 'SWON Details',
+                                    'payload': 'swon_details'
+                                }
+                            ]                
+                        }
+                    ]
+                }
+            } ;
+            bot.reply(message, {
+            attachment: attachment
+            });        
+});
+
+controller.hears(['other_travel'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
-    convo.say('For associates travelling from outside India, if you are carrying laptop/tablet PC etc. suggest to carry an international power adapter. Also please refer to Ultimatix: Advisory: Electronics Ban on flights.');
-    convo.say('Please carry your original Government issued Photo ID (Passport, Driver license etc.) to produce at the Venue during check-in.');
-    convo.say('Dress code for the event would be Business Casuals.');
-    convo.say('SWON Number for Travel is 1042816');
+        convo.say('For associates travelling from outside India, if you are carrying laptop/tablet PC etc. suggest to carry an international power adapter. Also please refer to Ultimatix: Advisory: Electronics Ban on flights.');
+        convo.say('Please carry your original Government issued Photo ID (Passport, Driver license etc.) to produce at the Venue during check-in.');
         convo.ask({
               "attachment":{
               "type":"template",
@@ -339,39 +372,70 @@ controller.hears(['Swon Details','swon','SWON'], 'message_received,facebook_post
               }
             }
         });
-    convo.next();
+        convo.next();
+    });
+});
+
+controller.hears(['dress_code'], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+        convo.say('Dress code for the event would be Business Casuals.');
+        convo.ask({
+              "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"button",
+                "text":"What do you want to do next?",
+                "buttons":[
+                  {
+                    "type":"postback",
+                    "title":"Go Back",
+                    "payload":"Conference Details"
+                  },{
+                    "type":"postback",
+                    "title":"Main Menu",
+                    "payload":"start_payload"
+                  }
+                ]
+              }
+            }
+        });
+        convo.next();
+    });
+});
+
+controller.hears(['swon_details'], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+        convo.say('SWON Number for Travel is 1042816');
+        convo.ask({
+              "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"button",
+                "text":"What do you want to do next?",
+                "buttons":[
+                  {
+                    "type":"postback",
+                    "title":"Go Back",
+                    "payload":"Conference Details"
+                  },{
+                    "type":"postback",
+                    "title":"Main Menu",
+                    "payload":"start_payload"
+                  }
+                ]
+              }
+            }
+        });
+        convo.next();
     });
 });
 
 controller.hears(['Agenda','agenda'], 'message_received,facebook_postback', function (bot, message) {
-     var attachment = {
-          "type":"template",
-          "payload":{
-            "template_type":"button",
-            "text":"Well do you know about ATUNE",
-            "buttons":[
-              {
-                "type":"postback",
-                "title":"yeah",
-                "payload":"user know ATUNE"
-              },
-              {
-                "type":"postback",
-                "title":"nopes",
-                "payload":"user donno ATUNE"
-              }
-            ]
-          }
-        };
-            bot.reply(message, {
-            attachment: attachment
-            }); 
-});
-
-controller.hears(['user know ATUNE'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
-    convo.say('Agenda is actually to introduce new technologies and have networking among employees');
-    convo.ask({
+          convo.say('Day 0 : 22-Apr-2017: 5:00 PM onwards to 9:30 PM'); 
+          convo.say('Day 0 : 22-Apr-2017: 5:00 PM onwards to 9:30 PM');
+          convo.say('Day 0 : 22-Apr-2017: 5:00 PM onwards to 9:30 PM');  
+           convo.ask({
               "attachment":{
               "type":"template",
               "payload":{
@@ -392,34 +456,12 @@ controller.hears(['user know ATUNE'], 'message_received,facebook_postback', func
             }
         });
     convo.next();
+    }); 
 });
-})
 
-controller.hears(['user donno ATUNE'], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['ATUNE'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
     convo.say('ATUNE is ATU networking program that arranges conference yearly twice.this is the second one.');
-    convo.say('So agenda is actually to introduce new technologies and have networking among employees');
-        convo.ask({
-              "attachment":{
-              "type":"template",
-              "payload":{
-                "template_type":"button",
-                "text":"What do you want to do next?",
-                "buttons":[
-                  {
-                    "type":"postback",
-                    "title":"Go Back",
-                    "payload":"Conference Details"
-                  },{
-                    "type":"postback",
-                    "title":"Main Menu",
-                    "payload":"start_payload"
-                  }
-                ]
-              }
-            }
-        });
-    convo.next();
     });
 });
  
