@@ -322,7 +322,7 @@ controller.hears(['Other Details'], 'message_received,facebook_postback', functi
                     'elements': [
                         {
                             'title': 'Other Details',
-                            'image_url': 'http://manchestershambhala.org/wordpress/wp-content/uploads/2013/03/Who-am-I.jpg',
+                            'image_url': 'https://cdn.pixabay.com/photo/2015/05/09/22/35/air-760325_960_720.jpg',
                             'buttons': [
                                 {
                                     'type': 'postback',
@@ -448,7 +448,19 @@ controller.hears(['Agenda','agenda'], 'message_received,facebook_postback', func
                     "type":"postback",
                     "title":"Go Back",
                     "payload":"Conference Details"
-                  },{
+                  }
+                ]
+              }
+            }
+        });
+         convo.ask({
+              "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"button",
+                "text":"What would you like to know about next?",
+                "buttons":[
+                  {
                     "type":"postback",
                     "title":"Agenda",
                     "payload":"Agenda"
