@@ -69,7 +69,7 @@ controller.hears(['hi','start_payload','hello'], 'message_received,facebook_post
                     'elements': [
                         {
                             'title': 'ATUNE 2017',
-                            'image_url': 'http://www.safety4sea.com/wp-content/uploads/2015/11/Conference.jpg',
+                            'image_url': 'https://www.dropbox.com/sh/w8wcrsucqe9taov/AADtINGliBj_2uTEmQQOzqODa?dl=0&lst=&preview=conference_1.png',
                             'subtitle': '',
                             'buttons': [
                                 {
