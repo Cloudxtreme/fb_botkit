@@ -453,11 +453,13 @@ controller.hears(['Agenda','agenda'], 'message_received,facebook_postback', func
               }
             }
         });
-        convo.ask({
-            "attachment":{
-                "type":"template",
+          convo.ask({
+              "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"button",
                 "text":"Pick a color:",
-                    quick_replies: [
+                 quick_replies: [
                     {
                         "content_type": "text",
                         "title": "Yes",
@@ -469,6 +471,7 @@ controller.hears(['Agenda','agenda'], 'message_received,facebook_postback', func
                         "payload": "no",
                     }
                 ]
+              }
             }
         });
          convo.ask({
