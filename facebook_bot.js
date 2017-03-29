@@ -105,7 +105,7 @@ controller.hears(['Conference Details'], 'message_received,facebook_postback', f
                     'template_type': 'generic',
                     'elements': [
                         {
-                            'title': 'ATUNE-2017 Conference',
+                            'title': 'Event',
                             'image_url': 'http://www.safety4sea.com/wp-content/uploads/2015/11/Conference.jpg',
                             'subtitle': '',
                             'buttons': [
@@ -153,7 +153,7 @@ controller.hears(['Location Details','location','Location'], 'message_received,f
                                 },{
                                     'type': 'postback',
                                     'title': 'Accomodation',
-                                    'payload': 'Weather'
+                                    'payload': 'Accomodation'
                                 },
                                 {
                                     'type': 'postback',
@@ -214,29 +214,55 @@ controller.hears(['Bhubaneshwar'], 'message_received,facebook_postback', functio
         "attachment":{
               "type":"template",
               "payload":{
+                    'template_type': 'generic',
+                    'elements': [
+                        {
+                            'title': 'Location Details',
+                            'image_url': 'http://www.aids2016.org/portals/0/Image/Thumb/pic_venue_outdoor.jpg?ver=2015-11-04-120531-493',
+                            'subtitle': '',
+                            'buttons': [
+                                {
+                                    'type': 'postback',
+                                    'title': 'Local Attraction',
+                                    'payload': 'local_attraction'
+                                },{
+                                    'type': 'postback',
+                                    'title': 'Food',
+                                    'payload': 'food'
+                                },
+                                {
+                                    'type': 'postback',
+                                    'title': 'Weather',
+                                    'payload': 'Weather'
+                                },
+                            ]
+                        }
+                    ]
+                }
+            }
+         });
+    convo.ask({
+              "attachment":{
+              "type":"template",
+              "payload":{
                 "template_type":"button",
-                "text":"Bhubaneshwar",
+                "text":"What do you want to do next?",
                 "buttons":[
                   {
                     "type":"postback",
-                    "title":"Local Attraction",
-                    "payload":"local_attraction"
+                    "title":"Go Back",
+                    "payload":"Location Details"
                   },{
                     "type":"postback",
-                    "title":"Food",
-                    "payload":"food"
-                  },{
-                    "type":"postback",
-                    "title":"Weather",
-                    "payload":"Weather"
-                  }               
+                    "title":"Main Menu",
+                    "payload":"start_payload"
+                  }                
                 ]
               }
             }
         });
-        
-    });
-});
+      });
+   }); 
 
 controller.hears(['Travel'], 'message_received,facebook_postback', function(bot, message) {
     var  attachment = {
@@ -334,34 +360,6 @@ controller.hears(['Other Details'], 'message_received,facebook_postback', functi
             bot.reply(message, {
             attachment: attachment
             });        
-});
-
-controller.hears(['other_travel'], 'message_received,facebook_postback', function (bot, message) {
-    bot.startConversation(message, function (err, convo) {
-        convo.say('For associates travelling from outside India, if you are carrying laptop/tablet PC etc. suggest to carry an international power adapter. Also please refer to Ultimatix: Advisory: Electronics Ban on flights.');
-        convo.say('Please carry your original Government issued Photo ID (Passport, Driver license etc.) to produce at the Venue during check-in.');
-        convo.ask({
-              "attachment":{
-              "type":"template",
-              "payload":{
-                "template_type":"button",
-                "text":"What do you want to do next?",
-                "buttons":[
-                  {
-                    "type":"postback",
-                    "title":"Go Back",
-                    "payload":"Conference Details"
-                  },{
-                    "type":"postback",
-                    "title":"Main Menu",
-                    "payload":"start_payload"
-                  }
-                ]
-              }
-            }
-        });
-        convo.next();
-    });
 });
 
 controller.hears(['dress_code'], 'message_received,facebook_postback', function (bot, message) {
@@ -570,7 +568,7 @@ controller.hears(['Sight Seeing'], 'message_received,facebook_postback', functio
     });
 });
 
-controller.hears(['Travel'], 'message_received,facebook_postback', function (bot, message) {
+controller.hears([''], 'message_received,facebook_postback', function (bot, message) {
    bot.startConversation(message, function(err, convo) {
                 convo.say('For Travel Details you can contact Mr.XYZABCD , Ph no: 9999955555');
         convo.ask({
@@ -624,9 +622,11 @@ controller.hears(['Accomodation'], 'message_received,facebook_postback', functio
     });
 });
 
-controller.hears(['Tourist Agents'], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['organising_team'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
-    convo.say('For Tourist Guidance you can contact Ms.ASDFGHJK , Ph no: 9999911111');
+        convo.say('For Travel Details you can contact Mr.XYZABCD , Ph no: 9999955555');
+        convo.say('For Accomodation related queries and details you can contact Mr.ABCDEFG , Ph no: 9999944444');
+        convo.say('For Tourist Guidance you can contact Ms.ASDFGHJK , Ph no: 9999911111');
         convo.ask({
               "attachment":{
               "type":"template",
@@ -637,7 +637,7 @@ controller.hears(['Tourist Agents'], 'message_received,facebook_postback', funct
                   {
                     "type":"postback",
                     "title":"Go Back",
-                    "payload":"Event Organizers"
+                    "payload":"Conference Details"
                   },{
                     "type":"postback",
                     "title":"Main Menu",
