@@ -414,6 +414,46 @@ controller.hears(['Travel'], 'message_received,facebook_postback', function(bot,
 controller.hears(['flight_timings'], 'message_received,facebook_postback', function (bot, message) {
      bot.startConversation(message, function (err, convo) {
     convo.say('Flight Timings are:');
+          convo.ask({
+            "attachment":{
+            "type":"image",
+            "payload":{
+                "url":"https://dl.dropbox.com/s/9wztnardq8lxli4/table_1.PNG"
+            }
+            }
+          });
+         convo.ask({
+            "attachment":{
+            "type":"image",
+            "payload":{
+                "url":"https://dl.dropbox.com/s/an75mrsdf6gns6c/table_2.PNG"
+            }
+            }
+          });
+         convo.ask({
+            "attachment":{
+            "type":"image",
+            "payload":{
+                "url":"https://dl.dropbox.com/s/90hpwm8020xwzzf/table_3.PNG"
+            }
+            }
+          });
+         convo.ask({
+            "attachment":{
+            "type":"image",
+            "payload":{
+                "url":"https://dl.dropbox.com/s/izhkm2aoiqcmd53/table_4.PNG"
+            }
+            }
+          });
+         convo.ask({
+            "attachment":{
+            "type":"image",
+            "payload":{
+                "url":"https://dl.dropbox.com/s/nscwyene34dcp59/table_5.PNG"
+            }
+            }
+          });
         convo.ask({
               "attachment":{
               "type":"template",
@@ -508,7 +548,7 @@ controller.hears(['Other Details'], 'message_received,facebook_postback', functi
                     'elements': [
                         {
                             'title': 'Other Details',
-                            'image_url': 'https://cdn.pixabay.com/photo/2015/05/09/22/35/air-760325_960_720.jpg',
+                            'image_url': 'http://www.spring.org.uk/images/helping_hand4.jpg',
                             'buttons': [
                                 {
                                     'type': 'postback',
@@ -596,8 +636,8 @@ controller.hears(['swon_details'], 'message_received,facebook_postback', functio
 controller.hears(['Agenda','agenda'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
           convo.say('Day 0 : 22-Apr-2017: 5:00 PM onwards to 9:30 PM'); 
-          convo.say('Day 0 : 22-Apr-2017: 5:00 PM onwards to 9:30 PM');
-          convo.say('Day 0 : 22-Apr-2017: 5:00 PM onwards to 9:30 PM');  
+          convo.say('Day 1 : 23-Apr-2017: 5:00 PM onwards to 9:30 PM');
+          convo.say('Day 2 : 24-Apr-2017: 5:00 PM onwards to 9:30 PM');  
           convo.say('I can share further details once I get them. The Organizers are finalising as we speak');
             convo.ask({
               "attachment":{
@@ -623,7 +663,7 @@ controller.hears(['Agenda','agenda'], 'message_received,facebook_postback', func
 });
 
 // message recieve ATUNE
-controller.hears(['ATUNE'], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['ATUNE','atune'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
     convo.say('ATUNE is ATU networking program that arranges conference yearly twice.this is the second one.');
     });
@@ -670,14 +710,18 @@ controller.hears(['Venue','venue'], 'message_received,facebook_postback', functi
                                 'template_type': 'generic',
                                 'elements': [
                                     {
-                                        'title': 'Room',
-                                        'image_url': 'http://media-cdn.tripadvisor.com/media/photo-o/02/83/a6/00/mon-port-hotel-spa.jpg'
+                                        'title': 'Aerial View of Cottages with Lagoon',
+                                        'image_url': 'https://dl.dropbox.com/s/9ijlj0rs0cmtgb5/hotel_1.png'
                                     },{
-                                        "title": "Reception",
-                                        "image_url": "http://www.college-hotel.com/client/cache/contenu/_500____college-hotelp1diapo1_718.jpg"
+                                        "title": "Evening View of Lagoon",
+                                        "image_url": "https://dl.dropbox.com/s/8w3q9fjx2st2gh0/hotel_2.png"
                                     }, {
-                                        "title": "Around View",
-                                        "image_url": "http://www.cardabeachhotel.gr/wp-content/uploads/kos-carda-beach-hotel-1680x1050.jpg"
+                                        "title": "Lobby Mayfair Lagoon",
+                                        "image_url": "https://dl.dropboxusercontent.com/s/alzatuiz50f8f39/hotel_3.png"
+                                    },
+                                    {
+                                        "title": "Evening View MAYFAIR Lagoon",
+                                        "image_url": "https://dl.dropbox.com/s/0g6tuzao3jsn5ni/hotel_4.png"
                                     }
                                 ]
                             }
@@ -718,13 +762,13 @@ controller.hears(['Sight Seeing'], 'message_received,facebook_postback', functio
                     'elements': [
                         {
                             'title': 'Lingaraj Temple',
-                            'image_url': 'http://veda.wdfiles.com/local--files/info%3Alingaraja-mandir/lingaraja-temple.jpg'
+                            'image_url': 'https://dl.dropbox.com/s/gzoncsdgbvjfct0/bhubaneshwar_1.png'
                         },{
                             "title": "Nandankanan Zoological Park",
-                            "image_url": "http://incredibleorissa.com/wp-content/uploads/Nandankanan-Zoological-Park.jpg"
+                            "image_url": "https://dl.dropbox.com/s/mh2zyckvupkga57/nandankanan_1.png"
                         }, {
                             "title": "Dhauli Giri Hills",
-                            "image_url": "http://www.dhauli.net/images/excursion-dhauli-hill-1.jpg"
+                            "image_url": "https://dl.dropbox.com/s/dthpnjuvegfhnit/udayagiri_1.png"
                         }
                     ]
                 }
