@@ -29,17 +29,17 @@ controller.api.thread_settings.get_started('start_payload');
 controller.api.thread_settings.menu([
     {
         "type":"postback",
-        "title":"Conference Details",
+        "title":"Event",
         "payload":"Conference Details"
     },
     {
         "type":"postback",
-        "title":"Location Details",
+        "title":"Location",
         "payload":"Location Details"
     },
     {
       "type":"postback",
-      "title":"Event Organizers",
+      "title":"Travel",
       "payload":"Event Organizers"
     },
 ]);
@@ -67,24 +67,24 @@ controller.hears(['hi','start_payload','hello'], 'message_received,facebook_post
                     'template_type': 'generic',
                     'elements': [
                         {
-                            'title': 'ATUNE-2017 Conference',
+                            'title': 'ATUNE 2017',
                             'image_url': 'http://www.safety4sea.com/wp-content/uploads/2015/11/Conference.jpg',
                             'subtitle': '',
                             'buttons': [
                                 {
                                     'type': 'postback',
-                                    'title': 'ATUNE-2017 Conference',
+                                    'title': 'Event',
                                     'payload': 'Conference Details'
                                 },
                                 {
                                     'type': 'postback',
-                                    'title': 'Location Details',
+                                    'title': 'Location',
                                     'payload': 'Location Details'
                                 },
                                 {
                                     'type': 'postback',
-                                    'title': 'Event Organizers',
-                                    'payload': 'Event Organizers'
+                                    'title': 'Travel',
+                                    'payload': 'Travel'
                                 }
                             ]
                         }
@@ -111,8 +111,8 @@ controller.hears(['Conference Details'], 'message_received,facebook_postback', f
                             'buttons': [
                                 {
                                     'type': 'postback',
-                                    'title': 'Conference Details',
-                                    'payload': 'Conference Details'
+                                    'title': 'Agenda',
+                                    'payload': 'Agenda'
                                 },
                                 {
                                     'type': 'postback',
@@ -152,13 +152,13 @@ controller.hears(['Location Details','location','Location'], 'message_received,f
                                     'payload': 'Venue'
                                 },{
                                     'type': 'postback',
-                                    'title': 'Weather Forecast',
+                                    'title': 'Accomodation',
                                     'payload': 'Weather'
                                 },
                                 {
                                     'type': 'postback',
-                                    'title': 'Sight Seeing',
-                                    'payload': 'Sight Seeing'
+                                    'title': 'Bhubaneshwar',
+                                    'payload': 'Bhubaneshwar'
                                 },
                             ]
                         }
@@ -208,30 +208,60 @@ controller.hears(['Weather','weather'], 'message_received,facebook_postback', fu
      });
 });
 
-controller.hears(['Event Organizers','organizer','Organizer'], 'message_received,facebook_postback', function(bot, message) {
+controller.hears(['Bhubaneshwar'], 'message_received,facebook_postback', function (bot, message) {
+     bot.startConversation(message, function (err, convo) {
+    convo.ask({
+        "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"button",
+                "text":"Bhubaneshwar",
+                "buttons":[
+                  {
+                    "type":"postback",
+                    "title":"Local Attraction",
+                    "payload":"local_attraction"
+                  },{
+                    "type":"postback",
+                    "title":"Food",
+                    "payload":"food"
+                  },{
+                    "type":"postback",
+                    "title":"Weather",
+                    "payload":"Weather"
+                  }               
+                ]
+              }
+            }
+        });
+        
+    });
+});
+
+controller.hears(['Travel'], 'message_received,facebook_postback', function(bot, message) {
     var  attachment = {
                 'type': 'template',
                 'payload': {
                     'template_type': 'generic',
                     'elements': [
                         {
-                            'title': 'Event Organizers',
+                            'title': 'Travel',
                             'image_url': 'http://manchestershambhala.org/wordpress/wp-content/uploads/2013/03/Who-am-I.jpg',
                             'buttons': [
                                 {
                                     'type': 'postback',
-                                    'title': 'Travel',
-                                    'payload': 'Travel'
+                                    'title': 'Travel Tips',
+                                    'payload': 'travel_tips'
                                 },
                                 {
                                     'type': 'postback',
-                                    'title': 'Accomodation',
-                                    'payload': 'Accomodation'
+                                    'title': 'Flight Timings',
+                                    'payload': 'flight_timings'
                                 },
                                 {
                                     'type': 'postback',
-                                    'title': 'Tourist',
-                                    'payload': 'Tourist Agents'
+                                    'title': 'Flight Status',
+                                    'payload': 'flight_status'
                                 }
                             ]                
                         }
@@ -282,11 +312,6 @@ controller.hears(['Other Details'], 'message_received,facebook_postback', functi
                             'buttons': [
                                 {
                                     'type': 'postback',
-                                    'title': 'Travel',
-                                    'payload': 'other_travel'
-                                },
-                                {
-                                    'type': 'postback',
                                     'title': 'Dress Code',
                                     'payload': 'dress_code'
                                 },
@@ -294,7 +319,13 @@ controller.hears(['Other Details'], 'message_received,facebook_postback', functi
                                     'type': 'postback',
                                     'title': 'SWON Details',
                                     'payload': 'swon_details'
-                                }
+                                },
+                                {
+                                    'type': 'postback',
+                                    'title': 'Organising Team',
+                                    'payload': 'organising_team'
+                                },
+                                
                             ]                
                         }
                     ]
