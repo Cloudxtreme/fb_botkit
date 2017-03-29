@@ -40,7 +40,7 @@ controller.api.thread_settings.menu([
     {
       "type":"postback",
       "title":"Travel",
-      "payload":"Event Organizers"
+      "payload":"Travel"
     },
 ]);
 
@@ -469,6 +469,33 @@ controller.hears(['Agenda','agenda'], 'message_received,facebook_postback', func
 controller.hears(['ATUNE'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
     convo.say('ATUNE is ATU networking program that arranges conference yearly twice.this is the second one.');
+    });
+});
+controller.hears(['travel_tips'], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+    convo.say('For associates travelling from outside India, if you are carrying laptop/tablet PC etc. suggest to carry an international power adapter. Also please refer to Ultimatix: Advisory: Electronics Ban on flights.');
+    convo.say('Please carry your original Government issued Photo ID (Passport, Driver license etc.) to produce at the Venue during check-in.');
+        convo.ask({
+              "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"button",
+                "text":"What do you want to do next?",
+                "buttons":[
+                  {
+                    "type":"postback",
+                    "title":"Go Back",
+                    "payload":"Travel"
+                  },{
+                    "type":"postback",
+                    "title":"Main Menu",
+                    "payload":"start_payload"
+                  }
+                ]
+              }
+            }
+        });
+    convo.next();
     });
 });
  
