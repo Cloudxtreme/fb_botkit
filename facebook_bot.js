@@ -69,7 +69,7 @@ controller.hears(['hi','start_payload','hello'], 'message_received,facebook_post
                     'elements': [
                         {
                             'title': 'ATUNE 2017',
-                            'image_url': 'https://dl.dropboxusercontent.com/s/7tcmop8umb3q8xw/conference_1.png',
+                            'image_url': 'https://dl.dropbox.com/s/6f4gqwfkng9vmjc/conference_1.png',
                             'subtitle': '',
                             'buttons': [
                                 {
@@ -222,7 +222,7 @@ controller.hears(['Bhubaneshwar'], 'message_received,facebook_postback', functio
                 'elements': [
                  {
                     'title': 'Location Details',
-                    'image_url': 'http://www.aids2016.org/portals/0/Image/Thumb/pic_venue_outdoor.jpg?ver=2015-11-04-120531-493',
+                    'image_url': 'https://dl.dropbox.com/s/gzoncsdgbvjfct0/bhubaneshwar_1.png',
                     'subtitle': '',
                     'buttons': [
                     {
@@ -472,7 +472,7 @@ controller.hears(['Schedule duration','schedule','Schedule'], 'message_received,
         "attachment":{
         "type":"image",
         "payload":{
-            "url":"https://petersapparel.com/img/shirt.png"
+            "url":"https://dl.dropboxusercontent.com/s/6kltzw9bbgiwco2/schedule_1.gif"
         }
         }
     });
