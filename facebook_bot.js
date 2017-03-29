@@ -410,10 +410,72 @@ controller.hears(['Travel'], 'message_received,facebook_postback', function(bot,
             });    
 });
 
+//
+controller.hears(['flight_timings'], 'message_received,facebook_postback', function (bot, message) {
+     bot.startConversation(message, function (err, convo) {
+    convo.say('Flight Timings are:');
+        convo.ask({
+              "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"button",
+                "text":"What do you want to do next?",
+                "buttons":[
+                  {
+                    "type":"postback",
+                    "title":"Go Back",
+                    "payload":"Travel"
+                  },{
+                    "type":"postback",
+                    "title":"Main Menu",
+                    "payload":"start_payload"
+                  }
+                ]
+              }
+            }
+        });
+    });
+});
+
+//
+controller.hears(['flight_status'], 'message_received,facebook_postback', function (bot, message) {
+     bot.startConversation(message, function (err, convo) {
+    convo.say('Flight Status is :');
+        convo.ask({
+              "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"button",
+                "text":"What do you want to do next?",
+                "buttons":[
+                  {
+                    "type":"postback",
+                    "title":"Go Back",
+                    "payload":"Travel"
+                  },{
+                    "type":"postback",
+                    "title":"Main Menu",
+                    "payload":"start_payload"
+                  }
+                ]
+              }
+            }
+        });
+    });
+});
+
 // Menu->Event->Schedule
 controller.hears(['Schedule duration','schedule','Schedule'], 'message_received,facebook_postback', function (bot, message) {
      bot.startConversation(message, function(err, convo) {
-       convo.say('Conference is scheduled on 23-Apr-17 (Sunday) & 24-Apr-17(Monday)');
+       convo.say('Conference schedule is marked below ');
+       convo.ask({
+        "attachment":{
+        "type":"image",
+        "payload":{
+            "url":"https://petersapparel.com/img/shirt.png"
+        }
+        }
+    });
         convo.ask({
               "attachment":{
               "type":"template",
@@ -592,7 +654,6 @@ controller.hears(['tips'], 'message_received,facebook_postback', function (bot, 
               }
             }
         });
-    convo.next();
     });
 });
  
