@@ -453,6 +453,25 @@ controller.hears(['Agenda','agenda'], 'message_received,facebook_postback', func
               }
             }
         });
+        convo.ask({
+            "attachment":{
+                "text":"Pick a color:",
+                "quick_replies":[
+                {
+                    "content_type":"text",
+                    "title":"Agenda",
+                    "payload":"Agenda",
+                    "image_url":"http://petersfantastichats.com/img/red.png"
+                },
+                {
+                    "content_type":"text",
+                    "title":"Location Details",
+                    "payload":"Location Details",
+                    "image_url":"http://petersfantastichats.com/img/green.png"
+                }
+                ]
+            }
+        });
          convo.ask({
               "attachment":{
               "type":"template",
