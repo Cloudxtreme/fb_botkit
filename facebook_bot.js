@@ -455,6 +455,7 @@ controller.hears(['Agenda','agenda'], 'message_received,facebook_postback', func
         });
         convo.ask({
             "attachment":{
+                "type":"template",
                 "text":"Pick a color:",
                     quick_replies: [
                     {
