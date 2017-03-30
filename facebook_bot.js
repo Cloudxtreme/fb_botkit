@@ -905,11 +905,6 @@ controller.hears(['quick'], 'message_received', function(bot, message) {
   });
 });
 
-// yes check payload
-controller.hears(['hah'],'message_received,facebook_postback', function(bot, message) {
-    bot.reply(message, 'you have clicked yes');
-});
-
 // Default message
 controller.on('message_received,facebook_postback', function(bot, message) {
     bot.reply(message, 'Try: agenda` or `schedule` or `venue`');
