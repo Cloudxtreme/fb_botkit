@@ -878,3 +878,24 @@ controller.on('message_received,facebook_postback', function(bot, message) {
     bot.reply(message, 'Try: agenda` or `schedule` or `venue`');
     return false;
 });
+
+// test for quick replies
+
+controller.hears(['quick'], 'message_received', function(bot, message) {
+    bot.reply(message, {
+        text: 'Hey! This message has some quick replies attached.',
+        quick_replies: [
+            {
+                "content_type": "text",
+                "title": "Yes",
+                "payload": "yes",
+            },
+            {
+                "content_type": "text",
+                "title": "No",
+                "payload": "no",
+            }
+        ]
+    });
+
+});
