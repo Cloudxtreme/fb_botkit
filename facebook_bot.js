@@ -877,6 +877,7 @@ controller.hears(['organising_team'], 'message_received,facebook_postback', func
 // test for quick replies
 
 controller.hears(['quick'], 'message_received', function(bot, message) {
+    bot.startConversation(message, function (err, convo) {
     bot.reply(message, {
         text: 'Hey! This message has some quick replies attached.',
         quick_replies: [
@@ -889,9 +890,19 @@ controller.hears(['quick'], 'message_received', function(bot, message) {
                 "content_type": "text",
                 "title": "No",
                 "payload": "no",
+            },          {
+                "content_type": "text",
+                "title": "True",
+                "payload": "yes",
+            },
+            {
+                "content_type": "text",
+                "title": "False",
+                "payload": "no",
             }
         ]
     });
+  });
 });
 
 // Default message
