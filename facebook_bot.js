@@ -583,6 +583,10 @@ controller.hears(['flight_timings'], 'message_received,facebook_postback', funct
                     "type":"postback",
                     "title":"Main Menu",
                     "payload":"again_payload"
+                  },{
+                    "type":"postback",
+                    "title":"check",
+                    "payload":"who"
                   }
                 ]
               }
