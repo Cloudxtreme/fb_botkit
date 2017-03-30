@@ -99,6 +99,48 @@ controller.hears(['hi','start_payload','hello'], 'message_received,facebook_post
     });
 });
 
+// again_payload on go back menu option
+controller.hears(['again_payload'], 'message_received,facebook_postback', function(bot, message) {
+    bot.startConversation(message, function(err, convo) {
+        convo.say('What would you like to know more about...');
+        convo.ask({
+            attachment: {
+                'type': 'template',
+                'payload': {
+                    'template_type': 'generic',
+                    'elements': [
+                        {
+                            'title': 'ATUNE 2017',
+                            'image_url': 'https://dl.dropbox.com/s/6f4gqwfkng9vmjc/conference_1.png',
+                            'subtitle': '',
+                            'buttons': [
+                                {
+                                    'type': 'postback',
+                                    'title': 'Event',
+                                    'payload': 'Conference Details'
+                                },
+                                {
+                                    'type': 'postback',
+                                    'title': 'Location',
+                                    'payload': 'Location Details'
+                                },
+                                {
+                                    'type': 'postback',
+                                    'title': 'Travel',
+                                    'payload': 'Travel'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }, function(response, convo) {
+            // whoa, I got the postback payload as a response to my convo.ask!
+            convo.next();
+        });
+    });
+});
+
 // Menu->Event 
 controller.hears(['Conference Details'], 'message_received,facebook_postback', function(bot, message) {
         var attachment = {
@@ -199,7 +241,7 @@ controller.hears(['Weather','weather'], 'message_received,facebook_postback', fu
                   },{
                     "type":"postback",
                     "title":"Main Menu",
-                    "payload":"start_payload"
+                    "payload":"again_payload"
                   }                
                 ]
               }
@@ -214,47 +256,81 @@ controller.hears(['Weather','weather'], 'message_received,facebook_postback', fu
 // Menu->Location->Bhubaneshwar
 controller.hears(['Bhubaneshwar'], 'message_received,facebook_postback', function (bot, message) {
      bot.startConversation(message, function (err, convo) {
-     convo.ask({
-        "attachment":{
-            "type":"template",
-            "payload":{
-                'template_type': 'generic',
-                'elements': [
-                 {
-                    'title': 'Location Details',
-                    'image_url': 'https://dl.dropbox.com/s/gzoncsdgbvjfct0/bhubaneshwar_1.png',
-                    'subtitle': '',
-                    'buttons': [
+        convo.ask({
+            "attachment":{
+                "type":"template",
+                "payload":{
+                    'template_type': 'generic',
+                    'elements': [
                     {
-                        'type': 'postback',
-                        'title': 'Local Attraction',
-                        'payload': 'local_attraction'
-                    },{
-                        'type': 'postback',
-                        'title': 'Food',
-                        'payload': 'food'
-                    },
-                    {
-                        'type': 'postback',
-                        'title': 'Weather',
-                        'payload': 'Weather'
+                        'title': 'Location Details',
+                        'image_url': 'https://dl.dropbox.com/s/gzoncsdgbvjfct0/bhubaneshwar_1.png',
+                        'subtitle': '',
+                        'buttons': [
+                        {
+                            'type': 'postback',
+                            'title': 'Local Attraction',
+                            'payload': 'local_attraction'
+                        },{
+                            'type': 'postback',
+                            'title': 'Food',
+                            'payload': 'food'
+                        },
+                        {
+                            'type': 'postback',
+                            'title': 'Weather',
+                            'payload': 'Weather'
+                        }
+                        ]
                     }
                     ]
                 }
-                ]
             }
-        }
+        });
     });
-    });
- }); 
-
-
+}); 
 
 // Menu->Location->Bhubaneshwar->Local Attraction 
 controller.hears(['local_attraction'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
          convo.ask({
               'attachment': {
+                'type': 'template',
+                'payload': {
+                    'template_type': 'generic',
+                    'elements': [
+                        {
+                            'title': 'Location Attraction',
+                            "buttons":[
+                                        {
+                                        "type":"postback",
+                                        "title":"Lingaraja temple",
+                                        "payload":"lingaraja"
+                                        },
+                                        {
+                                        "type":"postback",
+                                        "title":"Nandankanan Zoological park",
+                                        "payload":"nandankanan"
+                                        },
+                                        {
+                                        "type":"postback",
+                                        "title":"Udaygiri And Khandagiri caves",
+                                        "payload":"udaygiri"
+                                        }
+                            ]
+                        }
+                    ]
+                }
+            }
+        });
+    });
+});
+
+// Menu->Location->Bhubaneshwar->Local Attraction->Lingaraja 
+controller.hears(['lingaraja'], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+         convo.ask({
+            'attachment': {
                 'type': 'template',
                 'payload': {
                     'template_type': 'generic',
@@ -269,9 +345,46 @@ controller.hears(['local_attraction'], 'message_received,facebook_postback', fun
                                             "url":"https://en.wikipedia.org/wiki/Lingaraja_Temple",
                                             "title":"View More Details... "
                                         },
-                             ]
-                        },
+                            ]
+                        }
+                    ]
+                }
+                    
+            }
+        });
+        convo.ask({
+            "attachment":{
+                "type":"template",
+                "payload":{
+                    "template_type":"button",
+                    "text":"What do you want to do next?",
+                    "buttons":[
                         {
+                        "type":"postback",
+                        "title":"Go Back",
+                        "payload":"local_attraction"
+                        },{
+                        "type":"postback",
+                        "title":"Main Menu",
+                        "payload":"again_payload"
+                        }                
+                    ]
+                }
+            }
+        });
+    });
+});
+
+// Menu->Location->Bhubaneshwar->Local Attraction->Nandankanan Zoological park 
+controller.hears(['nandankanan'], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+         convo.ask({
+            'attachment': {
+                'type': 'template',
+                'payload': {
+                    'template_type': 'generic',
+                    'elements': [
+                       {
                             'title': 'Nandankanan Zoological park',
                             'image_url': 'https://dl.dropbox.com/s/mh2zyckvupkga57/nandankanan_1.png',
                             'subtitle': 'It contains a botanical garden and part of it has been declared a sanctuary. Nandankanan, literally meaning The Garden of Heavens..',
@@ -282,9 +395,46 @@ controller.hears(['local_attraction'], 'message_received,facebook_postback', fun
                                             "title":"View More Details... "
                                         },
                              ]
-                        },
+                        }
+                    ]
+                }
+                    
+            }
+        });
+        convo.ask({
+            "attachment":{
+                "type":"template",
+                "payload":{
+                    "template_type":"button",
+                    "text":"What do you want to do next?",
+                    "buttons":[
                         {
-                            'title': 'Udaygiri And Khandagiri caves',
+                        "type":"postback",
+                        "title":"Go Back",
+                        "payload":"local_attraction"
+                        },{
+                        "type":"postback",
+                        "title":"Main Menu",
+                        "payload":"again_payload"
+                        }                
+                    ]
+                }
+            }
+        });
+    });
+});
+
+// Menu->Location->Bhubaneshwar->Local Attraction->Udayagiri and Khandagiri caves
+controller.hears(['udaygiri'], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+         convo.ask({
+            'attachment': {
+                'type': 'template',
+                'payload': {
+                    'template_type': 'generic',
+                    'elements': [
+                        {
+                            'title': 'Udayagiri and Khandagiri caves',
                             'image_url': 'https://dl.dropbox.com/s/dthpnjuvegfhnit/udayagiri_1.png',
                             'subtitle': 'Theses caves are partly natural and partly artificial caves of archaeological, historical and religious importance.. ',
                              "buttons":[
@@ -297,75 +447,32 @@ controller.hears(['local_attraction'], 'message_received,facebook_postback', fun
                         }
                     ]
                 }
+                    
             }
         });
-         convo.ask({
-              "attachment":{
-              "type":"template",
-              "payload":{
-                "template_type":"button",
-                "text":"What do you want to do next?",
-                "buttons":[
-                  {
-                    "type":"postback",
-                    "title":"Go Back",
-                    "payload":"Bhubaneshwar"
-                  },{
-                    "type":"postback",
-                    "title":"Main Menu",
-                    "payload":"start_payload"
-                  }                
-                ]
-              }
+        convo.ask({
+            "attachment":{
+                "type":"template",
+                "payload":{
+                    "template_type":"button",
+                    "text":"What do you want to do next?",
+                    "buttons":[
+                        {
+                        "type":"postback",
+                        "title":"Go Back",
+                        "payload":"local_attraction"
+                        },{
+                        "type":"postback",
+                        "title":"Main Menu",
+                        "payload":"again_payload"
+                        }                
+                    ]
+                }
             }
         });
     });
 });
 
-// Menu->Location->Bhubaneshwar->Local Attraction 
-controller.hears(['food'], 'message_received,facebook_postback', function (bot, message) {
-    bot.startConversation(message, function (err, convo) {
-        convo.say('Bhubaneshwar has the traditional Odisha delicacies as a major tourism center in India');
-        convo.say('Panchana Phutana special mixture used in most of dishes,Typically Odisha Meal tastes awsome too. ');
-          convo.ask({
-            "attachment":{
-            "type":"image",
-            "payload":{
-                "url":"https://s3-eu-west-1.amazonaws.com/sosnewbucketforlive/blog_img/strand_of_silk_-_journey_map_-_exploring_the_cuisine_of_odisha_-_lunch_thali.jpg"
-            }
-      }
-    });
-        convo.say('You cannot forget Rasgolla,Chamcham..');
-        convo.ask({
-            "attachment":{
-            "type":"image",
-            "payload":{
-                "url":"http://images.mapsofindia.com/my-india/Rasgulla-665x453.jpg"
-            }
-      }
-    });
-     convo.ask({
-              "attachment":{
-              "type":"template",
-              "payload":{
-                "template_type":"button",
-                "text":"What do you want to do next?",
-                "buttons":[
-                  {
-                    "type":"postback",
-                    "title":"Go Back",
-                    "payload":"Bhubaneshwar"
-                  },{
-                    "type":"postback",
-                    "title":"Main Menu",
-                    "payload":"start_payload"
-                  }                
-                ]
-              }
-            }
-        });
-    });
-});
 
 // Menu->Location->Bhubaneshwar->Organizers
 controller.hears(['organising_team'], 'message_received,facebook_postback', function (bot, message) {
@@ -468,7 +575,7 @@ controller.hears(['flight_timings'], 'message_received,facebook_postback', funct
                   },{
                     "type":"postback",
                     "title":"Main Menu",
-                    "payload":"start_payload"
+                    "payload":"again_payload"
                   }
                 ]
               }
@@ -510,7 +617,7 @@ controller.hears(['flight_status'], 'message_received,facebook_postback', functi
                   },{
                     "type":"postback",
                     "title":"Main Menu",
-                    "payload":"start_payload"
+                    "payload":"again_payload"
                   }
                 ]
               }
@@ -545,7 +652,7 @@ controller.hears(['Schedule duration','schedule','Schedule'], 'message_received,
                   },{
                     "type":"postback",
                     "title":"Main Menu",
-                    "payload":"start_payload"
+                    "payload":"again_payload"
                   }
                 ]
               }
@@ -609,7 +716,7 @@ controller.hears(['dress_code'], 'message_received,facebook_postback', function 
                   },{
                     "type":"postback",
                     "title":"Main Menu",
-                    "payload":"start_payload"
+                    "payload":"again_payload"
                   }
                 ]
               }
@@ -637,7 +744,7 @@ controller.hears(['swon_details'], 'message_received,facebook_postback', functio
                   },{
                     "type":"postback",
                     "title":"Main Menu",
-                    "payload":"start_payload"
+                    "payload":"again_payload"
                   }
                 ]
               }
@@ -668,7 +775,7 @@ controller.hears(['Agenda','agenda'], 'message_received,facebook_postback', func
                   },{
                     "type":"postback",
                     "title":"Main Menu",
-                    "payload":"start_payload"
+                    "payload":"again_payload"
                   }
                 ]
               }
@@ -703,7 +810,7 @@ controller.hears(['tips'], 'message_received,facebook_postback', function (bot, 
                   },{
                     "type":"postback",
                     "title":"Main Menu",
-                    "payload":"start_payload"
+                    "payload":"again_payload"
                   }
                 ]
               }
@@ -756,7 +863,7 @@ controller.hears(['Venue','venue'], 'message_received,facebook_postback', functi
                   },{
                     "type":"postback",
                     "title":"Main Menu",
-                    "payload":"start_payload"
+                    "payload":"again_payload"
                   }
                 ]
               }
@@ -804,7 +911,7 @@ controller.hears(['Sight Seeing'], 'message_received,facebook_postback', functio
                   },{
                     "type":"postback",
                     "title":"Main Menu",
-                    "payload":"start_payload"
+                    "payload":"again_payload"
                   }
                 ]
               }
@@ -832,7 +939,7 @@ controller.hears(['Accomodation'], 'message_received,facebook_postback', functio
                   },{
                     "type":"postback",
                     "title":"Main Menu",
-                    "payload":"start_payload"
+                    "payload":"again_payload"
                   }
                 ]
               }
@@ -862,7 +969,7 @@ controller.hears(['organising_team'], 'message_received,facebook_postback', func
                   },{
                     "type":"postback",
                     "title":"Main Menu",
-                    "payload":"start_payload"
+                    "payload":"again_payload"
                   }
                 ]
               }
@@ -884,7 +991,7 @@ controller.hears(['quick'], 'message_received', function(bot, message) {
             {
                 "content_type": "text",
                 "title": "Yes",
-                "payload": "hah",
+                "payload": "hey",
             },
             {
                 "content_type": "text",
@@ -893,7 +1000,7 @@ controller.hears(['quick'], 'message_received', function(bot, message) {
             },          {
                 "content_type": "text",
                 "title": "True",
-                "payload": "hah",
+                "payload": "yes",
             },
             {
                 "content_type": "text",
@@ -903,6 +1010,11 @@ controller.hears(['quick'], 'message_received', function(bot, message) {
         ]
     });
   });
+});
+
+// yes check payload
+controller.hears(['hey'],'message_received,facebook_postback', function(bot, message) {
+    bot.reply(message, 'you have clicked yes');
 });
 
 // Default message
