@@ -519,7 +519,7 @@ controller.hears(['Travel'], 'message_received,facebook_postback', function(bot,
 
 
 // yes check payload
-controller.hears(['who'],'message_received', function(bot, message) {
+controller.hears(['who'],'message_received,facebook_postback', function(bot, message) {
     bot.reply(message, 'you have clicked yes');
 });
 
