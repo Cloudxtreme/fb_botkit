@@ -873,11 +873,6 @@ controller.hears(['organising_team'], 'message_received,facebook_postback', func
     
 });
 
-// Default message
-controller.on('message_received,facebook_postback', function(bot, message) {
-    bot.reply(message, 'Try: agenda` or `schedule` or `venue`');
-    return false;
-});
 
 // test for quick replies
 
@@ -897,5 +892,11 @@ controller.hears(['quick'], 'message_received', function(bot, message) {
             }
         ]
     });
-
 });
+
+// Default message
+controller.on('message_received,facebook_postback', function(bot, message) {
+    bot.reply(message, 'Try: agenda` or `schedule` or `venue`');
+    return false;
+});
+
