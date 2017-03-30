@@ -998,7 +998,7 @@ controller.hears(['quick'], 'message_received', function(bot, message) {
             {
                 "content_type": "text",
                 "title": "Yes",
-                "payload": "hey",
+                "payload": "who",
             },
             {
                 "content_type": "text",
