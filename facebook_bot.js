@@ -517,6 +517,13 @@ controller.hears(['Travel'], 'message_received,facebook_postback', function(bot,
             });    
 });
 
+
+// yes check payload
+controller.hears(['who'],'message_received', function(bot, message) {
+    bot.reply(message, 'you have clicked yes');
+});
+
+
 //
 controller.hears(['flight_timings'], 'message_received,facebook_postback', function (bot, message) {
      bot.startConversation(message, function (err, convo) {
@@ -1012,10 +1019,7 @@ controller.hears(['quick'], 'message_received', function(bot, message) {
   });
 });
 
-// yes check payload
-controller.hears(['hey'],'message_received,facebook_postback', function(bot, message) {
-    bot.reply(message, 'you have clicked yes');
-});
+
 
 // Default message
 controller.on('message_received,facebook_postback', function(bot, message) {
