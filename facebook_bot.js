@@ -884,7 +884,7 @@ controller.hears(['quick'], 'message_received', function(bot, message) {
             {
                 "content_type": "text",
                 "title": "Yes",
-                "payload": "yes",
+                "payload": "hah",
             },
             {
                 "content_type": "text",
@@ -893,7 +893,7 @@ controller.hears(['quick'], 'message_received', function(bot, message) {
             },          {
                 "content_type": "text",
                 "title": "True",
-                "payload": "yes",
+                "payload": "hah",
             },
             {
                 "content_type": "text",
@@ -906,7 +906,7 @@ controller.hears(['quick'], 'message_received', function(bot, message) {
 });
 
 // yes check payload
-controller.on(['yes'],'message_received,facebook_postback', function(bot, message) {
+controller.on(['hah'],'message_received,facebook_postback', function(bot, message) {
     bot.reply(message, 'you have clicked yes');
 });
 
