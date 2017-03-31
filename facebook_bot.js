@@ -213,6 +213,7 @@ controller.hears(['Schedule duration','schedule','Schedule'], 'message_received,
 
 // ====================================== 1. Event Menu 1.3 OTHER DETAILS==================================================
 controller.hears(['Other Details'], 'message_received,facebook_postback', function (bot, message) {
+    bot.reply(message,'Well, do you want to know more about')
       var  attachment = {
                 'type': 'template',
                 'payload': {
@@ -274,7 +275,13 @@ function other_details_callback_menu(convo){
 // ====================================== 1. Event Menu 1.3 OTHER DETAILS 1.3.1 DRESS CODE================================
 controller.hears(['dress_code'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
-        convo.say('Dress code for the event would be Business Casuals.');
+        convo.say('Did you notice that I have two lovely Big Eyes?');
+        convo.say('You know why?'); 
+            convo.say('All the more to admire you :) '); 
+            convo.say('OK..OK.. Now back to the question. '); 
+            convo.say('Come dressed in your Business Casual attire. BTW, there is a photo session on 24-Apr-17 (Sun).');  
+            convo.say('I am planning to teleport one version of your pictures o Planet Mars and surprise my civilization.');  
+            convo.say('So be in your BEST EST business casual outfit.'); 
         other_details_callback_menu(convo)
     });
 });
@@ -285,6 +292,8 @@ controller.hears(['dress_code'], 'message_received,facebook_postback', function 
 // ====================================== 1. Event Menu 1.3 OTHER DETAILS 1.3.2 SWON DETAILS===================
 controller.hears(['swon_details'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
+        convo.say('Hmmm, now you are asking me about some number. ');
+        convo.say('I don’t really know about this hush-hush number and what it means, but I can tell you the number ☺');
         convo.say('SWON Number for Travel is 1042816');
         other_details_callback_menu(convo)
     });
@@ -295,9 +304,10 @@ controller.hears(['swon_details'], 'message_received,facebook_postback', functio
 // ====================================== 1. Event Menu 1.3 OTHER DETAILS 1.3.3 ORGANIZING TEAM===================
 controller.hears(['organising_team'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
-        convo.say('For Travel Details you can contact Mr.XYZABCD , Ph no: 9999955555');
-        convo.say('For Accomodation related queries and details you can contact Mr.ABCDEFG , Ph no: 9999944444');
-        convo.say('For Tourist Guidance you can contact Ms.ASDFGHJK , Ph no: 9999911111');
+        convo.say('You know, they are LOVELY and most approachable tribe in the universe.');
+        convo.say('I am planning to take them along with me when humans begin to colonize Planet Mars.');
+        convo.say('They will spurt out answers to any queries even when they are in their deep sleep. They are SO good.');
+        convo.say('So, just don’t bother to disturb them anytime. They probably will not answer your calls immediately, but they will not bite and eat you.');
         other_details_callback_menu(convo)
     });
 });
@@ -310,6 +320,12 @@ controller.hears(['organising_team'], 'message_received,facebook_postback', func
 // ====================================== Main Menu  2. Location==================================
 
 controller.hears(['Location Details','location','Location'], 'message_received,facebook_postback', function(bot, message) {
+    bot.reply(message,'Bhubaneshwar is one of the most historical places. I have been here a few decades back. ')
+    bot.reply(message,'Does the sentence "Home, Home Sweet Home" ring a bell? ');
+    bot.reply(message,'Yeah you are right. The movie ET.'); 
+    bot.reply(message,'Yeah that was me. Steven Spielberg had earlier introduced me to the world as ET.  Had been to Bhubaneshwar in that Avatar. The place has changed a lot. Lots of great places to go around.');
+    bot.reply(message,'Sorry, I keep talking a lot. Maybe I am fit to be a Manager in an IT firm ');
+    bot.reply(message,'OK, Let me know what you would like to know more about');
      var attachment =  {
                 'type': 'template',
                 'payload': {
@@ -371,7 +387,8 @@ function location_callback_menu(convo) {
 // ====================================== Main Menu  2. Location 2.1 VENUE==================================
 controller.hears(['Venue','venue'], 'message_received,facebook_postback', function(bot, message) {
      bot.startConversation(message, function(err, convo) {
-                convo.say('Hotel address is: 8-B, Jaydev Vihar, Bhubaneshwar, Odisha 751013');
+                convo.say('The event will be held at the Mayfair hotels. It is about 20 minutes from the airport.'); 
+                convo.say('Lovely Place that has held great events in the past.');
                 convo.say('You can also refer to link : http://www.mayfairhotels.com/ for more details');
                 convo.say('Mayfair Hotels Gallery');
                 convo.ask({
@@ -407,7 +424,13 @@ controller.hears(['Venue','venue'], 'message_received,facebook_postback', functi
 // ====================================== Main Menu  2. Location 2.2 ACCOMODATION==================================
 controller.hears(['Accomodation'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
-    convo.say('For Accomodation related queries and details you can contact Mr.ABCDEFG , Ph no: 9999944444');
+    convo.say('The Mayfair hotel is a 5 Star Delux hotel. It offers world class facilities. ');
+        convo.say('And by the way, did you know, it has a well-equipped gymnasium and a lovely pool? ');
+        convo.say('Oh yeah, forgot to mention, it is very vibrant at night :)  ');
+        convo.say('It is so vibrant that I could spot this hotel from Planet Mars! ');
+        convo.say('Would you believe it? Well you don’t, I know. ');
+        convo.say('Was just kidding');
+        convo.say('But trust me, it’s a great place');
     location_callback_menu(convo);
     convo.next();
     });
@@ -417,6 +440,8 @@ controller.hears(['Accomodation'], 'message_received,facebook_postback', functio
 // ====================================== Main Menu  2. Location 2.3 BHUBANESHWAR==================================
 controller.hears(['Bhubaneshwar'], 'message_received,facebook_postback', function (bot, message) {
      bot.startConversation(message, function (err, convo) {
+         convo.say('Bhubaneshwar has really lovely places to go around, out-of-the world food, and awesome weather. ')
+         convo.say('What would you like to know about?')
         convo.ask({
             "attachment":{
                 "type":"template",
@@ -480,6 +505,9 @@ function bhubaneshwar_callback_menu(convo) {
 // ============================ Main Menu  2. Location 2.1 BHUBANESHWAR 2.1.1.LOCAL ATTRACTION========================
 controller.hears(['local_attraction'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
+        convo.say('I am still awestruck at the marvelous creations in this part of the Universe.')
+        convo.say('I am running multiple advanced algorithms across multiple cloud vendors in trying to figure out “The Master Algorithm” used by the Creator. Hopefully the algorithm will help me understand time travel and destiny. ');
+        convo.say('I am still not done. However I wisely recommend to Visit Lingaraja Temple and suggest me a cue.')
          convo.ask({
               'attachment': {
                 'type': 'template',
@@ -542,6 +570,9 @@ function local_attraction_callback_menu(convo) {
 // Location => Bhubaneshwar => Local Attraction =>Lingaraja 
 controller.hears(['lingaraja'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
+        convo.say('Dont miss the Lingaraja Temple - Amazing architecture')
+        convo.say('Its the most prominant mark of the city. Do take selfies and post it on Whatsapp.')
+        convo.say('Else you will not be considered Human anymore ')
          convo.ask({
             'attachment': {
                 'type': 'template',
@@ -572,6 +603,9 @@ controller.hears(['lingaraja'], 'message_received,facebook_postback', function (
 // Location => Bhubaneshwar => Local Attraction => Nandankanan Zoological park 
 controller.hears(['nandankanan'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
+        convo.say('You dont get to see amazing life forms as you see here. ')
+        convo.say('It has a botanical garden and has been declared a sanctuary.')
+        convo.say('The purpose of your life will be fullfilled only if you step into this Park. So please plan accordingly')
          convo.ask({
             'attachment': {
                 'type': 'template',
