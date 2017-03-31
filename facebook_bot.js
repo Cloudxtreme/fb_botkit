@@ -55,13 +55,6 @@ var Utterances = {
 }
 
 
-// Default error message
-controller.on('message_received,facebook_postback', function(bot, message) {
-    bot.reply(message, 'Try: agenda` or `schedule` or `venue`');
-    return false;
-});
-
-
 // this is triggered when a user clicks the send-to-messenger plugin
 controller.on('facebook_optin', function (bot, message) {
     bot.reply(message, 'Welcome To My Chatbot Thanks Alot!')
@@ -891,4 +884,10 @@ controller.hears(['who'],'message_received,facebook_postback', function(bot, mes
 
 // ===============================TRIAL=================================================
 
+
+// Default error message
+controller.on('message_received,facebook_postback', function(bot, message) {
+    bot.reply(message, 'Try: agenda` or `schedule` or `venue`');
+    return false;
+});
 
