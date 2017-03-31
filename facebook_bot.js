@@ -121,10 +121,10 @@ controller.hears(['again_payload'], 'message_received,facebook_postback', functi
 
 // ====================================== Main Menu  1. Event================================
 controller.hears(['Conference Details','Event','conference'], 'message_received,facebook_postback', function(bot, message) {
-    bot.send(message, 'As you might already be knowing ATUNE is the ATU units annual networking event.');
-    bot.send(message, 'Three days of professional networking with associates across multiple functions.'); 
-    bot.send(message, 'This is going to be a great place to be for you to catapult your professional capabilities.');
-    bot.send(message, 'So yeah, what is it you would like to know about?');
+    bot.reply(message, 'As you might already be knowing ATUNE is the ATU units annual networking event.');
+    bot.reply(message, 'Three days of professional networking with associates across multiple functions.'); 
+    bot.reply(message, 'This is going to be a great place to be for you to catapult your professional capabilities.');
+    bot.reply(message, 'So yeah, what is it you would like to know about?');
         var attachment = {
                 'type': 'template',
                 'payload': {
@@ -187,11 +187,8 @@ function event_callback_menu(convo){
 // ====================================== 1. Event Menu 1.1 AGENDA================================
 controller.hears(['Agenda','agenda'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
-          convo.say('Day 0 : 22-Apr-2017: 5:00 PM onwards to 9:30 PM'); 
-          convo.say('Day 1 : 23-Apr-2017: 5:00 PM onwards to 9:30 PM');
-          convo.say('Day 2 : 24-Apr-2017: 5:00 PM onwards to 9:30 PM');  
-          convo.say('I can share further details once I get them. The Organizers are finalising as we speak');
-          event_callback_menu(convo);
+         convo.say('OK, The organizers have told me that this is ONLY for TCSers, so I would\'nt know much. But hey, dont worrry, Just go to Knome to get the full details');
+         event_callback_menu(convo);
     }); 
 });
 // ====================================== 1. Event Menu 1.1 AGENDA***********================================
@@ -200,7 +197,8 @@ controller.hears(['Agenda','agenda'], 'message_received,facebook_postback', func
 // ====================================== 1. Event Menu 1.2 SCHEDULE================================
 controller.hears(['Schedule duration','schedule','Schedule'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function(err, convo) {
-       convo.say('Conference schedule is marked below ');
+       convo.say('The event spans across three days. I am sure, you are going to have FRUITful Time. I am not talking about fruits ☺ ');
+       convo.say('The THREE days will fly like THREE minutes as you are going to Soak yourself in the Nectar of Networking')
        convo.ask({
         "attachment":{
         "type":"image",
