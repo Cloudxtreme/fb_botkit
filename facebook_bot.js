@@ -121,6 +121,10 @@ controller.hears(['again_payload'], 'message_received,facebook_postback', functi
 
 // ====================================== Main Menu  1. Event================================
 controller.hears(['Conference Details','Event','conference'], 'message_received,facebook_postback', function(bot, message) {
+    bot.send('As you might already be knowing ATUNE is the ATU units annual networking event.');
+    bot.send('Three days of professional networking with associates across multiple functions.'); 
+    bot.send('This is going to be a great place to be for you to catapult your professional capabilities.');
+    bot.send('So yeah, what is it you would like to know about?');
         var attachment = {
                 'type': 'template',
                 'payload': {
