@@ -736,11 +736,11 @@ controller.hears(['Weather','weather'], 'message_received,facebook_postback', fu
 // ====================================== Main Menu 3. Travel================================
 
 controller.hears(['Travel'], 'message_received,facebook_postback', function(bot, message) {
-    bot.reply('Just imagine that I was able to Land in Bhubaneshwar from Planet-Mars.')
-    bot.reply('It only goes on to say that the city is so well connected.');
-    bot.reply('Bhubaneshwar attracts more than a million tourists in a year from all over the universe and Flights and Flying Saucers reach this city at all times.');
-    bot.reply('OK OK. Someone please stop me from chatting.....')
-    bot.reply('What would you like to know')
+    bot.reply(message,'Just imagine that I was able to Land in Bhubaneshwar from Planet-Mars.');
+    bot.reply(message,'It only goes on to say that the city is so well connected.');
+    bot.reply(message,'Bhubaneshwar attracts more than a million tourists in a year from all over the universe and Flights and Flying Saucers reach this city at all times.');
+    bot.reply(message,'OK OK. Someone please stop me from chatting.....');
+    bot.reply(message,'What would you like to know');
     var  attachment = {
                 'type': 'template',
                 'payload': {
