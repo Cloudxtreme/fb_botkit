@@ -636,6 +636,13 @@ controller.hears(['nandankanan'], 'message_received,facebook_postback', function
 // Location => Bhubaneshwar => Local Attraction => Udayagiri and Khandagiri caves
 controller.hears(['udaygiri'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
+        convo.say('I learnt natural caves were created without hand or shaping tools.')
+        convo.say('Many Saintly embodiments takes shelter here to realize true nature with the undeterred self. ')
+        convo.say('Even your earthly being Alibaba prospered by snooping into the cave with magical word where the treasures robbed by folly Thieves were stored.')
+        convo.say('You can also snoop out a secret code and in Udayagiri and Khandhagiri caves and share it to me..')
+        convo.say('Not to forget, this is a mind boggling place. It is an archeological gem. ')
+        convo.say('Its partly natural and partly artificial ')
+        convo.say('Hmmm, should I say "Hybrid" so that you Techie creatures understand better :) Well go see it to figure it yourself')
          convo.ask({
             'attachment': {
                 'type': 'template',
@@ -680,6 +687,11 @@ controller.hears(['food'], 'message_received,facebook_postback', function (bot, 
             }
             }
         });
+        convo.say('Did you know how to calculate the Volume of a Sphere? Well it is (Pie * Radius /3). ')
+        convo.say('Yeah, you will see a lot of white spheres in Bhubaneshwar dipped in sugary syrup. ')
+        convo.say('When you see \'em dont sit and calculate the volume. Also, you are welcome to invoke selective amnesia about your weight or what the Blood Sugar reading says. ')
+        convo.say('Just Pick-it and Gobble it.Thats it… ')
+        convo.say('These white spheres soaked with ambrosia take you directly to a place called Heaven. It is unbelievable. ')
         convo.say('You cannot forget Rasgolla,Chamcham..');
         convo.ask({
             "attachment":{
@@ -689,6 +701,7 @@ controller.hears(['food'], 'message_received,facebook_postback', function (bot, 
                 }
             }
         });
+        
        bhubaneshwar_callback_menu(convo);
     });
 });  
@@ -702,11 +715,12 @@ controller.hears(['Weather','weather'], 'message_received,facebook_postback', fu
             var  forecast = JSON.stringify(JSON.parse(body)[0].WeatherText).replace( /"/g, "" );
             var  temp     = JSON.stringify(JSON.parse(body)[0].Temperature.Metric.Value);
             var degree    = JSON.stringify(JSON.parse(body)[0].Temperature.Metric.Unit).replace( /"/g, "" );
-            convo.say('As you know, I am a nice person');
-            convo.say('I collected the weather information for you upfront, so that you can plan better and have a lovely time ☺ ');
-            convo.say('The forecasted weather for Bhubaneshwar on 23rd April is'+ forecast+temp+degree); 
-            convo.say('The forecasted weather for Bhubaneshwar on 23rd April is'+ forecast+temp+degree); 
-            convo.say('I bet you will enjoy the weather ☼');
+            convo.say('Do you know the temperature in Mars? ');
+            convo.say('It is not too bad for human occupation, though a bit unpredictable weather sometimes. Don’t be scared, you are welcome to colonize .');
+            convo.say('We will sure enjoy your company. Btw, the weather in Bhubaneshwar is next to perfect.'); 
+            convo.say('My Machine Learning Forecasting algorithm says that the temperature is going to hover around  27C - Sunny for all three days.'); 
+            convo.say('Night seems to be cooler at <20*>, and with cool breeze smearing aside, sets out to be perfect weather for a cozy walk.');
+            convo.say('So yeah, its not even next to perfect. Its perfect weather condition')
         }
         });
         bhubaneshwar_callback_menu(convo);
@@ -717,13 +731,16 @@ controller.hears(['Weather','weather'], 'message_received,facebook_postback', fu
 
 // ============================ Main Menu  2. Location 2.1 BHUBANESHWAR *************==========
 
-// ====================================== Main Menu 2.Location************===================================
-
 //============================================END OF LOCATION================================================
 
 // ====================================== Main Menu 3. Travel================================
 
 controller.hears(['Travel'], 'message_received,facebook_postback', function(bot, message) {
+    bot.reply('Just imagine that I was able to Land in Bhubaneshwar from Planet-Mars.')
+    bot.reply('It only goes on to say that the city is so well connected.');
+    bot.reply('Bhubaneshwar attracts more than a million tourists in a year from all over the universe and Flights and Flying Saucers reach this city at all times.');
+    bot.reply('OK OK. Someone please stop me from chatting.....')
+    bot.reply('What would you like to know')
     var  attachment = {
                 'type': 'template',
                 'payload': {
@@ -784,8 +801,8 @@ function travel_callback_menu(convo) {
 // ====================================== Main Menu 3. Travel 3.1 Flight Tips================================
 controller.hears(['tips'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
-    convo.say('For associates travelling from outside India, if you are carrying laptop/tablet PC etc. suggest to carry an international power adapter. Also please refer to Ultimatix: Advisory: Electronics Ban on flights.');
-    convo.say('Please carry your original Government issued Photo ID (Passport, Driver license etc.) to produce at the Venue during check-in.');
+    convo.say('Well, here is my piece of wisdom for all those who are travelling from outside of India - Do carry an international or intergalactic power adaptor - Also, check out on the electronic ban on many major airlines.');
+    convo.say('Do remember to carry your identifications cards.  ');
     travel_callback_menu(convo);
     });
 });
@@ -796,7 +813,10 @@ controller.hears(['tips'], 'message_received,facebook_postback', function (bot, 
 // ====================================== Main Menu 3. Travel 3.2 Flight Timings================================
 controller.hears(['flight_timings'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
-    convo.say('Flight Timings are:');
+    convo.say('You must have realized by now that I am such a nice person. ')
+        convo.say('Yes, to make things easier for you, I have grabbed all the timing information on all the flights arriving and leaving Bhubaneshwar. ')
+        convo.say('I am sure you are feeling so good about me right now and are wondering how you could reciprocate my hospitality.')
+        convo.say('Dont worry, I accept bitcoins. Feel free to shower me with as many bitcoins as you can, btw did you know, Bitcoin is going to be currency that will be used when humans colonize Planet Mars')
           convo.ask({
             "attachment":{
             "type":"image",
@@ -847,7 +867,9 @@ controller.hears(['flight_timings'], 'message_received,facebook_postback', funct
 
 controller.hears(['flight_status'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
-        convo.say('Flight Status is :');
+        convo.say('You want to know the real-time status of your flights - Dont worry - My Machine Learning, API fied, AI based, Microserviced, Hybrid cloud facilited, Augmented Reality Mobile app will give you the status :)) ');
+        convo.say('So you think I am fit to defend techie proposals? ')
+        convo.say('Yes, I can read your mind using my Vision Analysis Algorithms and I know you agree with me ')
         convo.ask({
             "attachment":{
             "type":"template",
