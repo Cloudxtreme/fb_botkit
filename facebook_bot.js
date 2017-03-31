@@ -936,26 +936,7 @@ controller.hears(['Sight Seeing'], 'message_received,facebook_postback', functio
 controller.hears(['Accomodation'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
     convo.say('For Accomodation related queries and details you can contact Mr.ABCDEFG , Ph no: 9999944444');
-        convo.ask({
-              "attachment":{
-              "type":"template",
-              "payload":{
-                "template_type":"button",
-                "text":"What do you want to do next?",
-                "buttons":[
-                  {
-                    "type":"postback",
-                    "title":"Go Back",
-                    "payload":"Location Details"
-                  },{
-                    "type":"postback",
-                    "title":"Main Menu",
-                    "payload":"again_payload"
-                  }
-                ]
-              }
-            }
-        });
+    main_menu(convo);
     convo.next();
     });
 });
@@ -966,7 +947,14 @@ controller.hears(['organising_team'], 'message_received,facebook_postback', func
         convo.say('For Travel Details you can contact Mr.XYZABCD , Ph no: 9999955555');
         convo.say('For Accomodation related queries and details you can contact Mr.ABCDEFG , Ph no: 9999944444');
         convo.say('For Tourist Guidance you can contact Ms.ASDFGHJK , Ph no: 9999911111');
-        convo.ask({
+    convo.next();
+    });
+    
+});
+
+//again_payload
+function main_menu(convo) {
+convo.ask({
               "attachment":{
               "type":"template",
               "payload":{
@@ -986,12 +974,7 @@ controller.hears(['organising_team'], 'message_received,facebook_postback', func
               }
             }
         });
-    convo.next();
-    });
-    
-});
-
-
+}
 // test for quick replies
 
 controller.hears(['quick'], 'message_received', function(bot, message) {
