@@ -23,9 +23,7 @@ controller.setupWebserver(process.env.PORT || process.env.port || 3000, function
 });
 
 // thread settings
-//controller.api.thread_settings.greeting('Welcome to ATUNE Event. I am ATUNE Bot to provide event details');
-controller.api.thread_settings.greeting('Hello {{user_name}}! Welcome to ATUNE Event. I am ATUNE Bot to provide event details!');
-
+controller.api.thread_settings.greeting('Welcome to ATUNE Event. I am ATUNE Bot to provide event details');
 
 controller.api.thread_settings.get_started('start_payload');
 
@@ -102,12 +100,27 @@ function main_menu(convo) {
         convo.next();
     });
 }
+
+// get user name
+var user_name;
+getUserName = function(response, convo) {
+var usersPublicProfile = 'https://graph.facebook.com/v2.6/' + response.user + '?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=' + process.env.page_token;
+request({
+    url: usersPublicProfile,
+    json: true // parse
+}, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            user_name = body.first_name + body.last_name;
+        }
+    });
+};
+
 // starting with hi and start_payload
 var welcome_message = ['^hi$','^start_payload$','^hello$','^start$','^hey$','^whatsup$','^howsu$']
 
 controller.hears(welcome_message, 'message_received,facebook_postback', function(bot, message) {
     bot.startConversation(message, function(err, convo) {
-        convo.say('Hi Geeks, I am BhubaBot. Nice to meet you ☺ ')
+        convo.say('Hi '+user_name+', I am BhubaBot. Nice to meet you ☺ ')
         convo.say('Did you know, I am from Planet Mars - Elon Musk pulled me back in a SpaceX Falcon Rocket  ');
         convo.say('You know why? To give you Geeks some valuable info  and also, to savor the lovely Bhubaneshwar delicacies- Especially the Rosgollas. OK. ');
         convo.say('Now that I know a little about Bhubaneshwar and also have managed to grasp a little bit of English, I might be able to help you.');
