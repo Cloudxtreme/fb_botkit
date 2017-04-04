@@ -110,10 +110,14 @@ request({
     json: true // parse
 }, function (error, response, body) {
         if (!error && response.statusCode === 200) {
-            user_name = body.first_name + body.last_name;
+            console.log(body.first_name);
+            console.log(body.last_name);
+            user_name = body.first_name;
         }
     });
 };
+
+
 
 // starting with hi and start_payload
 var welcome_message = ['^hi$','^start_payload$','^hello$','^start$','^hey$','^whatsup$','^howsu$']
