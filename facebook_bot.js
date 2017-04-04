@@ -100,7 +100,7 @@ function main_menu(convo) {
     });
 }
 // starting with hi and start_payload
-var welcome_message = ['hi','start_payload','hello','start']
+var welcome_message = ['^hi$','^start_payload$','^hello$','^start']
 
 controller.hears(welcome_message, 'message_received,facebook_postback', function(bot, message) {
     bot.startConversation(message, function(err, convo) {
