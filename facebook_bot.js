@@ -100,16 +100,15 @@ function main_menu(convo) {
     });
 }
 // starting with hi and start_payload
+var welcome_message = ['hi','start_payload','hello','start']
 
-controller.hears(['hi','start_payload','hello'], 'message_received,facebook_postback', function(bot, message) {
-    bot.startTyping(message, function () {
+controller.hears(welcome_message, 'message_received,facebook_postback', function(bot, message) {
     bot.startConversation(message, function(err, convo) {
         convo.say('Hi Geeks, I am BhubaBot. Nice to meet you ☺ ')
         convo.say('Did you know, I am from Planet Mars - Elon Musk pulled me back in a SpaceX Falcon Rocket  ');
         convo.say('You know why? To give you Geeks some valuable info  and also, to savor the lovely Bhubaneshwar delicacies- Especially the Rosgollas. OK. ');
         convo.say('Now that I know a little about Bhubaneshwar and also have managed to grasp a little bit of English, I might be able to help you.');
         main_menu(convo);
-    });
     });
 });
 
