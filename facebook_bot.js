@@ -71,7 +71,7 @@ function main_menu(convo) {
                 'elements': [
                     {
                         'title': 'ATUNE 2017',
-                        'image_url': 'https://dl.dropbox.com/s/6f4gqwfkng9vmjc/conference_1.png',
+                        'image_url': 'https://bhubabot.blob.core.windows.net/images/conference_1.png',
                         'subtitle': '',
                         'buttons': [
                             {
@@ -135,7 +135,7 @@ controller.hears(event, 'message_received,facebook_postback', function(bot, mess
                     'elements': [
                         {
                             'title': 'Event',
-                            'image_url': 'http://www.safety4sea.com/wp-content/uploads/2015/11/Conference.jpg',
+                            'image_url': 'https://bhubabot.blob.core.windows.net/images/conference.jpg',
                             'subtitle': '',
                             'buttons': [
                                 {
@@ -226,7 +226,7 @@ controller.hears(['^Other Details$',"^others$","^other$"], 'message_received,fac
                     'elements': [
                         {
                             'title': 'Other Details',
-                            'image_url': 'http://www.spring.org.uk/images/helping_hand4.jpg',
+                            'image_url': 'https://bhubabot.blob.core.windows.net/images/other.png',
                             'buttons': [
                                 {
                                     'type': 'postback',
@@ -338,7 +338,7 @@ controller.hears(['^Location Details$','^Location$'], 'message_received,facebook
                     'elements': [
                         {
                             'title': 'Location Details',
-                            'image_url': 'http://www.aids2016.org/portals/0/Image/Thumb/pic_venue_outdoor.jpg?ver=2015-11-04-120531-493',
+                            'image_url': 'https://bhubabot.blob.core.windows.net/images/outdoor_conference.jpg',
                             'subtitle': '',
                             'buttons': [
                                 {
@@ -404,17 +404,17 @@ controller.hears(['^venue$'], 'message_received,facebook_postback', function(bot
                                 'elements': [
                                     {
                                         'title': 'Aerial View of Cottages with Lagoon',
-                                        'image_url': 'https://dl.dropbox.com/s/9ijlj0rs0cmtgb5/hotel_1.png'
+                                        'image_url': 'https://bhubabot.blob.core.windows.net/images/hotel_1.png'
                                     },{
                                         "title": "Evening View of Lagoon",
-                                        "image_url": "https://dl.dropbox.com/s/8w3q9fjx2st2gh0/hotel_2.png"
+                                        "image_url": "https://bhubabot.blob.core.windows.net/images/hotel_2.png"
                                     }, {
                                         "title": "Lobby Mayfair Lagoon",
-                                        "image_url": "https://dl.dropboxusercontent.com/s/alzatuiz50f8f39/hotel_3.png"
+                                        "image_url": "https://bhubabot.blob.core.windows.net/images/hotel_3.png"
                                     },
                                     {
                                         "title": "Evening View MAYFAIR Lagoon",
-                                        "image_url": "https://dl.dropbox.com/s/0g6tuzao3jsn5ni/hotel_4.png"
+                                        "image_url": "https://bhubabot.blob.core.windows.net/images/hotel_4.png"
                                     }
                                 ]
                             }
@@ -455,7 +455,7 @@ controller.hears(['^Bhubaneshwar$','^bhubaneswar$','^bubaneswar$'], 'message_rec
                     'elements': [
                     {
                         'title': 'Location Details',
-                        'image_url': 'https://dl.dropbox.com/s/gzoncsdgbvjfct0/bhubaneshwar_1.png',
+                        'image_url': 'https://bhubabot.blob.core.windows.net/images/bhubaneshwar_1.png',
                         'subtitle': '',
                         'buttons': [
                         {
@@ -588,7 +588,7 @@ controller.hears(['^lingaraja$'], 'message_received,facebook_postback', function
                     'elements': [
                         {
                             'title': 'Lingaraja temple',
-                            'image_url': 'https://dl.dropbox.com/s/gzoncsdgbvjfct0/bhubaneshwar_1.png',
+                            'image_url': 'https://bhubabot.blob.core.windows.net/images/bhubaneshwar_1.png',
                             'subtitle': 'Temple is the most prominent mark of the city.Is the largest temple i the city..',
                             "buttons":[
                                         {
@@ -621,7 +621,7 @@ controller.hears(['^nandankanan$'], 'message_received,facebook_postback', functi
                     'elements': [
                        {
                             'title': 'Nandankanan Zoological park',
-                            'image_url': 'https://dl.dropbox.com/s/mh2zyckvupkga57/nandankanan_1.png',
+                            'image_url': 'https://bhubabot.blob.core.windows.net/images/nandankanan_1.png',
                             'subtitle': 'It contains a botanical garden and part of it has been declared a sanctuary. Nandankanan, literally meaning The Garden of Heavens..',
                              "buttons":[
                                         {
@@ -658,7 +658,7 @@ controller.hears(['^udaygiri$'], 'message_received,facebook_postback', function 
                      'elements': [		
                          {		
                              'title': 'Udayagiri and Khandagiri caves',		
-                             'image_url': 'https://dl.dropbox.com/s/dthpnjuvegfhnit/udayagiri_1.png',		
+                             'image_url': 'https://bhubabot.blob.core.windows.net/images/udayagiri_1.png',		
                              'subtitle': 'Theses caves are partly natural and partly artificial caves of archaeological, historical and religious importance.. ',		
                               "buttons":[		
                                          {		
