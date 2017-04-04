@@ -103,7 +103,6 @@ function main_menu(convo) {
 var welcome_message = ['^hi$','^start_payload$','^hello$','^start$','^hey$','^whatsup$','^howsu$']
 
 controller.hears(welcome_message, 'message_received,facebook_postback', function(bot, message) {
-    bot.reply(message, "Hi"+message.name);
     bot.startConversation(message, function(err, convo) {
         convo.say('Hi Geeks, I am BhubaBot. Nice to meet you ☺ ')
         convo.say('Did you know, I am from Planet Mars - Elon Musk pulled me back in a SpaceX Falcon Rocket  ');
