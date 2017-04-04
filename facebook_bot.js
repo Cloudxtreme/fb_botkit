@@ -217,7 +217,7 @@ controller.hears(schedule, 'message_received,facebook_postback', function (bot, 
 });
 
 // ====================================== 1. Event Menu 1.3 OTHER DETAILS==================================================
-controller.hears(['Other Details',"others","other"], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['^Other Details$',"^others$","^other$"], 'message_received,facebook_postback', function (bot, message) {
     bot.reply(message,'Well, do you want to know more about')
       var  attachment = {
                 'type': 'template',
@@ -278,7 +278,7 @@ function other_details_callback_menu(convo){
 }
 
 // ====================================== 1. Event Menu 1.3 OTHER DETAILS 1.3.1 DRESS CODE================================
-controller.hears(['dress_code'], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['^dress_code$','^dress code$','^dress$'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
         convo.say('Did you notice that I have two lovely Big Eyes?');
         convo.say('You know why?'); 
@@ -295,7 +295,7 @@ controller.hears(['dress_code'], 'message_received,facebook_postback', function 
 
 
 // ====================================== 1. Event Menu 1.3 OTHER DETAILS 1.3.2 SWON DETAILS===================
-controller.hears(['swon_details'], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['^swon_details$','^swon$'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
         convo.say('Hmmm, now you are asking me about some number. ');
         convo.say('I don’t really know about this hush-hush number and what it means, but I can tell you the number ☺');
@@ -307,7 +307,7 @@ controller.hears(['swon_details'], 'message_received,facebook_postback', functio
 // ====================================== 1. Event Menu 1.3 OTHER DETAILS 1.3.2 SWON DETAILS**************===================
 
 // ====================================== 1. Event Menu 1.3 OTHER DETAILS 1.3.3 ORGANIZING TEAM===================
-controller.hears(['organising_team'], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['organising_team','^organizer$','^organiser$','^team$','^volunteer$'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
         convo.say('You know, they are LOVELY and most approachable tribe in the universe.');
         convo.say('I am planning to take them along with me when humans begin to colonize Planet Mars.');
@@ -324,7 +324,7 @@ controller.hears(['organising_team'], 'message_received,facebook_postback', func
 
 // ====================================== Main Menu  2. Location==================================
 
-controller.hears(['Location Details','location','Location'], 'message_received,facebook_postback', function(bot, message) {
+controller.hears(['^Location Details$','^Location$'], 'message_received,facebook_postback', function(bot, message) {
     bot.reply(message,'Bhubaneshwar is one of the most historical places. I have been here a few decades back. ')
     bot.reply(message,'Does the sentence "Home, Home Sweet Home" ring a bell? ');
     bot.reply(message,'Yeah you are right. The movie ET.'); 
@@ -390,7 +390,7 @@ function location_callback_menu(convo) {
 }
 
 // ====================================== Main Menu  2. Location 2.1 VENUE==================================
-controller.hears(['Venue','venue'], 'message_received,facebook_postback', function(bot, message) {
+controller.hears(['^venue$'], 'message_received,facebook_postback', function(bot, message) {
      bot.startConversation(message, function(err, convo) {
                 convo.say('The event will be held at the Mayfair hotels. It is about 20 minutes from the airport.'); 
                 convo.say('Lovely Place that has held great events in the past.');
@@ -427,7 +427,7 @@ controller.hears(['Venue','venue'], 'message_received,facebook_postback', functi
 // ====================================== Main Menu  2. Location 2.1 VENUE**********========================
 
 // ====================================== Main Menu  2. Location 2.2 ACCOMODATION==================================
-controller.hears(['Accomodation'], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['^Accomodation$','^stay$','^rooms$','^room details$','^acomodation$','^accommodation$'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
     convo.say('The Mayfair hotel is a 5 Star Delux hotel. It offers world class facilities. ');
         convo.say('And by the way, did you know, it has a well-equipped gymnasium and a lovely pool? ');
@@ -443,7 +443,7 @@ controller.hears(['Accomodation'], 'message_received,facebook_postback', functio
 // ====================================== Main Menu  2. Location 2.2 ACCOMODATION************======================
 
 // ====================================== Main Menu  2. Location 2.3 BHUBANESHWAR==================================
-controller.hears(['Bhubaneshwar'], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['^Bhubaneshwar$','^bhubaneswar$','^bubaneswar$'], 'message_received,facebook_postback', function (bot, message) {
      bot.startConversation(message, function (err, convo) {
          convo.say('Bhubaneshwar has really lovely places to go around, out-of-the world food, and awesome weather. ')
          convo.say('What would you like to know about?')
@@ -508,7 +508,9 @@ function bhubaneshwar_callback_menu(convo) {
 // ====================================== Main Menu  2. Location 2.3 BHUBANESHWAR*******==============================
 
 // ============================ Main Menu  2. Location 2.1 BHUBANESHWAR 2.1.1.LOCAL ATTRACTION========================
-controller.hears(['local_attraction'], 'message_received,facebook_postback', function (bot, message) {
+var attraction = ['^local_attraction$',"^Location Attraction$","^sight seeing$","^tourist$","^place to visit$","^place to travel$","^refreshment$","^place to see$","tourist spot$","^list of places
+$","^attractions$",'^tourist place$']
+controller.hears(attraction, 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
         convo.say('I am still awestruck at the marvelous creations in this part of the Universe.')
         convo.say('I am running multiple advanced algorithms across multiple cloud vendors in trying to figure out “The Master Algorithm” used by the Creator. Hopefully the algorithm will help me understand time travel and destiny. ');
@@ -573,7 +575,7 @@ function local_attraction_callback_menu(convo) {
 
 
 // Location => Bhubaneshwar => Local Attraction =>Lingaraja 
-controller.hears(['lingaraja'], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['^lingaraja$'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
         convo.say('Dont miss the Lingaraja Temple - Amazing architecture')
         convo.say('Its the most prominant mark of the city. Do take selfies and post it on Whatsapp.')
@@ -606,7 +608,7 @@ controller.hears(['lingaraja'], 'message_received,facebook_postback', function (
 });
 
 // Location => Bhubaneshwar => Local Attraction => Nandankanan Zoological park 
-controller.hears(['nandankanan'], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['^nandankanan$'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
         convo.say('You dont get to see amazing life forms as you see here. ')
         convo.say('It has a botanical garden and has been declared a sanctuary.')
@@ -639,7 +641,7 @@ controller.hears(['nandankanan'], 'message_received,facebook_postback', function
 });
 
 // Location => Bhubaneshwar => Local Attraction => Udayagiri and Khandagiri caves
-controller.hears(['udaygiri'], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['^udaygiri$'], 'message_received,facebook_postback', function (bot, message) {
    bot.startConversation(message, function (err, convo) {
        convo.say('I learnt natural caves were created without hand or shaping tools.')
        convo.say('Many Saintly embodiments takes shelter here to realize true nature with the undeterred self. ')
@@ -680,7 +682,7 @@ controller.hears(['udaygiri'], 'message_received,facebook_postback', function (b
  		
  // ============================ Main Menu  2. Location 2.1 BHUBANESHWAR 2.1.1.FOOD========================		
  		
- controller.hears(['food'], 'message_received,facebook_postback', function (bot, message) {		
+ controller.hears(['^food$',"^trending foods$","^dishes$","^dish$","^food$"], 'message_received,facebook_postback', function (bot, message) {		
      bot.startConversation(message, function (err, convo) {		
          convo.say('Bhubaneshwar has the traditional Odisha delicacies as a major tourism center in India');		
          convo.say('Panchana Phutana special mixture used in most of dishes,Typically Odisha Meal tastes awsome too. ');		
@@ -713,7 +715,7 @@ controller.hears(['udaygiri'], 'message_received,facebook_postback', function (b
  // ============================ Main Menu  2. Location 2.1 BHUBANESHWAR 2.1.1.FOOD**************==========		
  		
  // ============================ Main Menu  2. Location 2.1 BHUBANESHWAR 2.1.1.WEATHER=====================		
- controller.hears(['Weather','weather'], 'message_received,facebook_postback', function (bot, message) {		
+ controller.hears(['^Weather$','^climate$',"^temperature$","^weather condition$",""], 'message_received,facebook_postback', function (bot, message) {		
      bot.startConversation(message, function (err, convo) {		
          request('http://apidev.accuweather.com/currentconditions/v1/1-189781_1_AL.json?language=en&apikey=hoArfRosT1215', function (error, response, body) {		
          if (!error && response.statusCode == 200) {		
@@ -740,7 +742,7 @@ controller.hears(['udaygiri'], 'message_received,facebook_postback', function (b
  		
  // ====================================== Main Menu 3. Travel================================		
  		
- controller.hears(['Travel'], 'message_received,facebook_postback', function(bot, message) {		
+ controller.hears(['^Travel$','^journey$','^travel guide$','^journey guide$'], 'message_received,facebook_postback', function(bot, message) {		
      bot.reply(message,'Just imagine that I was able to Land in Bhubaneshwar from Planet-Mars.');		
      bot.reply(message,'It only goes on to say that the city is so well connected.');		
      bot.reply(message,'Bhubaneshwar attracts more than a million tourists in a year from all over the universe and Flights and Flying Saucers reach this city at all times.');		
@@ -804,7 +806,7 @@ controller.hears(['udaygiri'], 'message_received,facebook_postback', function (b
      });		
  }		
  // ====================================== Main Menu 3. Travel 3.1 Flight Tips================================		
- controller.hears(['tips'], 'message_received,facebook_postback', function (bot, message) {		
+ controller.hears(['tips','^tour tip$','^guide$','^trip guide$'], 'message_received,facebook_postback', function (bot, message) {		
      bot.startConversation(message, function (err, convo) {		
      convo.say('Well, here is my piece of wisdom for all those who are travelling from outside of India - Do carry an international or intergalactic power adaptor - Also, check out on the electronic ban on many major airlines.');		
      convo.say('Do remember to carry your identifications cards.  ');		
@@ -816,7 +818,7 @@ controller.hears(['udaygiri'], 'message_received,facebook_postback', function (b
  		
  		
  // ====================================== Main Menu 3. Travel 3.2 Flight Timings================================		
- controller.hears(['flight_timings'], 'message_received,facebook_postback', function (bot, message) {		
+ controller.hears(['^flight_timings$',"^flight$","^flight time$","^plane timings$","^flight schedule$"], 'message_received,facebook_postback', function (bot, message) {		
      bot.startConversation(message, function (err, convo) {		
     convo.say('You must have realized by now that I am such a nice person. ')		
          convo.say('Yes, to make things easier for you, I have grabbed all the timing information on all the flights arriving and leaving Bhubaneshwar. ')		
@@ -870,7 +872,7 @@ controller.hears(['udaygiri'], 'message_received,facebook_postback', function (b
  		
  // ====================================== Main Menu 3. Travel 3.3 Flight Status==============================		
  		
- controller.hears(['flight_status'], 'message_received,facebook_postback', function (bot, message) {		
+ controller.hears(['^flight_status$','^flight status$","^flight stats$"], 'message_received,facebook_postback', function (bot, message) {		
      bot.startConversation(message, function (err, convo) {		
          convo.say('You want to know the real-time status of your flights - Dont worry - My Machine Learning, API fied, AI based, Microserviced, Hybrid cloud facilited, Augmented Reality Mobile app will give you the status :)) ');		
          convo.say('So you think I am fit to defend techie proposals? ')		
@@ -903,7 +905,7 @@ controller.hears(['udaygiri'], 'message_received,facebook_postback', function (b
  		
  // COMMON MATCHES		
  // ATUNE MATCH		
- controller.hears(['ATUNE','atune'], 'message_received,facebook_postback', function (bot, message) {		
+ controller.hears(['^atune$','^atune 2017$','^atune-2017$'], 'message_received,facebook_postback', function (bot, message) {		
      bot.startConversation(message, function (err, convo) {		
      convo.say('ATUNE is ATU networking program that arranges conference yearly twice.this is the second one.');		
      });		
@@ -940,17 +942,40 @@ controller.hears(['udaygiri'], 'message_received,facebook_postback', function (b
    });		
  });		
  		
- // yes check payload		
- controller.hears(['who'],'message_received,facebook_postback', function(bot, message) {		
-     bot.reply(message, 'you have clicked yes');		
+ // general / faq
+
+controller.hears(['^who are you$',"^tell me about yourself$","^what do you know$","^why are you created$","^what are you doing$"],'message_received,facebook_postback', function(bot, message) {		
+     bot.reply(message, 'I am BhubaBot.');		
+     bot.reply(message, 'I am here');
+     bot.reply(message, 'You know why?');
+     bot.reply(message, 'To give you Geeks some valuable info ☺ and also, to savor the lovely Bhubaneshwar delicacies- Especially the Rosgollas.');
  });		
  		
+controller.hears(["^who created you$","^who is your father$"],'message_received,facebook_postback', function(bot, message) {		
+     bot.reply(message, 'I have been created by');		
+     bot.reply(message, 'Pandu Balraj');
+     bot.reply(message, 'Neetu Mishra');
+ });		
+
+controller.hears(["^what do you know about me$","^do you know me$"],'message_received,facebook_postback', function(bot, message) {		
+    bot.reply(message, "Right now I am learning about you!!!");
+});
+
+controller.hears(["^what else$","^what else do you know$"],'message_received,facebook_postback', function(bot, message) {		
+    bot.reply(message, "I hope you might be looking among these");
+    bot.startConversation(message, function(err, convo) {
+             main_menu(convo);
+         });
+});
  // ===============================TRIAL=================================================		
  		
  		
  // Default error message		
  controller.on('message_received,facebook_postback', function(bot, message) {		
-     bot.reply(message, 'Try: agenda` or `schedule` or `venue`');		
+     bot.reply(message, 'I am not sure what you are looking for. May be you can choose one of these');
+         bot.startConversation(message, function(err, convo) {
+             main_menu(convo);
+         });
      return false;		
  });		
  
