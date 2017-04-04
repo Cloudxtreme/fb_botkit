@@ -715,7 +715,7 @@ controller.hears(['^udaygiri$'], 'message_received,facebook_postback', function 
  // ============================ Main Menu  2. Location 2.1 BHUBANESHWAR 2.1.1.FOOD**************==========		
  		
  // ============================ Main Menu  2. Location 2.1 BHUBANESHWAR 2.1.1.WEATHER=====================		
- controller.hears(['^Weather$','^climate$',"^temperature$","^weather condition$",""], 'message_received,facebook_postback', function (bot, message) {		
+ controller.hears(['^Weather$','^climate$',"^temperature$","^weather condition$"], 'message_received,facebook_postback', function (bot, message) {		
      bot.startConversation(message, function (err, convo) {		
          request('http://apidev.accuweather.com/currentconditions/v1/1-189781_1_AL.json?language=en&apikey=hoArfRosT1215', function (error, response, body) {		
          if (!error && response.statusCode == 200) {		
@@ -944,7 +944,7 @@ controller.hears(['^udaygiri$'], 'message_received,facebook_postback', function 
  		
  // general
 
-controller.hears(['who are you',"tell me about yourself","what do you know","why are you created","what are you doing"],'message_received,facebook_postback', function(bot, message) {		
+controller.hears(['^who are you$',"^tell me about yourself$","^what do you know$","^why are you created$","^what are you doing$"],'message_received,facebook_postback', function(bot, message) {		
      bot.reply(message, 'I am BhubaBot.');		
      bot.reply(message, 'I am here');
      bot.reply(message, 'You know why?');
