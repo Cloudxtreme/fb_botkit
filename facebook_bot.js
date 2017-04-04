@@ -112,9 +112,9 @@ controller.hears(welcome_message, 'message_received,facebook_postback', function
     });
 });
 
-var main_menu = ["again_payload","^main menu$","^index$","^menu$","^content$"]
+var menu = ["again_payload","^main menu$","^index$","^menu$","^content$"]
 // again_payload on go back menu option
-controller.hears([main_menu], 'message_received,facebook_postback', function(bot, message) {
+controller.hears(menu, 'message_received,facebook_postback', function(bot, message) {
     bot.startConversation(message, function(err, convo) {
         main_menu(convo);
     });
