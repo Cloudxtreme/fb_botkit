@@ -23,7 +23,10 @@ controller.setupWebserver(process.env.PORT || process.env.port || 3000, function
 });
 
 // thread settings
-controller.api.thread_settings.greeting('Welcome to ATUNE Event. I am ATUNE Bot to provide event details');
+//controller.api.thread_settings.greeting('Welcome to ATUNE Event. I am ATUNE Bot to provide event details');
+controller.api.thread_settings.greeting('Hello {{user_name}}! Welcome to ATUNE Event. I am ATUNE Bot to provide event details!');
+
+
 controller.api.thread_settings.get_started('start_payload');
 
 // default main menu for the facebook menu button
