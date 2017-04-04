@@ -944,7 +944,7 @@ controller.hears(['^udaygiri$'], 'message_received,facebook_postback', function 
  		
  // general
 
-controller.hears(['^who are you$',"^tell me about yourself$","^what do you know$","^why are you created$","^what are you doing$"],'message_received,facebook_postback', function(bot, message) {		
+controller.hears(['who are you',"tell me about yourself","what do you know","why are you created","what are you doing"],'message_received,facebook_postback', function(bot, message) {		
      bot.reply(message, 'I am BhubaBot.');		
      bot.reply(message, 'I am here');
      bot.reply(message, 'You know why?');
