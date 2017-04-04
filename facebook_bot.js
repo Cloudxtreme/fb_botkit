@@ -872,7 +872,7 @@ controller.hears(['^udaygiri$'], 'message_received,facebook_postback', function 
  		
  // ====================================== Main Menu 3. Travel 3.3 Flight Status==============================		
  		
- controller.hears(['^flight_status$','^flight status$","^flight stats$"], 'message_received,facebook_postback', function (bot, message) {		
+ controller.hears(['^flight_status$',"^flight status$","^flight stats$"], 'message_received,facebook_postback', function (bot, message) {
      bot.startConversation(message, function (err, convo) {		
          convo.say('You want to know the real-time status of your flights - Dont worry - My Machine Learning, API fied, AI based, Microserviced, Hybrid cloud facilited, Augmented Reality Mobile app will give you the status :)) ');		
          convo.say('So you think I am fit to defend techie proposals? ')		
@@ -942,7 +942,7 @@ controller.hears(['^udaygiri$'], 'message_received,facebook_postback', function 
    });		
  });		
  		
- // general / faq
+ // general
 
 controller.hears(['^who are you$',"^tell me about yourself$","^what do you know$","^why are you created$","^what are you doing$"],'message_received,facebook_postback', function(bot, message) {		
      bot.reply(message, 'I am BhubaBot.');		
