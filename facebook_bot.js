@@ -158,7 +158,7 @@ controller.hears(event, 'message_received,facebook_postback', function(bot, mess
                     ]
                 }
             };
-            bot.replyWithTyping(message, {
+            bot.reply(message, {
                attachment: attachment
             });
 });
