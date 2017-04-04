@@ -945,16 +945,20 @@ controller.hears(['^udaygiri$'], 'message_received,facebook_postback', function 
  // general
 
 controller.hears(['^who are you$',"^tell me about yourself$","^what do you know$","^why are you created$","^what are you doing$"],'message_received,facebook_postback', function(bot, message) {		
-     bot.reply(message, 'I am BhubaBot.');		
-     bot.reply(message, 'I am here');
-     bot.reply(message, 'You know why?');
-     bot.reply(message, 'To give you Geeks some valuable info ☺ and also, to savor the lovely Bhubaneshwar delicacies- Especially the Rosgollas.');
+     bot.startConversation(message, function(err, convo) {
+     convo.say('I am BhubaBot.');		
+     convo.say('I am here');
+     convo.say('You know why?');
+     convo.say('To give you Geeks some valuable info ☺ and also, to savor the lovely Bhubaneshwar delicacies- Especially the Rosgollas.');
+     });
  });		
  		
 controller.hears(["^who created you$","^who is your father$"],'message_received,facebook_postback', function(bot, message) {		
-     bot.reply(message, 'I have been created by');		
-     bot.reply(message, 'Pandu Balraj');
-     bot.reply(message, 'Neetu Mishra');
+    bot.startConversation(message, function(err, convo) {
+     convo.say('I have been created by');		
+     convo.say('Pandu Balraj');
+     convo.say('Neetu Mishra');
+    });
  });		
 
 controller.hears(["^what do you know about me$","^do you know me$"],'message_received,facebook_postback', function(bot, message) {		
