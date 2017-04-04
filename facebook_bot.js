@@ -508,8 +508,8 @@ function bhubaneshwar_callback_menu(convo) {
 // ====================================== Main Menu  2. Location 2.3 BHUBANESHWAR*******==============================
 
 // ============================ Main Menu  2. Location 2.1 BHUBANESHWAR 2.1.1.LOCAL ATTRACTION========================
-var attraction = ['^local_attraction$',"^Location Attraction$","^sight seeing$","^tourist$","^place to visit$","^place to travel$","^refreshment$","^place to see$","tourist spot$","^list of places
-$","^attractions$",'^tourist place$']
+var attraction = ['^local_attraction$',"^Location Attraction$","^sight seeing$","^tourist$","^place to visit$","^place to travel$","^refreshment$","^place to see$","^tourist spot$","^list of places$","^attractions$",'^tourist place$']
+
 controller.hears(attraction, 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
         convo.say('I am still awestruck at the marvelous creations in this part of the Universe.')
