@@ -110,8 +110,8 @@ request({
     json: true // parse
 }, function (error, response, body) {
         if (!error && response.statusCode === 200) {
-            console.log(body.first_name);
-            console.log(body.last_name);
+             botkit.debug('NAME', body.first_name);
+             botkit.debug('NAME', body.last_name);
             user_name = body.first_name;
         }
     });
