@@ -100,7 +100,7 @@ function main_menu(convo) {
     });
 }
 // starting with hi and start_payload
-var welcome_message = ['^hi$','^start_payload$','^hello$','^start']
+var welcome_message = ['^hi$','^start_payload$','^hello$','^start$','^hey$','^whatsup$','^howsu$']
 
 controller.hears(welcome_message, 'message_received,facebook_postback', function(bot, message) {
     bot.startConversation(message, function(err, convo) {
@@ -112,9 +112,9 @@ controller.hears(welcome_message, 'message_received,facebook_postback', function
     });
 });
 
-
+var main_menu = ["again_payload","^main menu$","^index$","^menu$","^content$"]
 // again_payload on go back menu option
-controller.hears(['again_payload'], 'message_received,facebook_postback', function(bot, message) {
+controller.hears([main_menu], 'message_received,facebook_postback', function(bot, message) {
     bot.startConversation(message, function(err, convo) {
         main_menu(convo);
     });
@@ -122,11 +122,12 @@ controller.hears(['again_payload'], 'message_received,facebook_postback', functi
 
 
 // ====================================== Main Menu  1. Event================================
-controller.hears(['^Conference Details$','^Event$','^conference$'], 'message_received,facebook_postback', function(bot, message) {
-    bot.replyWithTyping(message, 'As you might already be knowing ATUNE is the ATU units annual networking event.');
-    bot.replyWithTyping(message, 'Three days of professional networking with associates across multiple functions.'); 
-    bot.replyWithTyping(message, 'This is going to be a great place to be for you to catapult your professional capabilities.');
-    bot.replyWithTyping(message, 'So yeah, what is it you would like to know about?');
+var event = ['^Conference Details$','^Event$','^conference$']
+controller.hears(event, 'message_received,facebook_postback', function(bot, message) {
+    bot.reply(message, 'As you might already be knowing ATUNE is the ATU units annual networking event.');
+    bot.reply(message, 'Three days of professional networking with associates across multiple functions.'); 
+    bot.reply(message, 'This is going to be a great place to be for you to catapult your professional capabilities.');
+    bot.reply(message, 'So yeah, what is it you would like to know about?');
         var attachment = {
                 'type': 'template',
                 'payload': {
@@ -187,7 +188,8 @@ function event_callback_menu(convo){
 }
 
 // ====================================== 1. Event Menu 1.1 AGENDA================================
-controller.hears(['Agenda','agenda'], 'message_received,facebook_postback', function (bot, message) {
+var agenda = ['^Agenda$','^about$']
+controller.hears(agenda, 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
          convo.say('OK, The organizers have told me that this is ONLY for TCSers, so I would\'nt know much. But hey, dont worrry, Just go to Knome to get the full details');
          event_callback_menu(convo);
@@ -197,7 +199,8 @@ controller.hears(['Agenda','agenda'], 'message_received,facebook_postback', func
 
 
 // ====================================== 1. Event Menu 1.2 SCHEDULE================================
-controller.hears(['Schedule duration','schedule','Schedule'], 'message_received,facebook_postback', function (bot, message) {
+var schedule = ['^Schedule duration$','^schedule$','^plan$',"^event timing$","^duration$"]
+controller.hears(schedule, 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function(err, convo) {
        convo.say('The event spans across three days. I am sure, you are going to have FRUITful Time. I am not talking about fruits ☺ ');
        convo.say('The THREE days will fly like THREE minutes as you are going to Soak yourself in the Nectar of Networking')
@@ -214,7 +217,7 @@ controller.hears(['Schedule duration','schedule','Schedule'], 'message_received,
 });
 
 // ====================================== 1. Event Menu 1.3 OTHER DETAILS==================================================
-controller.hears(['Other Details'], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['Other Details',"others","other"], 'message_received,facebook_postback', function (bot, message) {
     bot.reply(message,'Well, do you want to know more about')
       var  attachment = {
                 'type': 'template',
