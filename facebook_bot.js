@@ -983,14 +983,14 @@ controller.hears(['^who are you$',"^tell me about yourself$","^what do you know$
      convo.say('I am here');
      convo.say('You know why?');
      convo.say('To give you Geeks some valuable info ☺ and also, to savor the lovely Bhubaneshwar delicacies- Especially the Rosgollas.');
-     convo.say({
-                      "attachment":{
-                      "type":"image",
-                      "payload":{
-                        "url":"http://www.funnyjunk.com/funny_gifs/1492423/Charmander#bff569_1491979"
-                      }
-                    }
-                });
+//         convo.say({
+//               "attachment":{
+//               "type":"image",
+//               "payload":{
+//                 "url":"http://www.funnyjunk.com/funny_gifs/1492423/Charmander#bff569_1491979"
+//               }
+//             }
+//         });
      });
  });        
         
