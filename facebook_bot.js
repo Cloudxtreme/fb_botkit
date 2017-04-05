@@ -331,7 +331,7 @@ controller.hears(['^swon_details$','^swon$'], 'message_received,facebook_postbac
 // ====================================== 1. Event Menu 1.3 OTHER DETAILS 1.3.2 SWON DETAILS**************===================
 
 // ====================================== 1. Event Menu 1.3 OTHER DETAILS 1.3.3 ORGANIZING TEAM===================
-controller.hears(['organising_team','^organizer$','^organiser$','^team$','^volunteer$'], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['organising_team','^organizer$','^organiser$','^team$','^volunteer$',"^organizing team$"], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
         convo.say('You know, they are LOVELY and most approachable tribe in the universe.');
         convo.say('I am planning to take them along with me when humans begin to colonize Planet Mars.');
@@ -787,7 +787,7 @@ controller.hears(['^udaygiri$'], 'message_received,facebook_postback', function 
                      'elements': [      
                          {      
                              'title': 'Travel',     
-                             'image_url': 'http://manchestershambhala.org/wordpress/wp-content/uploads/2013/03/Who-am-I.jpg',       
+                             'image_url': 'https://bhubabot.blob.core.windows.net/images/travel.jpg',       
                              'buttons': [       
                                  {      
                                     'type': 'postback',     
