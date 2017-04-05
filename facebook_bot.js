@@ -426,8 +426,8 @@ controller.hears(['^venue$'], 'message_received,facebook_postback', function(bot
      bot.startConversation(message, function(err, convo) {
                 convo.say('The event will be held at the Mayfair hotels. It is about 20 minutes from the airport.'); 
                 convo.say('Lovely Place that has held great events in the past.');
-                convo.say('You can also refer to link : http://www.mayfairhotels.com/ for more details');
-                convo.say('Mayfair Hotels Gallery');
+                convo.say('Just Check this : http://www.mayfairhotels.com/ for more details');
+                convo.say('Let me take you to the Gallery');
                 convo.ask({
                         attachment: {
                             'type': 'template',
@@ -906,24 +906,25 @@ controller.hears(['^udaygiri$'], 'message_received,facebook_postback', function 
         
  controller.hears(['^flight_status$',"^flight status$","^flight stats$"], 'message_received,facebook_postback', function (bot, message) {
      bot.startConversation(message, function (err, convo) {     
-         convo.say('You want to know the real-time status of your flights - Dont worry - My Machine Learning, API fied, AI based, Microserviced, Hybrid cloud facilited, Augmented Reality Mobile app will give you the status :)) ');      
-         convo.say('So you think I am fit to defend techie proposals? ')        
-         convo.say('Yes, I can read your mind using my Vision Analysis Algorithms and I know you agree with me ')       
-         convo.ask({        
-             "attachment":{     
-             "type":"template",     
-             "payload":{        
-                 "buttons":[        
-                     {      
-                     "type":"web_url",      
-                     "url":"http://www.flightstats.com/go/FlightStatus/flightStatusByAirport.do?airportCode=BBI&airportQueryType=1",        
-                     "title":"Click the link below to know the flight status",      
-                     "webview_height_ratio": "compact"      
-                     }      
-                 ]      
-                 }      
-             }      
-           });      
+            convo.say('I am working on it - will let you know once it is done');
+//          convo.say('You want to know the real-time status of your flights - Dont worry - My Machine Learning, API fied, AI based, Microserviced, Hybrid cloud facilited, Augmented Reality Mobile app will give you the status :)) ');      
+//          convo.say('So you think I am fit to defend techie proposals? ')        
+//          convo.say('Yes, I can read your mind using my Vision Analysis Algorithms and I know you agree with me ')       
+//          convo.ask({        
+//              "attachment":{     
+//              "type":"template",     
+//              "payload":{        
+//                  "buttons":[        
+//                      {      
+//                      "type":"web_url",      
+//                      "url":"http://www.flightstats.com/go/FlightStatus/flightStatusByAirport.do?airportCode=BBI&airportQueryType=1",        
+//                      "title":"Click the link below to know the flight status",      
+//                      "webview_height_ratio": "compact"      
+//                      }      
+//                  ]      
+//                  }      
+//              }      
+//            });      
      travel_callback_menu(convo);       
      });        
  });        
