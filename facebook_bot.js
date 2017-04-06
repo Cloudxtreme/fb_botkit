@@ -23,7 +23,7 @@ controller.setupWebserver(process.env.PORT || process.env.port || 3000, function
 });
 
 // thread settings
-controller.api.thread_settings.greeting('Welcome to ATUNE Event. I am ATUNE Bot to provide event details');
+controller.api.thread_settings.greeting('Welcome to the networking Event. I am BhubaBot to provide event details');
 
 controller.api.thread_settings.get_started('start_payload');
 
@@ -71,7 +71,7 @@ function main_menu(convo) {
                 'template_type': 'generic',
                 'elements': [
                     {
-                        'title': 'ATUNE 2017',
+                        'title': 'EVENT',
                         'image_url': 'https://bhubabot.blob.core.windows.net/images/conference_1.png',
                         'subtitle': '',
                         'buttons': [
@@ -148,10 +148,11 @@ controller.hears(again_payload, 'message_received,facebook_postback', function(b
 // ====================================== Main Menu  1. Event================================
 var event = ['^Conference Details$','^Event$','^conference$']
 controller.hears(event, 'message_received,facebook_postback', function(bot, message) {
-    bot.reply(message, 'As you might already be knowing ATUNE is the ATU units annual networking event.');
-    bot.reply(message, 'Three days of professional networking with associates across multiple functions.'); 
-    bot.reply(message, 'This is going to be a great place to be for you to catapult your professional capabilities.');
-    bot.reply(message, 'So yeah, what is it you would like to know about?');
+    bot.startConversation(message, function(err, convo) {
+    convo.say('As you might already be knowing that this is the annual networking event.');
+    convo.say('Three days of professional networking with associates across multiple functions.'); 
+    convo.say('This is going to be a great place to be for you to catapult your professional capabilities.');
+    convo.say('So yeah, what is it you would like to know about?');
         var attachment = {
                 'type': 'template',
                 'payload': {
@@ -182,9 +183,7 @@ controller.hears(event, 'message_received,facebook_postback', function(bot, mess
                     ]
                 }
             };
-            bot.reply(message, {
-               attachment: attachment
-            });
+    });
 });
 
 // event_callback_menu
@@ -215,7 +214,7 @@ function event_callback_menu(convo){
 var agenda = ['^Agenda$','^about$']
 controller.hears(agenda, 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
-         convo.say('OK, The organizers have told me that this is ONLY for TCSers, so I would\'nt know much. But hey, dont worrry, Just go to Knome to get the full details');
+         convo.say('OK, I will update you about the agenda - once the organizers update me ');
          event_callback_menu(convo);
     }); 
 });
@@ -242,8 +241,10 @@ controller.hears(schedule, 'message_received,facebook_postback', function (bot, 
 
 // ====================================== 1. Event Menu 1.3 OTHER DETAILS==================================================
 controller.hears(['^Other Details$',"^others$","^other$"], 'message_received,facebook_postback', function (bot, message) {
-    bot.reply(message,'Well, do you want to know more about')
-      var  attachment = {
+    bot.startConversation(message, function(err, convo) {
+    convo.say('Well, do you want to know more about')
+    convo.ask({
+      attachment : {
                 'type': 'template',
                 'payload': {
                     'template_type': 'generic',
@@ -272,10 +273,9 @@ controller.hears(['^Other Details$',"^others$","^other$"], 'message_received,fac
                         }
                     ]
                 }
-            } ;
-            bot.reply(message, {
-            attachment: attachment
-            });        
+            }
+        }) 
+      });        
 });
 
 function other_details_callback_menu(convo){
@@ -357,13 +357,15 @@ controller.hears(['organising_team','^organizer$','^organiser$','^team$','^volun
 // ====================================== Main Menu  2. Location==================================
 
 controller.hears(['^Location Details$','^Location$'], 'message_received,facebook_postback', function(bot, message) {
-    bot.reply(message,'Bhubaneshwar is one of the most historical places. I have been here a few decades back. ')
-    bot.reply(message,'Does the sentence "Home, Home Sweet Home" ring a bell? ');
-    bot.reply(message,'Yeah you are right. The movie ET.'); 
-    bot.reply(message,'Yeah that was me. Steven Spielberg had earlier introduced me to the world as ET.  Had been to Bhubaneshwar in that Avatar. The place has changed a lot. Lots of great places to go around.');
-    bot.reply(message,'Sorry, I keep talking a lot. Maybe I am fit to be a Manager in an IT firm ');
-    bot.reply(message,'OK, Let me know what you would like to know more about');
-     var attachment =  {
+    bot.startConversation(message, function (err, convo) {
+    convo.say('Bhubaneshwar is one of the most historical places. I have been here a few decades back. ')
+    convo.say('Does the sentence "Home, Home Sweet Home" ring a bell? ');
+    convo.say('Yeah you are right. The movie ET.'); 
+    convo.say('Yeah that was me. Steven Spielberg had earlier introduced me to the world as ET.  Had been to Bhubaneshwar in that Avatar. The place has changed a lot. Lots of great places to go around.');
+    convo.say('Sorry, I keep talking a lot. Maybe I am fit to be a Manager in an IT firm ');
+    convo.say('OK, Let me know what you would like to know more about');
+    convo.ask({
+     attachment :  {
                 'type': 'template',
                 'payload': {
                     'template_type': 'generic',
@@ -391,10 +393,9 @@ controller.hears(['^Location Details$','^Location$'], 'message_received,facebook
                         }
                     ]
                 }
-            };
-            bot.reply(message, {
-            attachment: attachment
+            }
             });  
+        });  
 });
 
 // callback main_menu_location
@@ -775,12 +776,14 @@ controller.hears(['^udaygiri$'], 'message_received,facebook_postback', function 
  // ====================================== Main Menu 3. Travel================================      
         
  controller.hears(['^Travel$','^journey$','^travel guide$','^journey guide$'], 'message_received,facebook_postback', function(bot, message) {       
-     bot.reply(message,'Just imagine that I was able to Land in Bhubaneshwar from Planet-Mars.');       
-     bot.reply(message,'It only goes on to say that the city is so well connected.');       
-     bot.reply(message,'Bhubaneshwar attracts more than a million tourists in a year from all over the universe and Flights and Flying Saucers reach this city at all times.');     
-     bot.reply(message,'OK OK. Someone please stop me from chatting.....');     
-     bot.reply(message,'What would you like to know');      
-     var  attachment = {        
+     bot.startConversation(message, function (err, convo) {     
+     convo.say('Just imagine that I was able to Land in Bhubaneshwar from Planet-Mars.');       
+     convo.say('It only goes on to say that the city is so well connected.');       
+     convo.say('Bhubaneshwar attracts more than a million tourists in a year from all over the universe and Flights and Flying Saucers reach this city at all times.');     
+     convo.say('OK OK. Someone please stop me from chatting.....');     
+     convo.say('What would you like to know');      
+     convo.ask({
+     attachment : {        
                  'type': 'template',        
                  'payload': {       
                      'template_type': 'generic',        
@@ -808,10 +811,9 @@ controller.hears(['^udaygiri$'], 'message_received,facebook_postback', function 
                          }      
                      ]      
                  }      
-             } ;        
-             bot.reply(message, {       
-             attachment: attachment     
+             } 
              });            
+        });            
  });        
         
  // local_attraction_callback_menu      
@@ -860,7 +862,7 @@ controller.hears(['^udaygiri$'], 'message_received,facebook_postback', function 
              "attachment":{     
              "type":"image",        
              "payload":{        
-                 "url":"https://dl.dropbox.com/s/9wztnardq8lxli4/table_1.PNG"       
+                 "url":"https://bhubabot.blob.core.windows.net/images/table_1.PNG"       
              }      
              }      
            });      
@@ -868,7 +870,7 @@ controller.hears(['^udaygiri$'], 'message_received,facebook_postback', function 
              "attachment":{     
              "type":"image",        
              "payload":{        
-                 "url":"https://dl.dropbox.com/s/an75mrsdf6gns6c/table_2.PNG"       
+                 "url":"https://bhubabot.blob.core.windows.net/images/table_2.PNG"       
              }      
              }      
            });      
@@ -876,7 +878,7 @@ controller.hears(['^udaygiri$'], 'message_received,facebook_postback', function 
             "attachment":{      
              "type":"image",        
              "payload":{        
-                 "url":"https://dl.dropbox.com/s/90hpwm8020xwzzf/table_3.PNG"       
+                 "url":"https://bhubabot.blob.core.windows.net/images/table_3.PNG"       
              }      
              }      
            });      
@@ -884,7 +886,7 @@ controller.hears(['^udaygiri$'], 'message_received,facebook_postback', function 
              "attachment":{     
              "type":"image",        
              "payload":{        
-                 "url":"https://dl.dropbox.com/s/izhkm2aoiqcmd53/table_4.PNG"       
+                 "url":"https://bhubabot.blob.core.windows.net/images/table_4.PNG"       
              }      
              }      
            });      
@@ -892,7 +894,7 @@ controller.hears(['^udaygiri$'], 'message_received,facebook_postback', function 
              "attachment":{     
              "type":"image",        
              "payload":{        
-                 "url":"https://dl.dropbox.com/s/nscwyene34dcp59/table_5.PNG"       
+                 "url":"https://bhubabot.blob.core.windows.net/images/table_5.PNG"       
              }      
              }      
            });      
@@ -940,7 +942,7 @@ controller.hears(['^udaygiri$'], 'message_received,facebook_postback', function 
  // ATUNE MATCH     
  controller.hears(['^atune$','^atune 2017$','^atune-2017$'], 'message_received,facebook_postback', function (bot, message) {        
      bot.startConversation(message, function (err, convo) {     
-     convo.say('ATUNE is ATU networking program that arranges conference yearly twice.this is the second one.');        
+     convo.say('This event is a networking program that arranges conference yearly twice .This is the second one.');        
      });        
  });        
  
